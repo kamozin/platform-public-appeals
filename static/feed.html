@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Все обращения и жалобы - Рука добра</title>
+    <meta name="description" content="Открытый реестр обращений и жалоб граждан на платформе Рука добра: статусы, категории, города и общественная поддержка.">
+    <link rel="preload" href="assets/issue-road.png" as="image">
+    <link rel="preload" href="assets/issue-entrance-roof.png" as="image">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="auth-page screen-page feed-page">
+    <svg class="svg-sprite" aria-hidden="true">
+      <symbol id="menu" viewBox="0 0 24 24">
+        <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="user" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M4 21c1.5-4.1 4.2-6 8-6s6.5 1.9 8 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="edit" viewBox="0 0 24 24">
+        <path d="M4 20h4l11-11-4-4L4 16v4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="m14 6 4 4M12 20h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="file" viewBox="0 0 24 24">
+        <path d="M6 3h8l4 4v14H6V3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M14 3v5h5M9 13h6M9 17h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="m16 16 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="filter" viewBox="0 0 24 24">
+        <path d="M4 6h16M7 12h10M10 18h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="pin" viewBox="0 0 24 24">
+        <path d="M12 22s7-6.2 7-12A7 7 0 1 0 5 10c0 5.8 7 12 7 12Z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <symbol id="calendar" viewBox="0 0 24 24">
+        <rect x="4" y="5" width="16" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M8 3v4M16 3v4M4 10h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="eye" viewBox="0 0 24 24">
+        <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <symbol id="heart" viewBox="0 0 24 24">
+        <path d="M12 21S4 16.2 4 9.8A4.7 4.7 0 0 1 12 6a4.7 4.7 0 0 1 8 3.8C20 16.2 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="comment" viewBox="0 0 24 24">
+        <path d="M4 5h16v11H8l-4 4V5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="share" viewBox="0 0 24 24">
+        <circle cx="18" cy="5" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="6" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="18" cy="19" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="back" viewBox="0 0 24 24">
+        <path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="check" viewBox="0 0 24 24">
+        <path d="m5 12 4.5 4.5L19 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="shield" viewBox="0 0 24 24">
+        <path d="M12 3 20 6v6.2c0 4.7-3 7.8-8 9.8-5-2-8-5.1-8-9.8V6l8-3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="m8.5 12 2.4 2.4 4.8-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="trend" viewBox="0 0 24 24">
+        <path d="m4 16 5-5 4 4 7-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16 7h4v4M4 21h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="phone" viewBox="0 0 24 24">
+        <path d="M7 4 5 6c-1 1-.6 5.5 4.2 10.3C14 21.1 18.5 21.5 19.5 20.5l2-2-4-4-2 2c-1.3-.5-2.7-1.4-4-2.7s-2.2-2.7-2.7-4l2-2L7 4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="mail" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="social-vk" viewBox="0 0 24 24">
+        <path d="M4.9 7.5c.1 5.8 3 9.2 8.1 9.2h.3v-3.3c1.8.2 3.1 1.5 3.6 3.3h2.7a7.1 7.1 0 0 0-3.6-4.8 6.9 6.9 0 0 0 3.1-4.4h-2.5c-.5 1.9-2 3.6-3.3 3.8V7.5h-2.5v6.7c-1.4-.3-3.1-2.2-3.2-6.7H4.9Z" fill="currentColor"/>
+      </symbol>
+      <symbol id="social-ok" viewBox="0 0 24 24">
+        <circle cx="12" cy="6.4" r="3.1" fill="currentColor"/>
+        <path d="M16 11.2a1.3 1.3 0 0 0-1.8-.1 3.6 3.6 0 0 1-4.4 0 1.3 1.3 0 0 0-1.8 1.8 6.1 6.1 0 0 0 2.2 1.2l-2 2.1a1.3 1.3 0 1 0 1.9 1.8l1.9-2 1.9 2a1.3 1.3 0 0 0 1.9-1.8l-2-2.1A6.1 6.1 0 0 0 16 13a1.3 1.3 0 0 0 0-1.8Z" fill="currentColor"/>
+      </symbol>
+      <symbol id="social-max" viewBox="0 0 64 64">
+        <defs>
+          <linearGradient id="feed-max-logo-gradient" x1="5" y1="53" x2="59" y2="11" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#42c7f3"/>
+            <stop offset=".46" stop-color="#3153d6"/>
+            <stop offset="1" stop-color="#9b2ee8"/>
+          </linearGradient>
+        </defs>
+        <rect width="64" height="64" rx="15" fill="url(#feed-max-logo-gradient)"/>
+        <path d="M31.9 7.6c-12.7 0-23 9.9-23 22.2 0 4.3 1.1 8.5 2.2 12.6.8 3.1 1.7 6.3 1.7 9.5 0 3.6 2.3 4.9 5.5 4.9 3.5 0 7.9-1.9 11.2-5.4 1.5.8 3.5 1.5 6 1.9 11.1 1.8 22.2-6.2 22.2-18.6 0-13.6-11.5-27.1-25.8-27.1Zm-.3 12.1c8.2 0 15 6.5 15 14.2 0 7.2-6.5 12.7-13.4 12.7-4.1 0-6.9-1.2-9.3-3.1-1.4 1.6-3.1 3.5-5.3 3.9.2-4-2.6-10-2.6-14.8 0-7.2 6.8-12.9 15.6-12.9Z" fill="#fff"/>
+      </symbol>
+    </svg>
+
+    <header></header>
+
+    <main class="feed-main" data-feed-page>
+      <section class="container feed-registry" aria-labelledby="feed-page-title">
+        <div class="feed-registry-head">
+          <nav class="appeal-detail-breadcrumb feed-breadcrumb" aria-label="Навигация по реестру обращений">
+            <a href="index.html"><svg aria-hidden="true"><use href="#back"></use></svg>На главную</a>
+            <span>Открытый реестр</span>
+          </nav>
+
+          <div class="feed-title-row">
+            <div>
+              <span>Обращения граждан</span>
+              <h1 id="feed-page-title">Все обращения и жалобы</h1>
+              <p>Проверенные обращения с текущим статусом, городом, категорией, общественной поддержкой и переходом в подробную карточку.</p>
+            </div>
+            <a class="cabinet-primary-link" href="appeal.html">
+              <svg aria-hidden="true"><use href="#edit"></use></svg>
+              Подать обращение
+            </a>
+          </div>
+
+          <div class="feed-summary-grid" aria-label="Сводка по обращениям">
+            <article class="feed-summary-card">
+              <span><svg aria-hidden="true"><use href="#file"></use></svg></span>
+              <strong>128</strong>
+              <p>обращений опубликовано</p>
+            </article>
+            <article class="feed-summary-card feed-summary-green">
+              <span><svg aria-hidden="true"><use href="#check"></use></svg></span>
+              <strong>46</strong>
+              <p>проблем решено</p>
+            </article>
+            <article class="feed-summary-card feed-summary-orange">
+              <span><svg aria-hidden="true"><use href="#clock"></use></svg></span>
+              <strong>37</strong>
+              <p>обращений в работе</p>
+            </article>
+            <article class="feed-summary-card feed-summary-red">
+              <span><svg aria-hidden="true"><use href="#heart"></use></svg></span>
+              <strong>5 430</strong>
+              <p>голосов поддержки</p>
+            </article>
+          </div>
+        </div>
+
+        <form class="feed-toolbar" data-feed-toolbar action="#" aria-label="Фильтры обращений">
+          <label class="feed-search">
+            <svg aria-hidden="true"><use href="#search"></use></svg>
+            <span class="sr-only">Поиск по обращениям</span>
+            <input data-feed-search type="search" name="search" placeholder="Поиск по теме, городу или категории">
+          </label>
+
+          <div class="feed-filter-pills" data-feed-filter-group="status" aria-label="Статус обращения">
+            <button class="is-active" type="button" data-feed-filter="all" aria-pressed="true">Все</button>
+            <button type="button" data-feed-filter="checking" aria-pressed="false">На проверке</button>
+            <button type="button" data-feed-filter="active" aria-pressed="false">В работе</button>
+            <button type="button" data-feed-filter="resolved" aria-pressed="false">Решено</button>
+          </div>
+
+          <label class="feed-select">
+            <span>Город</span>
+            <select data-feed-select="city" name="city">
+              <option value="all">Все города</option>
+              <option value="Брянск">Брянск</option>
+              <option value="Москва">Москва</option>
+              <option value="Санкт-Петербург">Санкт-Петербург</option>
+            </select>
+          </label>
+
+          <label class="feed-select">
+            <span>Категория</span>
+            <select data-feed-select="category" name="category">
+              <option value="all">Все категории</option>
+              <option value="ЖКХ">ЖКХ</option>
+              <option value="Дороги">Дороги</option>
+              <option value="Благоустройство">Благоустройство</option>
+              <option value="Здравоохранение">Здравоохранение</option>
+              <option value="Образование">Образование</option>
+              <option value="Спорт">Спорт</option>
+            </select>
+          </label>
+
+          <label class="feed-select feed-sort">
+            <span>Сортировка</span>
+            <select data-feed-sort name="sort">
+              <option value="new">Сначала новые</option>
+              <option value="support">Больше поддержки</option>
+              <option value="views">Больше просмотров</option>
+            </select>
+          </label>
+        </form>
+
+        <div class="feed-content-layout">
+          <section class="feed-list-section" aria-labelledby="feed-list-title">
+            <div class="feed-list-head">
+              <div>
+                <span data-feed-count>12 обращений</span>
+                <h2 id="feed-list-title">Реестр обращений</h2>
+              </div>
+              <p><svg aria-hidden="true"><use href="#calendar"></use></svg> Обновлено 17 июня 2026</p>
+            </div>
+
+            <div class="feed-card-grid" data-feed-list>
+              <article class="appeal-card feed-list-card" data-feed-card data-status="active" data-city="Москва" data-category="Дороги" data-title="Ямы на дороге после ремонта" data-date="2026-06-14" data-support="118" data-views="2134">
+                <span class="status status-orange">В работе</span>
+                <img src="assets/issue-road.png" alt="Ямы на дороге после ремонта" width="300" height="220">
+                <div class="appeal-copy">
+                  <span>Дороги</span>
+                  <h3><a href="appeal-detail.html">Ямы на дороге после ремонта</a></h3>
+                  <p>г. Москва, ЮВАО<br>14 июня 2026, 10:15</p>
+                </div>
+                <footer>
+                  <span><svg aria-hidden="true"><use href="#eye"></use></svg>2 134</span>
+                  <span class="appeal-like"><svg aria-hidden="true"><use href="#heart"></use></svg>118</span>
+                  <span><svg aria-hidden="true"><use href="#comment"></use></svg>37</span>
+                  <a class="feed-open-link" href="appeal-detail.html">Открыть</a>
+                  <button type="button" aria-label="Поделиться"><svg aria-hidden="true"><use href="#share"></use></svg></button>
+                </footer>
+              </article>
+
+              <article class="appeal-card feed-list-card" data-feed-card data-status="checking" data-city="Брянск" data-category="ЖКХ" data-title="Протекает крыша в подъезде после дождя" data-date="2026-06-13" data-support="64" data-views="1245">
+                <span class="status status-blue">На проверке</span>
+                <img src="assets/issue-entrance-roof.png" alt="Протекает крыша в подъезде после дождя" width="300" height="220">
+                <div class="appeal-copy">
+                  <span>ЖКХ</span>
+                  <h3><a href="appeal-detail.html">Протекает крыша в подъезде после дождя</a></h3>
+                  <p>г. Брянск, Советский район<br>13 июня 2026, 14:30</p>
+                </div>
+                <footer>
+                  <span><svg aria-hidden="true"><use href="#eye"></use></svg>1 245</span>
+                  <span class="appeal-like"><svg aria-hidden="true"><use href="#heart"></use></svg>64</span>
+                  <span><svg aria-hidden="true"><use href="#comment"></use></svg>23</span>
+                  <a class="feed-open-link" href="appeal-detail.html">Открыть</a>
+                  <button type="button" aria-label="Поделиться"><svg aria-hidden="true"><use href="#share"></use></svg></button>
+                </footer>
+              </article>
+
+              <article class="appeal-card feed-list-card" data-feed-card data-status="resolved" data-city="Санкт-Петербург" data-category="Благоустройство" data-title="Свалка строительного мусора во дворе" data-date="2026-06-11" data-support="41" data-views="892">
+                <span class="status status-green">Решено</span>
+                <img src="assets/issue-sport-roof.png" alt="Свалка строительного мусора во дворе" width="300" height="220">
+                <div class="appeal-copy">
+                  <span>Благоустройство</span>
+                  <h3><a href="appeal-detail.html">Свалка строительного мусора во дворе</a></h3>
+                  <p>г. Санкт-Петербург, Невский район<br>11 июня 2026, 11:20</p>
+                </div>
+                <footer>
+                  <span><svg aria-hidden="true"><use href="#eye"></use></svg>892</span>
+                  <span class="appeal-like"><svg aria-hidden="true"><use href="#heart"></use></svg>41</span>
+                  <span><svg aria-hidden="true"><use href="#comment"></use></svg>18</span>
+                  <a class="feed-open-link" href="appeal-detail.html">Открыть</a>
+                  <button type="button" aria-label="Поделиться"><svg aria-hidden="true"><use href="#share"></use></svg></button>
+                </footer>
+              </article>
+
+              <article class="appeal-card feed-list-card" data-feed-card data-status="active" data-city="Брянск" data-category="ЖКХ" data-title="Сырость и плесень в подъезде" data-date="2026-06-10" data-support="52" data-views="734">
+                <span class="status status-orange">В работе</span>
+                <img src="assets/issue-entrance-roof.png" alt="Сырость и плесень в подъезде" width="300" height="220">
+                <div class="appeal-copy">
+                  <span>ЖКХ</span>
+                  <h3><a href="appeal-detail.html">Сырость и плесень в подъезде</a></h3>
+                  <p>г. Брянск, Фокинский район<br>10 июня 2026, 16:40</p>
+                </div>
+                <footer>
+                  <span><svg aria-hidden="true"><use href="#eye"></use></svg>734</span>
+                  <span class="appeal-like"><svg aria-hidden="true"><use href="#heart"></use></svg>52</span>
+                  <span><svg aria-hidden="true"><use href="#comment"></use></svg>15</span>
+                  <a class="feed-open-link" href="appeal-detail.html">Открыть</a>
+                  <button type="button" aria-label="Поделиться"><svg aria-hidden="true"><use href="#share"></use></svg></button>
+                </footer>
+              </article>
+
+              <article class="appeal-card feed-list-card" data-feed-card data-status="checking" data-city="Москва" data-category="Дороги" data-title="Разбитый тротуар возле остановки" data-date="2026-06-08" data-support="86" data-views="1487">
+                <span class="status status-blue">На проверке</span>
+                <img src="assets/issue-road.png" alt="Разбитый тротуар возле остановки" width="300" height="220">
+                <div class="appeal-copy">
+                  <span>Дороги</span>
+                  <h3><a href="appeal-detail.html">Разбитый тротуар возле остановки</a></h3>
+                  <p>г. Москва, район Люблино<br>8 июня 2026, 09:25</p>
+                </div>
+                <footer>
+                  <span><svg aria-hidden="true"><use href="#eye"></use></svg>1 487</span>
+                  <span class="appeal-like"><svg aria-hidden="true"><use href="#heart"></use></svg>86</span>
+                  <span><svg aria-hidden="true"><use href="#comment"></use></svg>31</span>
+                  <a class="feed-open-link" href="appeal-detail.html">Открыть</a>
+                  <button type="button" aria-label="Поделиться"><svg aria-hidden="true"><use href="#share"></use></svg></button>
+                </footer>
+              </article>
+
+              <article class="appeal-card feed-list-card" data-feed-card data-status="resolved" data-city="Санкт-Петербург" data-category="Спорт" data-title="Поврежденное покрытие на площадке" data-date="2026-06-06" data-support="47" data-views="963">
+                <span class="status status-green">Решено</span>
+                <img src="assets/issue-sport-roof.png" alt="Поврежденное покрытие на спортивной площадке" width="300" height="220">
+                <div class="appeal-copy">
+                  <span>Спорт</span>
+                  <h3><a href="appeal-detail.html">Поврежденное покрытие на площадке</a></h3>
+                  <p>г. Санкт-Петербург, Калининский район<br>6 июня 2026, 12:10</p>
+                </div>
+                <footer>
+                  <span><svg aria-hidden="true"><use href="#eye"></use></svg>963</span>
+                  <span class="appeal-like"><svg aria-hidden="true"><use href="#heart"></use></svg>47</span>
+                  <span><svg aria-hidden="true"><use href="#comment"></use></svg>12</span>
+                  <a class="feed-open-link" href="appeal-detail.html">Открыть</a>
+                  <button type="button" aria-label="Поделиться"><svg aria-hidden="true"><use href="#share"></use></svg></button>
+                </footer>
+              </article>
+
+              <article class="appeal-card feed-list-card" data-feed-card data-status="active" data-city="Москва" data-category="Здравоохранение" data-title="Очередь к врачу в районной поликлинике" data-date="2026-06-04" data-support="73" data-views="1198">
+                <span class="status status-orange">В работе</span>
+                <img src="assets/hero-legal-consultation.png" alt="Очередь к врачу в районной поликлинике" width="300" height="220">
+                <div class="appeal-copy">
+                  <span>Здравоохранение</span>
+                  <h3><a href="appeal-detail.html">Очередь к врачу в районной поликлинике</a></h3>
+                  <p>г. Москва, район Марьино<br>4 июня 2026, 13:05</p>
+                </div>
+                <footer>
+                  <span><svg aria-hidden="true"><use href="#eye"></use></svg>1 198</span>
+                  <span class="appeal-like"><svg aria-hidden="true"><use href="#heart"></use></svg>73</span>
+                  <span><svg aria-hidden="true"><use href="#comment"></use></svg>19</span>
+                  <a class="feed-open-link" href="appeal-detail.html">Открыть</a>
+                  <button type="button" aria-label="Поделиться"><svg aria-hidden="true"><use href="#share"></use></svg></button>
+                </footer>
+              </article>
+
+              <article class="appeal-card feed-list-card" data-feed-card data-status="checking" data-city="Брянск" data-category="Образование" data-title="Нет освещения у школьного перехода" data-date="2026-06-02" data-support="59" data-views="805">
+                <span class="status status-blue">На проверке</span>
+                <img src="assets/hero-community-meeting.png" alt="Нет освещения у школьного перехода" width="300" height="220">
+                <div class="appeal-copy">
+                  <span>Образование</span>
+                  <h3><a href="appeal-detail.html">Нет освещения у школьного перехода</a></h3>
+                  <p>г. Брянск, Бежицкий район<br>2 июня 2026, 18:10</p>
+                </div>
+                <footer>
+                  <span><svg aria-hidden="true"><use href="#eye"></use></svg>805</span>
+                  <span class="appeal-like"><svg aria-hidden="true"><use href="#heart"></use></svg>59</span>
+                  <span><svg aria-hidden="true"><use href="#comment"></use></svg>11</span>
+                  <a class="feed-open-link" href="appeal-detail.html">Открыть</a>
+                  <button type="button" aria-label="Поделиться"><svg aria-hidden="true"><use href="#share"></use></svg></button>
+                </footer>
+              </article>
+
+              <article class="appeal-card feed-list-card" data-feed-card data-status="resolved" data-city="Москва" data-category="Благоустройство" data-title="Надписи на фасаде здания" data-date="2026-05-30" data-support="95" data-views="1520">
+                <span class="status status-green">Решено</span>
+                <img src="assets/hero-civic-flag.png" alt="Надписи на фасаде здания" width="300" height="220">
+                <div class="appeal-copy">
+                  <span>Благоустройство</span>
+                  <h3><a href="appeal-detail.html">Надписи на фасаде здания</a></h3>
+                  <p>г. Москва, ул. Арбат, 20<br>30 мая 2026, 11:40</p>
+                </div>
+                <footer>
+                  <span><svg aria-hidden="true"><use href="#eye"></use></svg>1 520</span>
+                  <span class="appeal-like"><svg aria-hidden="true"><use href="#heart"></use></svg>95</span>
+                  <span><svg aria-hidden="true"><use href="#comment"></use></svg>24</span>
+                  <a class="feed-open-link" href="appeal-detail.html">Открыть</a>
+                  <button type="button" aria-label="Поделиться"><svg aria-hidden="true"><use href="#share"></use></svg></button>
+                </footer>
+              </article>
+
+              <article class="appeal-card feed-list-card" data-feed-card data-status="active" data-city="Санкт-Петербург" data-category="ЖКХ" data-title="Не вывозят крупногабаритный мусор" data-date="2026-05-28" data-support="66" data-views="1044">
+                <span class="status status-orange">В работе</span>
+                <img src="assets/issue-entrance-roof.png" alt="Не вывозят крупногабаритный мусор" width="300" height="220">
+                <div class="appeal-copy">
+                  <span>ЖКХ</span>
+                  <h3><a href="appeal-detail.html">Не вывозят крупногабаритный мусор</a></h3>
+                  <p>г. Санкт-Петербург, Московский район<br>28 мая 2026, 08:35</p>
+                </div>
+                <footer>
+                  <span><svg aria-hidden="true"><use href="#eye"></use></svg>1 044</span>
+                  <span class="appeal-like"><svg aria-hidden="true"><use href="#heart"></use></svg>66</span>
+                  <span><svg aria-hidden="true"><use href="#comment"></use></svg>16</span>
+                  <a class="feed-open-link" href="appeal-detail.html">Открыть</a>
+                  <button type="button" aria-label="Поделиться"><svg aria-hidden="true"><use href="#share"></use></svg></button>
+                </footer>
+              </article>
+
+              <article class="appeal-card feed-list-card" data-feed-card data-status="checking" data-city="Москва" data-category="Дороги" data-title="Опасный выезд со двора без зеркала" data-date="2026-05-24" data-support="44" data-views="690">
+                <span class="status status-blue">На проверке</span>
+                <img src="assets/issue-road.png" alt="Опасный выезд со двора без зеркала" width="300" height="220">
+                <div class="appeal-copy">
+                  <span>Дороги</span>
+                  <h3><a href="appeal-detail.html">Опасный выезд со двора без зеркала</a></h3>
+                  <p>г. Москва, район Северное Медведково<br>24 мая 2026, 15:50</p>
+                </div>
+                <footer>
+                  <span><svg aria-hidden="true"><use href="#eye"></use></svg>690</span>
+                  <span class="appeal-like"><svg aria-hidden="true"><use href="#heart"></use></svg>44</span>
+                  <span><svg aria-hidden="true"><use href="#comment"></use></svg>9</span>
+                  <a class="feed-open-link" href="appeal-detail.html">Открыть</a>
+                  <button type="button" aria-label="Поделиться"><svg aria-hidden="true"><use href="#share"></use></svg></button>
+                </footer>
+              </article>
+
+              <article class="appeal-card feed-list-card" data-feed-card data-status="resolved" data-city="Брянск" data-category="Спорт" data-title="Сломанные ворота на школьном стадионе" data-date="2026-05-20" data-support="35" data-views="612">
+                <span class="status status-green">Решено</span>
+                <img src="assets/issue-sport-roof.png" alt="Сломанные ворота на школьном стадионе" width="300" height="220">
+                <div class="appeal-copy">
+                  <span>Спорт</span>
+                  <h3><a href="appeal-detail.html">Сломанные ворота на школьном стадионе</a></h3>
+                  <p>г. Брянск, Володарский район<br>20 мая 2026, 12:25</p>
+                </div>
+                <footer>
+                  <span><svg aria-hidden="true"><use href="#eye"></use></svg>612</span>
+                  <span class="appeal-like"><svg aria-hidden="true"><use href="#heart"></use></svg>35</span>
+                  <span><svg aria-hidden="true"><use href="#comment"></use></svg>8</span>
+                  <a class="feed-open-link" href="appeal-detail.html">Открыть</a>
+                  <button type="button" aria-label="Поделиться"><svg aria-hidden="true"><use href="#share"></use></svg></button>
+                </footer>
+              </article>
+            </div>
+
+            <nav class="list-pagination feed-pagination" data-pagination="feed" aria-label="Пагинация обращений" hidden></nav>
+
+            <div class="feed-empty" data-feed-empty hidden>
+              <span><svg aria-hidden="true"><use href="#filter"></use></svg></span>
+              <h2>Обращения не найдены</h2>
+              <p>Измените параметры фильтра или поисковый запрос.</p>
+            </div>
+          </section>
+
+          <aside class="feed-side" aria-label="Сводка реестра">
+            <section class="feed-side-panel" aria-labelledby="feed-cities-title">
+              <div class="feed-side-head">
+                <span><svg aria-hidden="true"><use href="#pin"></use></svg></span>
+                <h2 id="feed-cities-title">Города работы</h2>
+              </div>
+              <div class="feed-city-stack">
+                <article>
+                  <div><strong>Москва</strong><span>5 обращений</span></div>
+                  <i style="width: 82%"></i>
+                </article>
+                <article>
+                  <div><strong>Брянск</strong><span>4 обращения</span></div>
+                  <i style="width: 66%"></i>
+                </article>
+                <article>
+                  <div><strong>Санкт-Петербург</strong><span>3 обращения</span></div>
+                  <i style="width: 48%"></i>
+                </article>
+              </div>
+            </section>
+
+            <section class="feed-side-panel" aria-labelledby="feed-status-title">
+              <div class="feed-side-head">
+                <span><svg aria-hidden="true"><use href="#trend"></use></svg></span>
+                <h2 id="feed-status-title">Статусы</h2>
+              </div>
+              <dl class="feed-status-list">
+                <div><dt><i class="blue"></i>На проверке</dt><dd>4</dd></div>
+                <div><dt><i class="orange"></i>В работе</dt><dd>4</dd></div>
+                <div><dt><i class="green"></i>Решено</dt><dd>4</dd></div>
+              </dl>
+            </section>
+
+            <section class="feed-side-panel feed-help-panel" aria-labelledby="feed-help-title">
+              <span><svg aria-hidden="true"><use href="#shield"></use></svg></span>
+              <h2 id="feed-help-title">Общественный контроль</h2>
+              <p>Публичные обращения проходят модерацию, получают категорию и остаются доступными для отслеживания статуса.</p>
+              <a class="cabinet-ghost-button" href="index.html#how">Как это работает <svg aria-hidden="true"><use href="#arrow"></use></svg></a>
+            </section>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer></footer>
+
+    <div class="modal" data-share-modal hidden>
+      <button class="modal-backdrop" type="button" data-modal-close aria-label="Закрыть окно"></button>
+      <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="share-modal-title" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="Закрыть окно">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h2 id="share-modal-title">Поделиться обращением</h2>
+        <p data-share-modal-text>Ссылка на обращение готова к отправке.</p>
+        <div class="modal-actions">
+          <button class="btn btn-red" type="button" data-copy-link>
+            <svg aria-hidden="true"><use href="#share"></use></svg>
+            <span data-copy-label>Скопировать ссылку</span>
+          </button>
+          <button class="btn btn-outline" type="button" data-modal-close>Закрыть</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

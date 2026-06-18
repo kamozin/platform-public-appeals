@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Личный кабинет - Рука добра</title>
+    <meta name="description" content="Личный кабинет пользователя платформы НКО Рука добра. Обращения, уведомления, статусы, профиль и безопасность.">
+    <link rel="preload" href="assets/hero-civic-flag.png" as="image">
+    <link rel="preload" href="assets/issue-road.png" as="image">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="auth-page screen-page cabinet-page">
+    <svg class="svg-sprite" aria-hidden="true">
+      <symbol id="menu" viewBox="0 0 24 24">
+        <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="user" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M4 21c1.5-4.1 4.2-6 8-6s6.5 1.9 8 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="users" viewBox="0 0 24 24">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM2.5 21c1-4 3-6 5.5-6s4.6 2 5.5 6M17 11a3 3 0 1 0 0-6M15.2 15.2c2.5.3 4.2 2.1 5.3 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="camera" viewBox="0 0 24 24">
+        <path d="M4 8h4l2-3h4l2 3h4v11H4V8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="12" cy="13" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <symbol id="home" viewBox="0 0 24 24">
+        <path d="m3 11 9-8 9 8v10h-6v-6H9v6H3V11Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="file" viewBox="0 0 24 24">
+        <path d="M6 3h8l4 4v14H6V3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M14 3v5h5M9 13h6M9 17h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="edit" viewBox="0 0 24 24">
+        <path d="M4 20h4l11-11-4-4L4 16v4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="m14 6 4 4M12 20h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="bookmark" viewBox="0 0 24 24">
+        <path d="M7 4h10v17l-5-3-5 3V4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="comment" viewBox="0 0 24 24">
+        <path d="M4 5h16v11H8l-4 4V5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="bell" viewBox="0 0 24 24">
+        <path d="M18 10a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="trend" viewBox="0 0 24 24">
+        <path d="m4 16 5-5 4 4 7-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16 7h4v4M4 21h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="shield" viewBox="0 0 24 24">
+        <path d="M12 3 20 6v6.2c0 4.7-3 7.8-8 9.8-5-2-8-5.1-8-9.8V6l8-3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="m8.5 12 2.4 2.4 4.8-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="star" viewBox="0 0 24 24">
+        <path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.8 1-6.1-4.4-4.3 6.1-.9L12 3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="medal" viewBox="0 0 24 24">
+        <path d="M8 4h8l-2.2 5.2a6 6 0 1 1-3.6 0L8 4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M10 4 8.7 9M14 4l1.3 5M12 13l.9 1.8 2 .3-1.5 1.4.4 2-1.8-1-1.8 1 .4-2-1.5-1.4 2-.3.9-1.8Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="lock" viewBox="0 0 24 24">
+        <rect x="5" y="10" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M8 10V8a4 4 0 0 1 8 0v2M12 14v2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="m16 16 4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="filter" viewBox="0 0 24 24">
+        <path d="M4 6h16M7 12h10M10 18h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="calendar" viewBox="0 0 24 24">
+        <rect x="4" y="5" width="16" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M8 3v4M16 3v4M4 10h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="check" viewBox="0 0 24 24">
+        <path d="m5 12 4.5 4.5L19 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="heart" viewBox="0 0 24 24">
+        <path d="M12 21S4 16.2 4 9.8A4.7 4.7 0 0 1 12 6a4.7 4.7 0 0 1 8 3.8C20 16.2 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="eye" viewBox="0 0 24 24">
+        <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <symbol id="pin" viewBox="0 0 24 24">
+        <path d="M12 22s7-6.2 7-12A7 7 0 1 0 5 10c0 5.8 7 12 7 12Z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <symbol id="phone" viewBox="0 0 24 24">
+        <path d="M7 4 5 6c-1 1-.6 5.5 4.2 10.3C14 21.1 18.5 21.5 19.5 20.5l2-2-4-4-2 2c-1.3-.5-2.7-1.4-4-2.7s-2.2-2.7-2.7-4l2-2L7 4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="mail" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="x" viewBox="0 0 24 24">
+        <path d="m6 6 12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="social-vk" viewBox="0 0 24 24">
+        <path d="M4.9 7.5c.1 5.8 3 9.2 8.1 9.2h.3v-3.3c1.8.2 3.1 1.5 3.6 3.3h2.7a7.1 7.1 0 0 0-3.6-4.8 6.9 6.9 0 0 0 3.1-4.4h-2.5c-.5 1.9-2 3.6-3.3 3.8V7.5h-2.5v6.7c-1.4-.3-3.1-2.2-3.2-6.7H4.9Z" fill="currentColor"/>
+      </symbol>
+      <symbol id="social-ok" viewBox="0 0 24 24">
+        <circle cx="12" cy="6.4" r="3.1" fill="currentColor"/>
+        <path d="M16 11.2a1.3 1.3 0 0 0-1.8-.1 3.6 3.6 0 0 1-4.4 0 1.3 1.3 0 0 0-1.8 1.8 6.1 6.1 0 0 0 2.2 1.2l-2 2.1a1.3 1.3 0 1 0 1.9 1.8l1.9-2 1.9 2a1.3 1.3 0 0 0 1.9-1.8l-2-2.1A6.1 6.1 0 0 0 16 13a1.3 1.3 0 0 0 0-1.8Z" fill="currentColor"/>
+      </symbol>
+      <symbol id="social-max" viewBox="0 0 64 64">
+        <defs>
+          <linearGradient id="dashboard-max-logo-gradient" x1="5" y1="53" x2="59" y2="11" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#42c7f3"/>
+            <stop offset=".46" stop-color="#3153d6"/>
+            <stop offset="1" stop-color="#9b2ee8"/>
+          </linearGradient>
+        </defs>
+        <rect width="64" height="64" rx="15" fill="url(#dashboard-max-logo-gradient)"/>
+        <path d="M31.9 7.6c-12.7 0-23 9.9-23 22.2 0 4.3 1.1 8.5 2.2 12.6.8 3.1 1.7 6.3 1.7 9.5 0 3.6 2.3 4.9 5.5 4.9 3.5 0 7.9-1.9 11.2-5.4 1.5.8 3.5 1.5 6 1.9 11.1 1.8 22.2-6.2 22.2-18.6 0-13.6-11.5-27.1-25.8-27.1Zm-.3 12.1c8.2 0 15 6.5 15 14.2 0 7.2-6.5 12.7-13.4 12.7-4.1 0-6.9-1.2-9.3-3.1-1.4 1.6-3.1 3.5-5.3 3.9.2-4-2.6-10-2.6-14.8 0-7.2 6.8-12.9 15.6-12.9Z" fill="#fff"/>
+      </symbol>
+    </svg>
+
+    <header class="site-header auth-header cabinet-header">
+      <div class="container header-inner auth-header-inner">
+        <a class="brand" href="index.html" aria-label="Рука добра">
+          <img class="brand-logo" src="assets/logo-ruka-dobra.svg" alt="НКО Рука добра" width="292" height="71">
+        </a>
+
+        <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false">
+          <svg aria-hidden="true"><use href="#menu"></use></svg>
+        </button>
+
+        <nav class="main-nav auth-nav" aria-label="Основная навигация">
+          <a href="index.html#about">О нас</a>
+          <a href="feed.html">Обращения и жалобы</a>
+          <a href="index.html#how">Как это работает</a>
+          <a href="news.html">Новости</a>
+          <a href="#contacts">Контакты</a>
+          <div class="mobile-nav-actions">
+            <a class="header-cta auth-submit-link" href="appeal.html">
+              <svg aria-hidden="true"><use href="#edit"></use></svg>
+              Подать обращение / жалобу
+            </a>
+            <a class="header-login auth-account-link auth-account-link-mobile" href="dashboard.html">
+              <svg aria-hidden="true"><use href="#user"></use></svg>
+              Личный кабинет
+            </a>
+          </div>
+        </nav>
+
+        <div class="header-actions auth-header-actions">
+          <a class="header-cta auth-submit-link" href="appeal.html">
+            <svg aria-hidden="true"><use href="#edit"></use></svg>
+            Подать обращение / жалобу
+          </a>
+          <a class="header-login auth-account-link" href="dashboard.html" aria-label="Личный кабинет">
+            <svg aria-hidden="true"><use href="#user"></use></svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="cabinet-main" data-dashboard-page>
+      <section class="container cabinet-layout" aria-label="Личный кабинет">
+        <aside class="cabinet-sidebar" aria-label="Разделы личного кабинета">
+          <nav class="cabinet-menu">
+            <button class="is-active" type="button" data-dashboard-target="dashboard" aria-current="page"><svg aria-hidden="true"><use href="#home"></use></svg><span>Дашборд</span></button>
+            <button type="button" data-dashboard-target="appeals"><svg aria-hidden="true"><use href="#file"></use></svg><span>Мои обращения</span></button>
+            <button type="button" data-dashboard-target="drafts"><svg aria-hidden="true"><use href="#edit"></use></svg><span>Черновики</span></button>
+            <button type="button" data-dashboard-target="saved"><svg aria-hidden="true"><use href="#bookmark"></use></svg><span>Сохранённые жалобы</span></button>
+            <button type="button" data-dashboard-target="comments"><svg aria-hidden="true"><use href="#comment"></use></svg><span>Мои комментарии</span></button>
+            <button type="button" data-dashboard-target="notifications"><svg aria-hidden="true"><use href="#bell"></use></svg><span>Уведомления</span><em>3</em></button>
+            <button type="button" data-dashboard-target="statuses"><svg aria-hidden="true"><use href="#trend"></use></svg><span>История статусов</span></button>
+            <button type="button" data-dashboard-target="profile"><svg aria-hidden="true"><use href="#user"></use></svg><span>Настройки профиля</span></button>
+            <button type="button" data-dashboard-target="security"><svg aria-hidden="true"><use href="#shield"></use></svg><span>Безопасность</span></button>
+            <button type="button" data-dashboard-target="achievements"><svg aria-hidden="true"><use href="#medal"></use></svg><span>Достижения</span></button>
+          </nav>
+
+          <section class="cabinet-support" aria-label="Служба поддержки">
+            <span>Служба поддержки</span>
+            <a href="tel:+78001234567"><svg aria-hidden="true"><use href="#phone"></use></svg>8 (800) 123-45-67</a>
+            <small>Ежедневно с 9:00 до 20:00</small>
+            <a class="cabinet-support-link" href="mailto:support@rukadobra.ru"><svg aria-hidden="true"><use href="#comment"></use></svg>Написать в поддержку</a>
+          </section>
+        </aside>
+
+        <div class="cabinet-content">
+          <section class="cabinet-screen is-active" data-dashboard-screen="dashboard" aria-labelledby="dashboard-title">
+            <h1 id="dashboard-title">Личный кабинет</h1>
+
+            <div class="cabinet-hero">
+              <div class="cabinet-avatar" data-avatar-preview aria-hidden="true">АИ</div>
+              <div class="cabinet-hero-copy">
+                <h2>Добро пожаловать, Алексей Иванов!</h2>
+                <p>Спасибо, что помогаете делать нашу страну лучше. Вместе мы решаем важные проблемы и защищаем права граждан.</p>
+                <span class="cabinet-status-badge"><svg aria-hidden="true"><use href="#star"></use></svg>Активный гражданин</span>
+              </div>
+            </div>
+
+            <div class="cabinet-stat-grid" aria-label="Сводка кабинета">
+              <article class="cabinet-stat-card">
+                <span><svg aria-hidden="true"><use href="#file"></use></svg></span>
+                <strong>12</strong>
+                <p>Всего обращений</p>
+                <button type="button" data-dashboard-target="appeals">Смотреть все <svg aria-hidden="true"><use href="#arrow"></use></svg></button>
+              </article>
+              <article class="cabinet-stat-card cabinet-stat-green">
+                <span><svg aria-hidden="true"><use href="#check"></use></svg></span>
+                <strong>8</strong>
+                <p>Проблем решено</p>
+                <button type="button" data-dashboard-target="statuses">Подробнее <svg aria-hidden="true"><use href="#arrow"></use></svg></button>
+              </article>
+              <article class="cabinet-stat-card">
+                <span><svg aria-hidden="true"><use href="#comment"></use></svg></span>
+                <strong>23</strong>
+                <p>Комментария</p>
+                <button type="button" data-dashboard-target="comments">Мои комментарии <svg aria-hidden="true"><use href="#arrow"></use></svg></button>
+              </article>
+              <article class="cabinet-stat-card cabinet-stat-orange">
+                <span><svg aria-hidden="true"><use href="#bell"></use></svg></span>
+                <strong>3</strong>
+                <p>Подписки</p>
+                <button type="button" data-dashboard-target="notifications">Управлять <svg aria-hidden="true"><use href="#arrow"></use></svg></button>
+              </article>
+              <article class="cabinet-stat-card cabinet-stat-red">
+                <span><svg aria-hidden="true"><use href="#heart"></use></svg></span>
+                <strong>620</strong>
+                <p>Активность баллов</p>
+                <button type="button" data-dashboard-target="achievements">Подробнее <svg aria-hidden="true"><use href="#arrow"></use></svg></button>
+              </article>
+            </div>
+
+            <div class="cabinet-dashboard-grid">
+              <section class="cabinet-panel cabinet-activity" aria-labelledby="activity-title">
+                <div class="cabinet-panel-head">
+                  <h2 id="activity-title">Последняя активность</h2>
+                  <button type="button" data-dashboard-target="statuses">Все события <svg aria-hidden="true"><use href="#arrow"></use></svg></button>
+                </div>
+                <article class="cabinet-activity-row">
+                  <img src="assets/issue-road.png" alt="Ямы на проезжей части" width="86" height="64">
+                  <span class="cabinet-row-icon cabinet-ok"><svg aria-hidden="true"><use href="#check"></use></svg></span>
+                  <div>
+                    <h3>Ямы на проезжей части</h3>
+                    <p>Дороги • г. Москва, ул. Лесная, 12</p>
+                  </div>
+                  <time datetime="2025-05-20T10:15">20.05.2025<br>10:15</time>
+                  <strong class="cabinet-pill green">Решено</strong>
+                </article>
+                <article class="cabinet-activity-row">
+                  <img src="assets/issue-entrance-roof.png" alt="Несанкционированная свалка" width="86" height="64">
+                  <span class="cabinet-row-icon"><svg aria-hidden="true"><use href="#comment"></use></svg></span>
+                  <div>
+                    <h3>Несанкционированная свалка</h3>
+                    <p>Экология • г. Москва, ул. Лесная, 12</p>
+                  </div>
+                  <time datetime="2025-05-19T09:35">19.05.2025<br>09:35</time>
+                  <strong class="cabinet-pill blue">На проверке</strong>
+                </article>
+                <article class="cabinet-activity-row">
+                  <img src="assets/issue-sport-roof.png" alt="Сломанная скамейка в парке" width="86" height="64">
+                  <span class="cabinet-row-icon"><svg aria-hidden="true"><use href="#arrow"></use></svg></span>
+                  <div>
+                    <h3>Сломанная скамейка в парке</h3>
+                    <p>Благоустройство • парк Горького</p>
+                  </div>
+                  <time datetime="2025-05-08T14:25">08.05.2025<br>14:25</time>
+                  <strong class="cabinet-pill orange">В работе</strong>
+                </article>
+                <article class="cabinet-activity-row">
+                  <img src="assets/hero-civic-flag.png" alt="Надписи на фасаде здания" width="86" height="64">
+                  <span class="cabinet-row-icon"><svg aria-hidden="true"><use href="#bookmark"></use></svg></span>
+                  <div>
+                    <h3>Надписи на фасаде здания</h3>
+                    <p>Благоустройство • г. Москва, ул. Арбат, 20</p>
+                  </div>
+                  <time datetime="2025-05-10T11:40">10.05.2025<br>11:40</time>
+                  <strong class="cabinet-pill green">Решено</strong>
+                </article>
+                <button class="cabinet-wide-action" type="button" data-dashboard-target="appeals">Перейти ко всем обращениям</button>
+              </section>
+
+              <div class="cabinet-middle-stack">
+                <section class="cabinet-panel cabinet-status-panel" aria-labelledby="status-title">
+                  <div class="cabinet-panel-head">
+                    <h2 id="status-title">Статусы обращений</h2>
+                  </div>
+                  <div class="cabinet-chart-wrap">
+                    <div class="cabinet-donut" aria-label="12 обращений всего"><strong>12</strong><span>всего</span></div>
+                    <dl class="cabinet-legend">
+                      <div><dt><i class="green"></i>8</dt><dd>Решено</dd></div>
+                      <div><dt><i class="orange"></i>2</dt><dd>В работе</dd></div>
+                      <div><dt><i class="blue"></i>1</dt><dd>На проверке</dd></div>
+                      <div><dt><i class="gray"></i>1</dt><dd>Новые</dd></div>
+                    </dl>
+                  </div>
+                </section>
+
+                <section class="cabinet-panel cabinet-actions-panel" aria-labelledby="quick-actions-title">
+                  <h2 id="quick-actions-title">Быстрые действия</h2>
+                  <div class="cabinet-action-grid">
+                    <a href="appeal.html"><svg aria-hidden="true"><use href="#plus"></use></svg><span><strong>Подать обращение</strong><small>Сообщить о проблеме</small></span></a>
+                    <button type="button" data-dashboard-target="statuses"><svg aria-hidden="true"><use href="#search"></use></svg><span><strong>Проверить статус</strong><small>Узнать о ходе рассмотрения</small></span></button>
+                    <button type="button" data-dashboard-target="drafts"><svg aria-hidden="true"><use href="#edit"></use></svg><span><strong>Черновик обращения</strong><small>Продолжить работу</small></span></button>
+                    <button type="button" data-dashboard-target="notifications"><svg aria-hidden="true"><use href="#bell"></use></svg><span><strong>Подписки и уведомления</strong><small>Настроить оповещения</small></span></button>
+                  </div>
+                </section>
+              </div>
+
+              <aside class="cabinet-side-stack" aria-label="Информация пользователя">
+                <section class="cabinet-voice-card">
+                  <span><svg aria-hidden="true"><use href="#shield"></use></svg></span>
+                  <h2>Ваш голос важен!</h2>
+                  <p>Каждое обращение приближает нас к справедливости и улучшению жизни.</p>
+                  <a href="index.html#how">Узнать больше</a>
+                </section>
+
+                <section class="cabinet-panel cabinet-level-card">
+                  <span><svg aria-hidden="true"><use href="#star"></use></svg></span>
+                  <h2>Ваш уровень</h2>
+                  <strong>Активный гражданин</strong>
+                  <p><b>620</b> баллов</p>
+                  <div class="cabinet-progress"><i style="width:62%"></i></div>
+                  <small>До следующего уровня осталось 380 баллов</small>
+                  <button type="button" data-dashboard-target="achievements">Как начисляются баллы <svg aria-hidden="true"><use href="#arrow"></use></svg></button>
+                </section>
+
+                <section class="cabinet-panel cabinet-rating-card">
+                  <span><svg aria-hidden="true"><use href="#users"></use></svg></span>
+                  <h2>Общественный рейтинг</h2>
+                  <strong>Вы в топ 15%</strong>
+                  <p>самых активных граждан</p>
+                  <button type="button" data-dashboard-target="achievements">Подробнее о рейтинге <svg aria-hidden="true"><use href="#arrow"></use></svg></button>
+                </section>
+              </aside>
+            </div>
+
+            <form class="cabinet-subscribe" action="#" method="post">
+              <span><svg aria-hidden="true"><use href="#mail"></use></svg></span>
+              <div>
+                <h2>Подпишитесь на новости и важные обновления</h2>
+                <p>Получайте информацию о статусах обращений и полезные новости платформы.</p>
+              </div>
+              <label>
+                <span class="sr-only">Введите e-mail</span>
+                <input type="email" name="email" placeholder="Введите e-mail">
+              </label>
+              <button type="submit">Подписаться</button>
+            </form>
+          </section>
+
+          <section class="cabinet-screen" data-dashboard-screen="appeals" hidden aria-labelledby="appeals-title">
+            <div class="cabinet-screen-head">
+              <div>
+                <span>12 обращений</span>
+                <h1 id="appeals-title">Мои обращения</h1>
+              </div>
+              <a class="cabinet-primary-link" href="appeal.html"><svg aria-hidden="true"><use href="#plus"></use></svg>Новое обращение</a>
+            </div>
+            <div class="cabinet-filterbar" aria-label="Фильтры обращений">
+              <button class="is-active" type="button">Все</button>
+              <button type="button">Новые</button>
+              <button type="button">В работе</button>
+              <button type="button">Решено</button>
+              <label><svg aria-hidden="true"><use href="#search"></use></svg><input type="search" placeholder="Поиск по обращениям"></label>
+              <button type="button"><svg aria-hidden="true"><use href="#filter"></use></svg>Фильтр</button>
+            </div>
+            <div class="cabinet-list-layout">
+              <div class="cabinet-card-list">
+                <article class="cabinet-appeal-card">
+                  <img src="assets/issue-road.png" alt="Ямы на проезжей части" width="160" height="120">
+                  <div>
+                    <div class="cabinet-card-topline"><strong class="cabinet-pill green">Решено</strong><span>№ RD-2025-00124</span></div>
+                    <h2>Ямы на проезжей части</h2>
+                    <p>Дороги • г. Москва, ул. Лесная, 12</p>
+                    <footer><span><svg aria-hidden="true"><use href="#eye"></use></svg>1 245</span><span><svg aria-hidden="true"><use href="#heart"></use></svg>64</span><span><svg aria-hidden="true"><use href="#comment"></use></svg>23</span></footer>
+                  </div>
+                  <a href="appeal-detail.html">Открыть</a>
+                </article>
+                <article class="cabinet-appeal-card">
+                  <img src="assets/issue-entrance-roof.png" alt="Несанкционированная свалка" width="160" height="120">
+                  <div>
+                    <div class="cabinet-card-topline"><strong class="cabinet-pill blue">На проверке</strong><span>№ RD-2025-00118</span></div>
+                    <h2>Несанкционированная свалка</h2>
+                    <p>Экология • г. Москва, ул. Лесная, 12</p>
+                    <footer><span><svg aria-hidden="true"><use href="#eye"></use></svg>892</span><span><svg aria-hidden="true"><use href="#heart"></use></svg>41</span><span><svg aria-hidden="true"><use href="#comment"></use></svg>18</span></footer>
+                  </div>
+                  <a href="appeal-detail.html">Открыть</a>
+                </article>
+                <article class="cabinet-appeal-card">
+                  <img src="assets/issue-sport-roof.png" alt="Сломанная скамейка в парке" width="160" height="120">
+                  <div>
+                    <div class="cabinet-card-topline"><strong class="cabinet-pill orange">В работе</strong><span>№ RD-2025-00102</span></div>
+                    <h2>Сломанная скамейка в парке</h2>
+                    <p>Благоустройство • г. Москва, парк Горького</p>
+                    <footer><span><svg aria-hidden="true"><use href="#eye"></use></svg>734</span><span><svg aria-hidden="true"><use href="#heart"></use></svg>52</span><span><svg aria-hidden="true"><use href="#comment"></use></svg>15</span></footer>
+                  </div>
+                  <a href="appeal-detail.html">Открыть</a>
+                </article>
+              </div>
+              <aside class="cabinet-detail-panel">
+                <h2>Ближайший контроль</h2>
+                <p>По обращению о свалке ожидается проверка ответственного ведомства.</p>
+                <dl>
+                  <div><dt>Срок ответа</dt><dd>24 мая 2025</dd></div>
+                  <div><dt>Ответственный</dt><dd>Департамент природопользования</dd></div>
+                  <div><dt>Последнее действие</dt><dd>Материалы переданы модератору</dd></div>
+                </dl>
+              </aside>
+            </div>
+          </section>
+
+          <section class="cabinet-screen" data-dashboard-screen="drafts" hidden aria-labelledby="drafts-title">
+            <div class="cabinet-screen-head">
+              <div>
+                <span>3 черновика</span>
+                <h1 id="drafts-title">Черновики</h1>
+              </div>
+              <a class="cabinet-primary-link" href="appeal.html"><svg aria-hidden="true"><use href="#edit"></use></svg>Создать черновик</a>
+            </div>
+            <div class="cabinet-three-grid">
+              <article class="cabinet-simple-card">
+                <strong class="cabinet-pill orange">72% заполнено</strong>
+                <h2>Шумная стройка рядом с домом</h2>
+                <p>Не хватает фото и точного адреса. Последнее сохранение: сегодня, 12:40.</p>
+                <div class="cabinet-progress"><i style="width:72%"></i></div>
+                <a href="appeal.html#step-3">Продолжить <svg aria-hidden="true"><use href="#arrow"></use></svg></a>
+              </article>
+              <article class="cabinet-simple-card">
+                <strong class="cabinet-pill blue">45% заполнено</strong>
+                <h2>Неработающее освещение</h2>
+                <p>Категория выбрана, описание начато. Последнее сохранение: 16 мая.</p>
+                <div class="cabinet-progress"><i style="width:45%"></i></div>
+                <a href="appeal.html#step-2">Продолжить <svg aria-hidden="true"><use href="#arrow"></use></svg></a>
+              </article>
+              <article class="cabinet-simple-card">
+                <strong class="cabinet-pill gray">20% заполнено</strong>
+                <h2>Очередь в поликлинике</h2>
+                <p>Создана тема обращения. Добавьте детали и контакты для обратной связи.</p>
+                <div class="cabinet-progress"><i style="width:20%"></i></div>
+                <a href="appeal.html#step-1">Продолжить <svg aria-hidden="true"><use href="#arrow"></use></svg></a>
+              </article>
+            </div>
+          </section>
+
+          <section class="cabinet-screen" data-dashboard-screen="saved" hidden aria-labelledby="saved-title">
+            <div class="cabinet-screen-head">
+              <div>
+                <span>8 сохранённых</span>
+                <h1 id="saved-title">Сохранённые жалобы</h1>
+              </div>
+            </div>
+            <div class="cabinet-two-grid">
+              <article class="cabinet-media-card">
+                <img src="assets/issue-road.png" alt="Разбитая дорога" width="340" height="190">
+                <div>
+                  <strong class="cabinet-pill green">Решено</strong>
+                  <h2>Ремонт дороги на Лесной улице</h2>
+                  <p>Сохранено для отслеживания похожих обращений в районе.</p>
+                  <footer><span><svg aria-hidden="true"><use href="#heart"></use></svg>118</span><span><svg aria-hidden="true"><use href="#comment"></use></svg>37</span></footer>
+                </div>
+              </article>
+              <article class="cabinet-media-card">
+                <img src="assets/issue-entrance-roof.png" alt="Проблема у подъезда" width="340" height="190">
+                <div>
+                  <strong class="cabinet-pill orange">В работе</strong>
+                  <h2>Уборка территории у подъезда</h2>
+                  <p>Подписка на обновления включена, ожидается ответ управляющей компании.</p>
+                  <footer><span><svg aria-hidden="true"><use href="#heart"></use></svg>86</span><span><svg aria-hidden="true"><use href="#comment"></use></svg>31</span></footer>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="cabinet-screen" data-dashboard-screen="comments" hidden aria-labelledby="comments-title">
+            <div class="cabinet-screen-head">
+              <div>
+                <span>23 комментария</span>
+                <h1 id="comments-title">Мои комментарии</h1>
+              </div>
+            </div>
+            <div class="cabinet-comment-list">
+              <article>
+                <span class="cabinet-row-icon"><svg aria-hidden="true"><use href="#comment"></use></svg></span>
+                <div>
+                  <h2>Ямы на проезжей части</h2>
+                  <p>«После ремонта стало значительно лучше, спасибо за контроль сроков.»</p>
+                  <time datetime="2025-05-20T12:05">20 мая 2025, 12:05</time>
+                </div>
+                <strong class="cabinet-pill green">Опубликовано</strong>
+              </article>
+              <article>
+                <span class="cabinet-row-icon"><svg aria-hidden="true"><use href="#comment"></use></svg></span>
+                <div>
+                  <h2>Несанкционированная свалка</h2>
+                  <p>«Добавил новые фото, площадка снова заполняется мусором.»</p>
+                  <time datetime="2025-05-19T10:20">19 мая 2025, 10:20</time>
+                </div>
+                <strong class="cabinet-pill blue">На модерации</strong>
+              </article>
+              <article>
+                <span class="cabinet-row-icon"><svg aria-hidden="true"><use href="#comment"></use></svg></span>
+                <div>
+                  <h2>Сломанная скамейка в парке</h2>
+                  <p>«Проблема актуальна, рядом детская площадка и много посетителей.»</p>
+                  <time datetime="2025-05-08T15:10">8 мая 2025, 15:10</time>
+                </div>
+                <strong class="cabinet-pill green">Опубликовано</strong>
+              </article>
+            </div>
+          </section>
+
+          <section class="cabinet-screen" data-dashboard-screen="notifications" hidden aria-labelledby="notifications-title">
+            <div class="cabinet-screen-head">
+              <div>
+                <span>3 новых события</span>
+                <h1 id="notifications-title">Уведомления</h1>
+              </div>
+              <button class="cabinet-ghost-button" type="button">Отметить всё прочитанным</button>
+            </div>
+            <div class="cabinet-list-layout">
+              <div class="cabinet-notification-list">
+                <article class="is-unread">
+                  <span><svg aria-hidden="true"><use href="#check"></use></svg></span>
+                  <div><h2>Обращение RD-2025-00124 решено</h2><p>Ответ ведомства получен и опубликован в карточке обращения.</p></div>
+                  <time datetime="2025-05-20T10:15">10:15</time>
+                </article>
+                <article class="is-unread">
+                  <span><svg aria-hidden="true"><use href="#bell"></use></svg></span>
+                  <div><h2>Новый комментарий модератора</h2><p>Потребуется уточнить адрес по обращению о свалке.</p></div>
+                  <time datetime="2025-05-19T09:35">вчера</time>
+                </article>
+                <article>
+                  <span><svg aria-hidden="true"><use href="#calendar"></use></svg></span>
+                  <div><h2>Напоминание о сроке ответа</h2><p>Проверка обращения RD-2025-00118 запланирована на 24 мая.</p></div>
+                  <time datetime="2025-05-18T18:00">18 мая</time>
+                </article>
+              </div>
+              <aside class="cabinet-detail-panel">
+                <h2>Настройки уведомлений</h2>
+                <label class="cabinet-toggle"><input type="checkbox" checked><span></span>Email о смене статуса</label>
+                <label class="cabinet-toggle"><input type="checkbox" checked><span></span>Комментарии модератора</label>
+                <label class="cabinet-toggle"><input type="checkbox"><span></span>Еженедельная сводка</label>
+              </aside>
+            </div>
+          </section>
+
+          <section class="cabinet-screen" data-dashboard-screen="statuses" hidden aria-labelledby="statuses-title">
+            <div class="cabinet-screen-head">
+              <div>
+                <span>История по обращениям</span>
+                <h1 id="statuses-title">История статусов</h1>
+              </div>
+            </div>
+            <div class="cabinet-timeline">
+              <article>
+                <time datetime="2025-05-20T10:15">20.05.2025 • 10:15</time>
+                <h2>Ямы на проезжей части — решено</h2>
+                <p>Получен официальный ответ и подтверждение выполнения работ.</p>
+                <strong class="cabinet-pill green">Решено</strong>
+              </article>
+              <article>
+                <time datetime="2025-05-19T09:35">19.05.2025 • 09:35</time>
+                <h2>Несанкционированная свалка — на проверке</h2>
+                <p>Материалы переданы модератору, ожидается уточнение адреса.</p>
+                <strong class="cabinet-pill blue">На проверке</strong>
+              </article>
+              <article>
+                <time datetime="2025-05-08T14:25">08.05.2025 • 14:25</time>
+                <h2>Сломанная скамейка — в работе</h2>
+                <p>Ответственная организация назначила дату осмотра.</p>
+                <strong class="cabinet-pill orange">В работе</strong>
+              </article>
+            </div>
+          </section>
+
+          <section class="cabinet-screen" data-dashboard-screen="profile" hidden aria-labelledby="profile-title">
+            <div class="cabinet-screen-head">
+              <div>
+                <span>Профиль пользователя</span>
+                <h1 id="profile-title">Настройки профиля</h1>
+              </div>
+              <button class="cabinet-primary-link" type="button"><svg aria-hidden="true"><use href="#check"></use></svg>Сохранить</button>
+            </div>
+            <section class="cabinet-avatar-card" aria-labelledby="profile-avatar-title" data-avatar-uploader>
+              <div class="cabinet-avatar cabinet-avatar-large" data-avatar-preview aria-hidden="true">АИ</div>
+              <div class="cabinet-avatar-copy">
+                <h2 id="profile-avatar-title">Фото профиля</h2>
+                <p>Загрузите JPG, PNG или WebP до 2 МБ. Изображение появится в личном кабинете сразу после выбора файла.</p>
+                <div class="cabinet-avatar-actions">
+                  <label class="cabinet-avatar-upload">
+                    <input type="file" name="avatar" accept="image/png,image/jpeg,image/webp" data-avatar-input>
+                    <svg aria-hidden="true"><use href="#camera"></use></svg>
+                    Загрузить фото
+                  </label>
+                  <button class="cabinet-avatar-remove" type="button" data-avatar-remove hidden>
+                    <svg aria-hidden="true"><use href="#x"></use></svg>
+                    Удалить
+                  </button>
+                </div>
+                <span class="cabinet-avatar-status" data-avatar-status>Фото ещё не загружено</span>
+              </div>
+            </section>
+            <form class="cabinet-form-grid" action="#" method="post">
+              <label><span>Имя</span><input type="text" value="Алексей"></label>
+              <label><span>Фамилия</span><input type="text" value="Иванов"></label>
+              <label><span>Email</span><input type="email" value="alexey.ivanov@example.ru"></label>
+              <label><span>Телефон</span><input type="tel" value="+7 900 123-45-67"></label>
+              <label class="wide"><span>Город</span><input type="text" value="Москва"></label>
+              <label class="wide"><span>Коротко о себе</span><textarea rows="4">Участвую в общественном контроле района и отслеживаю обращения по благоустройству.</textarea></label>
+            </form>
+            <div class="cabinet-three-grid">
+              <article class="cabinet-simple-card"><strong class="cabinet-pill green">Подтверждено</strong><h2>Email</h2><p>alexey.ivanov@example.ru</p></article>
+              <article class="cabinet-simple-card"><strong class="cabinet-pill green">Подтверждено</strong><h2>Телефон</h2><p>+7 900 123-45-67</p></article>
+              <article class="cabinet-simple-card"><strong class="cabinet-pill blue">Профиль</strong><h2 data-profile-completion>92% заполнено</h2><p data-profile-completion-note>Добавьте фото, чтобы завершить профиль.</p></article>
+            </div>
+          </section>
+
+          <section class="cabinet-screen" data-dashboard-screen="security" hidden aria-labelledby="security-title">
+            <div class="cabinet-screen-head">
+              <div>
+                <span>Доступ и защита</span>
+                <h1 id="security-title">Безопасность</h1>
+              </div>
+            </div>
+            <div class="cabinet-two-grid">
+              <section class="cabinet-simple-card">
+                <span class="cabinet-lock-icon"><svg aria-hidden="true"><use href="#lock"></use></svg></span>
+                <h2>Пароль</h2>
+                <p>Последнее изменение: 12 апреля 2025.</p>
+                <button type="button">Изменить пароль</button>
+              </section>
+              <section class="cabinet-simple-card">
+                <span class="cabinet-lock-icon"><svg aria-hidden="true"><use href="#shield"></use></svg></span>
+                <h2>Двухфакторная защита</h2>
+                <p>Подключите дополнительное подтверждение входа.</p>
+                <button type="button">Подключить</button>
+              </section>
+            </div>
+            <section class="cabinet-panel cabinet-session-panel" aria-labelledby="sessions-title">
+              <h2 id="sessions-title">Активные сеансы</h2>
+              <article><div><strong>Windows • Chrome</strong><p>Москва, текущий сеанс</p></div><span class="cabinet-pill green">Активно</span></article>
+              <article><div><strong>Android • Mobile Chrome</strong><p>Вход 14 июня 2025</p></div><button type="button">Завершить</button></article>
+            </section>
+          </section>
+
+          <section class="cabinet-screen" data-dashboard-screen="achievements" hidden aria-labelledby="achievements-title">
+            <div class="cabinet-screen-head">
+              <div>
+                <span>620 баллов</span>
+                <h1 id="achievements-title">Достижения</h1>
+              </div>
+            </div>
+            <div class="cabinet-achievement-hero">
+              <span><svg aria-hidden="true"><use href="#star"></use></svg></span>
+              <div>
+                <h2>Активный гражданин</h2>
+                <p>Вы в топ 15% самых активных участников платформы. До следующего уровня осталось 380 баллов.</p>
+                <div class="cabinet-progress"><i style="width:62%"></i></div>
+              </div>
+            </div>
+            <div class="cabinet-badge-grid">
+              <article><span><svg aria-hidden="true"><use href="#medal"></use></svg></span><h2>Первое обращение</h2><p>Получено за первую отправленную жалобу.</p></article>
+              <article><span><svg aria-hidden="true"><use href="#check"></use></svg></span><h2>Результат есть</h2><p>8 обращений завершены решением.</p></article>
+              <article><span><svg aria-hidden="true"><use href="#comment"></use></svg></span><h2>Голос района</h2><p>23 полезных комментария к обращениям.</p></article>
+              <article><span><svg aria-hidden="true"><use href="#heart"></use></svg></span><h2>Поддержка</h2><p>620 баллов общественной активности.</p></article>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer cabinet-footer" id="contacts">
+      <div class="container footer-grid">
+        <div class="footer-about">
+          <a class="brand footer-brand" href="index.html" aria-label="Рука добра">
+            <img class="brand-logo" src="assets/logo-ruka-dobra.svg" alt="НКО Рука добра" width="238" height="58">
+          </a>
+          <p>Общественная помощь гражданам с обращениями и жалобами. Работаем ради справедливости и реальных изменений в России.</p>
+          <div class="socials">
+            <a class="social-vk" href="#" aria-label="ВКонтакте">
+              <svg aria-hidden="true"><use href="#social-vk"></use></svg>
+            </a>
+            <a class="social-ok" href="#" aria-label="Одноклассники">
+              <svg aria-hidden="true"><use href="#social-ok"></use></svg>
+            </a>
+            <a class="social-max" href="#" aria-label="MAX">
+              <svg aria-hidden="true"><use href="#social-max"></use></svg>
+            </a>
+          </div>
+        </div>
+
+        <nav class="footer-col" aria-label="Навигация">
+          <h3>Навигация</h3>
+          <a href="index.html#about">О нас</a>
+          <a href="feed.html">Обращения и жалобы</a>
+          <a href="index.html#how">Как это работает</a>
+          <a href="news.html">Новости</a>
+          <a href="#contacts">Контакты</a>
+        </nav>
+
+        <nav class="footer-col" aria-label="Категории">
+          <h3>Категории</h3>
+          <a href="appeal.html">ЖКХ</a>
+          <a href="appeal.html">Дороги</a>
+          <a href="appeal.html">Здравоохранение</a>
+          <a href="appeal.html">Образование</a>
+          <a href="categories.html">Все категории</a>
+        </nav>
+
+        <address class="footer-col footer-contacts">
+          <h3>Контакты</h3>
+          <a href="tel:+79102357746"><svg aria-hidden="true"><use href="#phone"></use></svg>8 910 235-77-46</a>
+          <a href="mailto:info@rukadobra.ru"><svg aria-hidden="true"><use href="#mail"></use></svg>info@rukadobra.ru</a>
+          <span><svg aria-hidden="true"><use href="#pin"></use></svg>г. Москва</span>
+          <span><svg aria-hidden="true"><use href="#check"></use></svg>Ежедневно с 9:00 до 20:00</span>
+        </address>
+
+        <form class="subscribe" action="#" method="post">
+          <h3>Подпишитесь на новости</h3>
+          <p>Будьте в курсе важных новостей и результатов нашей работы.</p>
+          <label>
+            <span class="sr-only">Ваш e-mail</span>
+            <input type="email" name="email" placeholder="Ваш e-mail">
+          </label>
+          <button type="submit">Подписаться</button>
+        </form>
+      </div>
+
+      <div class="container footer-bottom">
+        <span>© 2026 НКО «Рука добра». Все права защищены.</span>
+        <a href="privacy.html">Политика конфиденциальности</a>
+        <a href="agreement.html">Пользовательское соглашение</a>
+      </div>
+      <div class="footer-ribbon" aria-hidden="true"></div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

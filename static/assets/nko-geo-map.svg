@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 430" role="img" aria-labelledby="title">
+  <title id="title">Карта работы НКО в Брянске, Москве и Санкт-Петербурге</title>
+  <defs>
+    <filter id="mapShadow" x="-8%" y="-8%" width="116%" height="116%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#9fbee9" flood-opacity="0.3"/>
+    </filter>
+    <filter id="pinShadow" x="-80%" y="-40%" width="260%" height="240%">
+      <feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#0d47a1" flood-opacity="0.28"/>
+    </filter>
+    <filter id="labelShadow" x="-25%" y="-50%" width="150%" height="200%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#7397d7" flood-opacity="0.34"/>
+    </filter>
+    <linearGradient id="mapFill" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f7fbff"/>
+      <stop offset="0.48" stop-color="#eaf3ff"/>
+      <stop offset="1" stop-color="#deedff"/>
+    </linearGradient>
+    <radialGradient id="westGlow" cx="30%" cy="51%" r="54%">
+      <stop offset="0" stop-color="#fff" stop-opacity="0.94"/>
+      <stop offset="0.58" stop-color="#fff" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bluePin" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#2568d8"/>
+      <stop offset="1" stop-color="#073b9a"/>
+    </linearGradient>
+    <linearGradient id="redPin" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#ff494d"/>
+      <stop offset="1" stop-color="#e0141b"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="720" height="430" fill="#fff"/>
+  <g filter="url(#mapShadow)">
+    <path fill="url(#mapFill)" stroke="#9ebff0" stroke-width="1.8" d="M18 260l25-27 23 13 24-23-7-25 31-12 19 14 27-8 15-37 34-13 43 11 25-21 46 2 41-31 35 13 25-25 45 15 31-23 45 7 26 25 48-7 30 25 35-6 32 29 38-2 21 35 36 17-12 33 26 20-21 34 20 30-34 23-40-14-30 20-39-3-26 33-52-13-43 18-52-15-41 18-52-18-45 13-46-23-45 11-35-27-42 11-29-31-46 11-31-25-38 8-20-29-47 3-13-31z"/>
+    <path fill="url(#mapFill)" stroke="#9ebff0" stroke-width="1.7" d="M548 66l25-22 32 10 12 32-26 20-31-7-12-33z"/>
+    <path fill="url(#mapFill)" stroke="#9ebff0" stroke-width="1.5" d="M358 38l20-12 18 9-3 20-20 10-18-8 3-19zM324 50l14-10 14 8-4 17-17 4-11-9 4-10zM669 229l17-10 18 8 7 20-17 11-21-8-4-21z"/>
+    <path fill="none" stroke="#bdd3f6" stroke-width="1.1" d="M66 246c65-12 111 7 176-5 54-10 87-38 139-29 60 11 89 57 158 47 43-7 74-33 119-23"/>
+    <path fill="none" stroke="#bdd3f6" stroke-width="1.1" d="M122 197c38 23 73 30 109 21 45-12 74-45 123-40 38 4 65 25 98 21"/>
+    <path fill="none" stroke="#bdd3f6" stroke-width="1.1" d="M176 301c55-29 112-34 172-14 46 16 88 18 126 4 47-17 89-12 136 24"/>
+    <path fill="none" stroke="#bdd3f6" stroke-width="1.1" d="M252 138c22 38 18 76 41 105 21 26 57 32 82 54"/>
+    <path fill="none" stroke="#bdd3f6" stroke-width="1.1" d="M494 135c-24 36-22 76-5 114 16 33 15 60-8 93"/>
+    <path fill="none" stroke="#bdd3f6" stroke-width="1.1" d="M608 107c-16 36-13 76 10 120 22 40 18 75-12 110"/>
+    <path fill="url(#westGlow)" d="M0 122h430v260H0z"/>
+  </g>
+
+  <g font-family="Inter, Manrope, Arial, sans-serif" font-weight="900" fill="#073b9a">
+    <g transform="translate(119 224)">
+      <path stroke="#073b9a" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="2 10" d="M0 31v54"/>
+      <circle cy="31" r="5" fill="#073b9a"/>
+      <path filter="url(#pinShadow)" fill="url(#bluePin)" d="M0 0c-20 0-36 16-36 37 0 31 36 66 36 66s36-35 36-66C36 16 20 0 0 0z"/>
+      <circle cy="36" r="13" fill="#eef5ff"/>
+      <rect x="-53" y="110" width="126" height="38" rx="19" fill="#fff" filter="url(#labelShadow)"/>
+      <text x="10" y="135" text-anchor="middle" font-size="22">Брянск</text>
+    </g>
+
+    <g transform="translate(214 181)">
+      <path stroke="#e0141b" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="2 10" d="M0 52v66"/>
+      <circle cy="52" r="5" fill="#e0141b"/>
+      <path filter="url(#pinShadow)" fill="url(#redPin)" d="M0 0c-21 0-38 17-38 39 0 33 38 70 38 70s38-37 38-70C38 17 21 0 0 0z"/>
+      <circle cy="38" r="14" fill="#fff1f1"/>
+      <rect x="-42" y="141" width="132" height="39" rx="19.5" fill="#fff" filter="url(#labelShadow)"/>
+      <text x="24" y="166" text-anchor="middle" font-size="22">Москва</text>
+    </g>
+
+    <g transform="translate(166 112)">
+      <path stroke="#073b9a" stroke-width="3.4" stroke-linecap="round" stroke-dasharray="2 10" d="M0 52h47"/>
+      <circle cy="52" r="5" fill="#073b9a"/>
+      <path filter="url(#pinShadow)" fill="url(#bluePin)" d="M0 0c-20 0-36 16-36 37 0 31 36 66 36 66s36-35 36-66C36 16 20 0 0 0z"/>
+      <circle cy="36" r="13" fill="#eef5ff"/>
+      <rect x="43" y="34" width="206" height="42" rx="21" fill="#fff" filter="url(#labelShadow)"/>
+      <text x="146" y="62" text-anchor="middle" font-size="23">Санкт-Петербург</text>
+    </g>
+  </g>
+</svg>

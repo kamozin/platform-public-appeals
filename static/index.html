@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Рука добра - платформа обращений и жалоб граждан</title>
+    <meta name="description" content="Общественная платформа для обращений и жалоб граждан. Помощь, поддержка, общественный контроль и прозрачные результаты.">
+    <link rel="preload" href="assets/hero-civic-flag.png" as="image">
+    <link rel="preload" href="assets/hero-russian-ribbon.svg" as="image">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <svg class="svg-sprite" aria-hidden="true">
+      <symbol id="logo" viewBox="0 0 64 64">
+        <path d="M12 8h24c6.6 0 12 5.4 12 12v13h7v11h-7v12H12V8z" fill="none" stroke="currentColor" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M20 42c8 5 16 7 27 5 4-.7 7.5-.2 10 1.6-5.6 6.5-14.5 9.7-26.7 9.7-7 0-13.6-1.9-19.3-5.6" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+        <path d="M32 38s-9-5.6-9-12a5.7 5.7 0 0 1 9-4.7A5.7 5.7 0 0 1 41 26c0 6.4-9 12-9 12z" fill="#ef2f2c"/>
+      </symbol>
+      <symbol id="grid" viewBox="0 0 24 24">
+        <rect x="3" y="3" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="2"/>
+        <rect x="14" y="3" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="2"/>
+        <rect x="3" y="14" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="2"/>
+        <rect x="14" y="14" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <symbol id="user" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M4 21c1.5-4.1 4.2-6 8-6s6.5 1.9 8 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="users" viewBox="0 0 24 24">
+        <path d="M8 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM2.5 21c1-4 3-6 5.5-6s4.6 2 5.5 6M17 11a3 3 0 1 0 0-6M15.2 15.2c2.5.3 4.2 2.1 5.3 5.8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="camera" viewBox="0 0 24 24">
+        <path d="M5 7h3l1.7-2h4.6L16 7h3a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <circle cx="12" cy="13" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <symbol id="play" viewBox="0 0 24 24">
+        <path d="M8 5v14l11-7L8 5z" fill="currentColor"/>
+      </symbol>
+      <symbol id="shield" viewBox="0 0 24 24">
+        <path d="M12 3 20 6v6.2c0 4.7-3 7.8-8 9.8-5-2-8-5.1-8-9.8V6l8-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="m8.5 12 2.4 2.4 4.8-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="file" viewBox="0 0 24 24">
+        <path d="M6 3h8l4 4v14H6V3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M14 3v5h5M9 13h6M9 17h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="book" viewBox="0 0 24 24">
+        <path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 0-3-3V4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M5 17V7a3 3 0 0 1 3-3M9 8h6M9 12h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="mail" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="bell" viewBox="0 0 24 24">
+        <path d="M18 10a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9zM10 21h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="trend" viewBox="0 0 24 24">
+        <path d="m4 16 5-5 4 4 7-8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M16 7h4v4M4 21h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="heart" viewBox="0 0 24 24">
+        <path d="M12 21S4 16.2 4 9.8A4.7 4.7 0 0 1 12 6a4.7 4.7 0 0 1 8 3.8C20 16.2 12 21 12 21z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="check" viewBox="0 0 24 24">
+        <path d="m5 12 4.5 4.5L19 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="phone" viewBox="0 0 24 24">
+        <path d="M7 4 5 6c-1 1-.6 5.5 4.2 10.3C14 21.1 18.5 21.5 19.5 20.5l2-2-4-4-2 2c-1.3-.5-2.7-1.4-4-2.7s-2.2-2.7-2.7-4l2-2L7 4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="home" viewBox="0 0 24 24">
+        <path d="m3 11 9-8 9 8v10h-6v-6H9v6H3V11z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="pin" viewBox="0 0 24 24">
+        <path d="M12 22s7-6.2 7-12A7 7 0 1 0 5 10c0 5.8 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <symbol id="eye" viewBox="0 0 24 24">
+        <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <symbol id="comment" viewBox="0 0 24 24">
+        <path d="M4 5h16v11H8l-4 4V5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="share" viewBox="0 0 24 24">
+        <circle cx="18" cy="5" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="6" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="18" cy="19" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="upload" viewBox="0 0 24 24">
+        <path d="M12 16V4M7 9l5-5 5 5M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="back" viewBox="0 0 24 24">
+        <path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="menu" viewBox="0 0 24 24">
+        <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="flag" viewBox="0 0 24 24">
+        <path d="M5 21V4M5 4h12l-1.5 4L17 12H5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="social-vk" viewBox="0 0 24 24">
+        <path d="M4.9 7.5c.1 5.8 3 9.2 8.1 9.2h.3v-3.3c1.8.2 3.1 1.5 3.6 3.3h2.7a7.1 7.1 0 0 0-3.6-4.8 6.9 6.9 0 0 0 3.1-4.4h-2.5c-.5 1.9-2 3.6-3.3 3.8V7.5h-2.5v6.7c-1.4-.3-3.1-2.2-3.2-6.7H4.9Z" fill="currentColor"/>
+      </symbol>
+      <symbol id="social-ok" viewBox="0 0 24 24">
+        <circle cx="12" cy="6.4" r="3.1" fill="currentColor"/>
+        <path d="M16 11.2a1.3 1.3 0 0 0-1.8-.1 3.6 3.6 0 0 1-4.4 0 1.3 1.3 0 0 0-1.8 1.8 6.1 6.1 0 0 0 2.2 1.2l-2 2.1a1.3 1.3 0 1 0 1.9 1.8l1.9-2 1.9 2a1.3 1.3 0 0 0 1.9-1.8l-2-2.1A6.1 6.1 0 0 0 16 13a1.3 1.3 0 0 0 0-1.8Z" fill="currentColor"/>
+      </symbol>
+      <symbol id="social-max" viewBox="0 0 64 64">
+        <defs>
+          <linearGradient id="max-logo-gradient" x1="5" y1="53" x2="59" y2="11" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#42c7f3"/>
+            <stop offset=".46" stop-color="#3153d6"/>
+            <stop offset="1" stop-color="#9b2ee8"/>
+          </linearGradient>
+        </defs>
+        <rect width="64" height="64" rx="15" fill="url(#max-logo-gradient)"/>
+        <path d="M31.9 7.6c-12.7 0-23 9.9-23 22.2 0 4.3 1.1 8.5 2.2 12.6.8 3.1 1.7 6.3 1.7 9.5 0 3.6 2.3 4.9 5.5 4.9 3.5 0 7.9-1.9 11.2-5.4 1.5.8 3.5 1.5 6 1.9 11.1 1.8 22.2-6.2 22.2-18.6 0-13.6-11.5-27.1-25.8-27.1Zm-.3 12.1c8.2 0 15 6.5 15 14.2 0 7.2-6.5 12.7-13.4 12.7-4.1 0-6.9-1.2-9.3-3.1-1.4 1.6-3.1 3.5-5.3 3.9.2-4-2.6-10-2.6-14.8 0-7.2 6.8-12.9 15.6-12.9Z" fill="#fff"/>
+      </symbol>
+      <symbol id="scale" viewBox="0 0 24 24">
+        <path d="M12 4v17M5 7h14M7 7l-4 7h8L7 7zM17 7l-4 7h8l-4-7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+    </svg>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="Рука добра">
+          <img class="brand-logo" src="assets/logo-ruka-dobra.svg" alt="НКО Рука добра" width="292" height="71">
+        </a>
+
+        <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false">
+          <svg aria-hidden="true"><use href="#menu"></use></svg>
+        </button>
+
+        <nav class="main-nav" aria-label="Основная навигация">
+          <a href="#about">О нас</a>
+          <a href="feed.html">Обращения и жалобы</a>
+          <a href="#how">Как это работает</a>
+          <a href="news.html">Новости</a>
+          <a href="#contacts">Контакты</a>
+          <div class="mobile-nav-actions">
+            <a class="header-login" href="login.html">
+              <svg aria-hidden="true"><use href="#user"></use></svg>
+              Войти
+            </a>
+            <a class="header-cta" href="appeal.html">
+              <svg aria-hidden="true"><use href="#file"></use></svg>
+              Подать обращение
+            </a>
+          </div>
+        </nav>
+
+        <div class="header-actions">
+          <a class="header-login" href="login.html">
+            <svg aria-hidden="true"><use href="#user"></use></svg>
+            Войти
+          </a>
+          <a class="header-cta" href="appeal.html">
+            <svg aria-hidden="true"><use href="#file"></use></svg>
+            Подать обращение
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-wrap">
+        <button class="slider-arrow slider-prev" type="button" aria-label="Предыдущий слайд">
+          <svg aria-hidden="true"><use href="#back"></use></svg>
+        </button>
+        <div class="container">
+          <section class="hero" id="about" aria-labelledby="hero-title">
+            <div class="hero-content">
+              <div class="hero-label">
+                <svg aria-hidden="true"><use href="#shield"></use></svg>
+                <span data-hero-label>Платформа обращений и жалоб граждан</span>
+              </div>
+              <h1 id="hero-title" data-hero-title>Вместе решаем проблемы людей и защищаем их права</h1>
+              <p class="hero-lead" data-hero-lead>Помогаем гражданам с обращениями и жалобами, добиваемся справедливости и поддержки, защищаем права и интересы людей.</p>
+
+              <div class="hero-note">
+                <span class="hero-note-icon"><svg aria-hidden="true"><use href="#shield"></use></svg></span>
+                <strong data-hero-note>Лично доставляем жалобы депутатам Госдумы РФ, руководителям МВД, АП, губернаторам, сенаторам. С представителем правозащитников в суд.</strong>
+              </div>
+
+              <div class="phone-line">
+                <svg aria-hidden="true"><use href="#phone"></use></svg>
+                <a href="tel:+79102357746">8 910 235-77-46</a>
+                <span>Звоните ежедневно с 9:00 до 20:00</span>
+              </div>
+
+              <div class="hero-actions" id="submit">
+                <a class="btn btn-red" href="appeal.html">
+                  <svg aria-hidden="true"><use href="#file"></use></svg>
+                  Подать обращение / жалобу
+                </a>
+                <a class="btn btn-outline" href="feed.html">
+                  <svg aria-hidden="true"><use href="#comment"></use></svg>
+                  Смотреть обращения
+                </a>
+              </div>
+            </div>
+            <div class="slider-dots" role="tablist" aria-label="Слайды главного баннера">
+              <button class="active" type="button" aria-label="Слайд 1" aria-current="true"></button>
+              <button type="button" aria-label="Слайд 2"></button>
+              <button type="button" aria-label="Слайд 3"></button>
+            </div>
+          </section>
+        </div>
+        <button class="slider-arrow slider-next" type="button" aria-label="Следующий слайд">
+          <svg aria-hidden="true"><use href="#arrow"></use></svg>
+        </button>
+      </section>
+
+      <section class="container support-video-section" aria-labelledby="support-video-title">
+        <div class="support-video-head">
+          <div class="support-video-heading">
+            <span class="support-video-eyebrow">
+              <svg aria-hidden="true"><use href="#camera"></use></svg>
+              Видео от граждан
+            </span>
+            <h2 id="support-video-title">В поддержку бойцов СВО и ветеранов</h2>
+            <p>Собираем короткие видеообращения со словами благодарности, поддержки и уважения от жителей разных городов.</p>
+          </div>
+          <a class="btn btn-outline support-video-submit" href="appeal.html" data-video-modal-open>
+            <svg aria-hidden="true"><use href="#upload"></use></svg>
+            Прислать видео
+          </a>
+        </div>
+
+        <div class="support-video-grid">
+          <article class="support-video-card support-video-featured">
+            <div class="support-video-media">
+              <img src="assets/hero-hands-heart.png" alt="" width="1536" height="864" loading="lazy" decoding="async">
+              <span class="support-video-play" aria-hidden="true">
+                <svg><use href="#play"></use></svg>
+              </span>
+              <span class="support-video-badge">Видео от граждан</span>
+            </div>
+            <div class="support-video-body">
+              <h3>Слова поддержки нашим бойцам</h3>
+              <p>Личные обращения граждан с благодарностью за мужество, службу и защиту людей.</p>
+            </div>
+          </article>
+
+          <article class="support-video-card">
+            <div class="support-video-media">
+              <img src="assets/hero-community-meeting.png" alt="" width="1536" height="864" loading="lazy" decoding="async">
+              <span class="support-video-play" aria-hidden="true">
+                <svg><use href="#play"></use></svg>
+              </span>
+              <span class="support-video-badge">Скоро</span>
+            </div>
+            <div class="support-video-body">
+              <h3>Обращения жителей</h3>
+              <p>Видео с теплыми словами для бойцов СВО, ветеранов и их семей.</p>
+            </div>
+          </article>
+
+          <article class="support-video-card">
+            <div class="support-video-media">
+              <img src="assets/hero-civic-flag.png" alt="" width="1536" height="864" loading="lazy" decoding="async">
+              <span class="support-video-play" aria-hidden="true">
+                <svg><use href="#play"></use></svg>
+              </span>
+              <span class="support-video-badge">Скоро</span>
+            </div>
+            <div class="support-video-body">
+              <h3>Спасибо ветеранам</h3>
+              <p>Короткие ролики о поддержке, уважении и помощи тем, кто прошел службу.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="container top-panels">
+        <article class="book-panel">
+          <div class="book-cover">
+            <img src="assets/complaint-book-cover-clean.png" alt="Обложка народной жалобной книги" width="827" height="1203">
+          </div>
+          <div class="book-copy">
+            <div class="title-row">
+              <h2>Народная жалобная книга</h2>
+              <span class="green-badge">Открытый реестр</span>
+            </div>
+            <p>Открытый реестр системных проблем и жалоб граждан. Ваш голос важен. Ваше обращение может изменить ситуацию.</p>
+            <ul class="check-list">
+              <li>Актуальные и резонансные проблемы</li>
+              <li>Реальные истории и документы</li>
+              <li>Статусы и результаты решений</li>
+              <li>Влияние на общественный порядок</li>
+            </ul>
+            <a class="btn btn-outline book-btn" href="book.html">Перейти к книге</a>
+          </div>
+        </article>
+
+        <article class="geo-panel">
+          <div class="geo-copy">
+            <h2>География нашей работы</h2>
+            <p>Мы работаем и защищаем права граждан в крупнейших городах России.</p>
+            <strong>Работаем в Брянске, Москве и Санкт-Петербурге</strong>
+          </div>
+          <div class="russia-map">
+            <img src="assets/geo-russia-map.png" alt="Карта работы НКО: Брянск, Москва и Санкт-Петербург" width="1448" height="1086">
+          </div>
+        </article>
+      </section>
+
+      <section class="container ad-section" aria-labelledby="ad-section-title">
+        <div class="ad-section-head">
+          <h2 id="ad-section-title">Реклама</h2>
+          <span>Партнерский блок</span>
+        </div>
+        <a class="ad-banner" href="https://contract.gosuslugi.ru/" target="_blank" rel="noopener noreferrer" data-ad-rotator>
+          <img data-ad-image src="assets/114a584a-17bb-4ecb-95fd-c338df16704e.png" alt="Поступай на контрактную службу в Вооруженные силы России" width="2172" height="724" loading="lazy" decoding="async">
+        </a>
+      </section>
+
+      <section class="container stats-strip" aria-label="Показатели платформы">
+        <article>
+          <span class="stat-icon blue"><svg aria-hidden="true"><use href="#file"></use></svg></span>
+          <strong>126 540+</strong>
+          <p>обращений и жалоб граждан подано</p>
+        </article>
+        <article>
+          <span class="stat-icon green"><svg aria-hidden="true"><use href="#check"></use></svg></span>
+          <strong>12 846+</strong>
+          <p>проблем решено</p>
+        </article>
+        <article>
+          <span class="stat-icon blue"><svg aria-hidden="true"><use href="#users"></use></svg></span>
+          <strong>87 320+</strong>
+          <p>активных граждан</p>
+        </article>
+        <article>
+          <span class="stat-icon red"><svg aria-hidden="true"><use href="#heart"></use></svg></span>
+          <strong>15 200+</strong>
+          <p>нас поддерживают</p>
+        </article>
+      </section>
+
+      <section class="container categories" id="appeals" aria-labelledby="categories-title">
+        <div class="section-head inline">
+          <h2 id="categories-title">Куда направить обращение или жалобу</h2>
+          <a href="categories.html">Все категории <svg aria-hidden="true"><use href="#arrow"></use></svg></a>
+        </div>
+        <div class="category-grid">
+          <a href="appeal.html"><svg aria-hidden="true"><use href="#home"></use></svg><span>ЖКХ</span></a>
+          <a href="appeal.html"><svg aria-hidden="true"><use href="#trend"></use></svg><span>Дороги</span></a>
+          <a href="appeal.html"><svg aria-hidden="true"><use href="#shield"></use></svg><span>Здравоохранение</span></a>
+          <a href="appeal.html"><svg aria-hidden="true"><use href="#book"></use></svg><span>Образование</span></a>
+          <a href="appeal.html"><svg aria-hidden="true"><use href="#users"></use></svg><span>Благоустройство</span></a>
+          <a href="appeal.html"><svg aria-hidden="true"><use href="#heart"></use></svg><span>Коррупция</span></a>
+          <a href="appeal.html"><svg aria-hidden="true"><use href="#scale"></use></svg><span>Права граждан</span></a>
+          <a href="appeal.html"><svg aria-hidden="true"><use href="#flag"></use></svg><span>СВО / Ветераны</span></a>
+          <a href="appeal.html"><svg aria-hidden="true"><use href="#file"></use></svg><span>Другое</span></a>
+        </div>
+      </section>
+
+      <section class="container how-section" id="how" aria-labelledby="how-title">
+        <h2 id="how-title">Как это работает</h2>
+        <ol class="steps">
+          <li>
+            <span class="step-num">1</span>
+            <span class="step-icon"><svg aria-hidden="true"><use href="#grid"></use></svg></span>
+            <strong>Выберите категорию</strong>
+          </li>
+          <li>
+            <span class="step-num">2</span>
+            <span class="step-icon"><svg aria-hidden="true"><use href="#file"></use></svg></span>
+            <strong>Опишите проблему или жалобу</strong>
+          </li>
+          <li>
+            <span class="step-num">3</span>
+            <span class="step-icon"><svg aria-hidden="true"><use href="#camera"></use></svg></span>
+            <strong>Добавьте документы и фото/видео</strong>
+          </li>
+          <li>
+            <span class="step-num">4</span>
+            <span class="step-icon"><svg aria-hidden="true"><use href="#arrow"></use></svg></span>
+            <strong>Подайте обращение или жалобу</strong>
+          </li>
+          <li>
+            <span class="step-num">5</span>
+            <span class="step-icon"><svg aria-hidden="true"><use href="#bell"></use></svg></span>
+            <strong>Получайте статус</strong>
+          </li>
+          <li>
+            <span class="step-num">6</span>
+            <span class="step-icon"><svg aria-hidden="true"><use href="#check"></use></svg></span>
+            <strong>Дождитесь результата</strong>
+          </li>
+        </ol>
+      </section>
+
+      <section class="container feed-section" aria-labelledby="feed-title">
+        <div class="section-head inline">
+          <div class="feed-heading">
+            <h2 id="feed-title">Обращения из городов работы</h2>
+            <p>Проверенные ситуации из Брянска, Москвы и Санкт-Петербурга с понятным статусом и общественным откликом.</p>
+          </div>
+          <div class="feed-actions">
+            <div class="feed-city-list" aria-label="Города работы">
+              <span><svg aria-hidden="true"><use href="#pin"></use></svg>Брянск</span>
+              <span><svg aria-hidden="true"><use href="#pin"></use></svg>Москва</span>
+              <span><svg aria-hidden="true"><use href="#pin"></use></svg>Санкт-Петербург</span>
+            </div>
+            <div class="feed-nav-row">
+              <div class="feed-carousel-controls" aria-label="Навигация по обращениям">
+                <button type="button" data-appeal-prev aria-label="Предыдущие обращения">
+                  <svg aria-hidden="true"><use href="#back"></use></svg>
+                </button>
+                <button type="button" data-appeal-next aria-label="Следующие обращения">
+                  <svg aria-hidden="true"><use href="#arrow"></use></svg>
+                </button>
+              </div>
+              <a href="feed.html">Смотреть все обращения <svg aria-hidden="true"><use href="#arrow"></use></svg></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="appeal-carousel" data-appeal-carousel aria-label="Лента обращений из городов работы">
+          <div class="appeal-cards" data-appeal-track tabindex="0">
+            <article class="appeal-card">
+              <span class="status status-blue">На проверке</span>
+              <img src="assets/issue-entrance-roof.png" alt="Протекает крыша в подъезде после дождя">
+              <div class="appeal-copy">
+                <span>ЖКХ</span>
+                <h3><a href="appeal-detail.html">Протекает крыша в подъезде после дождя</a></h3>
+                <p>г. Брянск, Советский район<br>10 мая 2025, 14:30</p>
+              </div>
+              <footer>
+                <span><svg aria-hidden="true"><use href="#eye"></use></svg>1 245</span>
+                <span class="appeal-like"><svg aria-hidden="true"><use href="#heart"></use></svg>64</span>
+                <span><svg aria-hidden="true"><use href="#comment"></use></svg>23</span>
+                <button type="button" aria-label="Поделиться"><svg aria-hidden="true"><use href="#share"></use></svg></button>
+              </footer>
+            </article>
+
+            <article class="appeal-card">
+              <span class="status status-orange">В работе</span>
+              <img src="assets/issue-road.png" alt="Ямы на дороге после ремонта">
+              <div class="appeal-copy">
+                <span>Дороги</span>
+                <h3><a href="appeal-detail.html">Ямы на дороге после ремонта</a></h3>
+                <p>г. Москва, ЮВАО<br>8 мая 2025, 10:15</p>
+              </div>
+              <footer>
+                <span><svg aria-hidden="true"><use href="#eye"></use></svg>2 134</span>
+                <span class="appeal-like"><svg aria-hidden="true"><use href="#heart"></use></svg>118</span>
+                <span><svg aria-hidden="true"><use href="#comment"></use></svg>37</span>
+                <button type="button" aria-label="Поделиться"><svg aria-hidden="true"><use href="#share"></use></svg></button>
+              </footer>
+            </article>
+
+            <article class="appeal-card">
+              <span class="status status-green">Решено</span>
+              <img src="assets/issue-sport-roof.png" alt="Свалка строительного мусора во дворе">
+              <div class="appeal-copy">
+                <span>Благоустройство</span>
+                <h3><a href="appeal-detail.html">Свалка строительного мусора во дворе</a></h3>
+                <p>г. Санкт-Петербург, Невский район<br>5 мая 2025, 11:20</p>
+              </div>
+              <footer>
+                <span><svg aria-hidden="true"><use href="#eye"></use></svg>892</span>
+                <span class="appeal-like"><svg aria-hidden="true"><use href="#heart"></use></svg>41</span>
+                <span><svg aria-hidden="true"><use href="#comment"></use></svg>18</span>
+                <button type="button" aria-label="Поделиться"><svg aria-hidden="true"><use href="#share"></use></svg></button>
+              </footer>
+            </article>
+
+            <article class="appeal-card">
+              <span class="status status-orange">В работе</span>
+              <img src="assets/issue-entrance-roof.png" alt="Сырость и плесень в подъезде">
+              <div class="appeal-copy">
+                <span>ЖКХ</span>
+                <h3><a href="appeal-detail.html">Сырость и плесень в подъезде</a></h3>
+                <p>г. Брянск, Фокинский район<br>4 мая 2025, 16:40</p>
+              </div>
+              <footer>
+                <span><svg aria-hidden="true"><use href="#eye"></use></svg>734</span>
+                <span class="appeal-like"><svg aria-hidden="true"><use href="#heart"></use></svg>52</span>
+                <span><svg aria-hidden="true"><use href="#comment"></use></svg>15</span>
+                <button type="button" aria-label="Поделиться"><svg aria-hidden="true"><use href="#share"></use></svg></button>
+              </footer>
+            </article>
+
+            <article class="appeal-card">
+              <span class="status status-blue">На проверке</span>
+              <img src="assets/issue-road.png" alt="Разбитый тротуар возле остановки">
+              <div class="appeal-copy">
+                <span>Дороги</span>
+                <h3><a href="appeal-detail.html">Разбитый тротуар возле остановки</a></h3>
+                <p>г. Москва, район Люблино<br>2 мая 2025, 09:25</p>
+              </div>
+              <footer>
+                <span><svg aria-hidden="true"><use href="#eye"></use></svg>1 487</span>
+                <span class="appeal-like"><svg aria-hidden="true"><use href="#heart"></use></svg>86</span>
+                <span><svg aria-hidden="true"><use href="#comment"></use></svg>31</span>
+                <button type="button" aria-label="Поделиться"><svg aria-hidden="true"><use href="#share"></use></svg></button>
+              </footer>
+            </article>
+
+            <article class="appeal-card">
+              <span class="status status-green">Решено</span>
+              <img src="assets/issue-sport-roof.png" alt="Поврежденное покрытие на спортивной площадке">
+              <div class="appeal-copy">
+                <span>Спорт</span>
+                <h3><a href="appeal-detail.html">Поврежденное покрытие на площадке</a></h3>
+                <p>г. Санкт-Петербург, Калининский район<br>28 апреля 2025, 12:10</p>
+              </div>
+              <footer>
+                <span><svg aria-hidden="true"><use href="#eye"></use></svg>963</span>
+                <span class="appeal-like"><svg aria-hidden="true"><use href="#heart"></use></svg>47</span>
+                <span><svg aria-hidden="true"><use href="#comment"></use></svg>12</span>
+                <button type="button" aria-label="Поделиться"><svg aria-hidden="true"><use href="#share"></use></svg></button>
+              </footer>
+            </article>
+          </div>
+          <div class="appeal-carousel-dots" data-appeal-dots aria-label="Страницы ленты обращений"></div>
+        </div>
+      </section>
+
+      <section class="container latest-news" id="news" aria-labelledby="latest-news-title">
+        <div class="section-head inline">
+          <div class="latest-news-heading">
+            <h2 id="latest-news-title">Последние новости</h2>
+            <p>Коротко о новых инициативах, результатах обращений и работе команды «Руки добра».</p>
+          </div>
+          <a href="news.html">Все новости <svg aria-hidden="true"><use href="#arrow"></use></svg></a>
+        </div>
+
+        <div class="latest-news-grid">
+          <article class="news-card news-card-featured">
+            <a class="news-card-media" href="news-detail.html">
+              <img src="assets/hero-legal-consultation.png" alt="Юридическая консультация для граждан" width="1536" height="864">
+            </a>
+            <div class="news-card-body">
+              <div class="news-meta">
+                <time datetime="2026-06-17">17 июня 2026</time>
+                <span>Правовая поддержка</span>
+              </div>
+              <h3><a href="news-detail.html">Открыта запись на консультации по обращениям в суд</a></h3>
+              <p>Юристы помогают подготовить документы, уточнить сроки и выбрать порядок подачи жалобы.</p>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <a class="news-card-media" href="news.html#public-control">
+              <img src="assets/hero-community-meeting.png" alt="Встреча с жителями по общественному контролю" width="1536" height="864">
+            </a>
+            <div class="news-card-body">
+              <div class="news-meta">
+                <time datetime="2026-06-14">14 июня 2026</time>
+                <span>Общественный контроль</span>
+              </div>
+              <h3><a href="news.html#public-control">Запущены выездные приемы по проблемам ЖКХ</a></h3>
+              <p>Команда собирает обращения жителей и фиксирует системные проблемы для публичного реестра.</p>
+            </div>
+          </article>
+
+          <article class="news-card">
+            <a class="news-card-media" href="news.html#results-report">
+              <img src="assets/hero-hands-heart.png" alt="Поддержка граждан и результаты работы" width="1536" height="864">
+            </a>
+            <div class="news-card-body">
+              <div class="news-meta">
+                <time datetime="2026-06-10">10 июня 2026</time>
+                <span>Результаты</span>
+              </div>
+              <h3><a href="news.html#results-report">Опубликован отчет по обращениям за май</a></h3>
+              <p>В отчете собраны статусы, решенные вопросы и обращения, которые требуют дополнительной проверки.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="container transparency" aria-labelledby="transparency-title">
+        <div class="transparency-icon">
+          <svg aria-hidden="true"><use href="#flag"></use></svg>
+        </div>
+        <div class="transparency-copy">
+          <h2 id="transparency-title">Публичность и прозрачность</h2>
+          <p>Проверенные обращения и жалобы публикуются на платформе. Вы можете отслеживать ход рассмотрения и видеть результаты работы с вашей проблемой.</p>
+        </div>
+        <ul class="check-list compact">
+          <li>Модерация и проверка обращений и жалоб</li>
+          <li>Публичный реестр обращений и жалоб</li>
+          <li>Открытые статусы и результаты</li>
+        </ul>
+        <div class="hands-art" aria-hidden="true"></div>
+      </section>
+
+      <section class="container trust-grid">
+        <article>
+          <svg aria-hidden="true"><use href="#shield"></use></svg>
+          <div>
+            <h3>Правовая поддержка</h3>
+            <p>Наши юристы помогают гражданам в сложных ситуациях, готовят обращения и представляют интересы в суде.</p>
+            <a href="news.html#legal-support" aria-label="Подробнее о правовой поддержке">Подробнее <svg aria-hidden="true"><use href="#arrow"></use></svg></a>
+          </div>
+        </article>
+        <article>
+          <svg aria-hidden="true"><use href="#users"></use></svg>
+          <div>
+            <h3>Общественный резонанс</h3>
+            <p>Привлекаем внимание СМИ и общественности к важным проблемам, чтобы добиться реальных изменений.</p>
+            <a href="news.html#public-control" aria-label="Подробнее об общественном резонансе">Подробнее <svg aria-hidden="true"><use href="#arrow"></use></svg></a>
+          </div>
+        </article>
+        <article>
+          <svg aria-hidden="true"><use href="#pin"></use></svg>
+          <div>
+            <h3>Работаем в Брянске, Москве и Санкт-Петербурге</h3>
+            <p>Единая платформа для граждан в трех ключевых городах. Вместе мы сильнее.</p>
+            <a href="news.html#regions" aria-label="Подробнее о городах работы">Подробнее <svg aria-hidden="true"><use href="#arrow"></use></svg></a>
+          </div>
+        </article>
+      </section>
+
+    </main>
+
+    <footer class="site-footer" id="contacts">
+      <div class="container footer-grid">
+        <div class="footer-about">
+          <a class="brand footer-brand" href="index.html" aria-label="Рука добра">
+            <img class="brand-logo" src="assets/logo-ruka-dobra.svg" alt="НКО Рука добра" width="238" height="58">
+          </a>
+          <p>Общественная помощь гражданам с обращениями и жалобами. Работаем ради справедливости и реальных изменений в России.</p>
+          <div class="socials">
+            <a class="social-vk" href="#" aria-label="ВКонтакте">
+              <svg aria-hidden="true"><use href="#social-vk"></use></svg>
+            </a>
+            <a class="social-ok" href="#" aria-label="Одноклассники">
+              <svg aria-hidden="true"><use href="#social-ok"></use></svg>
+            </a>
+            <a class="social-max" href="#" aria-label="MAX">
+              <svg aria-hidden="true"><use href="#social-max"></use></svg>
+            </a>
+          </div>
+        </div>
+
+        <nav class="footer-col" aria-label="Навигация">
+          <h3>Навигация</h3>
+          <a href="#about">О нас</a>
+          <a href="feed.html">Обращения и жалобы</a>
+          <a href="#how">Как это работает</a>
+          <a href="news.html">Новости</a>
+          <a href="#contacts">Контакты</a>
+        </nav>
+
+        <nav class="footer-col" aria-label="Категории">
+          <h3>Категории</h3>
+          <a href="appeal.html">ЖКХ</a>
+          <a href="appeal.html">Дороги</a>
+          <a href="appeal.html">Здравоохранение</a>
+          <a href="appeal.html">Образование</a>
+          <a href="categories.html">Все категории</a>
+        </nav>
+
+        <address class="footer-col footer-contacts">
+          <h3>Контакты</h3>
+          <a href="tel:+79102357746"><svg aria-hidden="true"><use href="#phone"></use></svg>8 910 235-77-46</a>
+          <a href="mailto:info@rukadobra.ru"><svg aria-hidden="true"><use href="#mail"></use></svg>info@rukadobra.ru</a>
+          <span><svg aria-hidden="true"><use href="#pin"></use></svg>г. Москва</span>
+          <span><svg aria-hidden="true"><use href="#check"></use></svg>Ежедневно с 9:00 до 20:00</span>
+        </address>
+
+        <form class="subscribe" action="#" method="post">
+          <h3>Подпишитесь на новости</h3>
+          <p>Будьте в курсе важных новостей и результатов нашей работы.</p>
+          <label>
+            <span class="sr-only">Ваш e-mail</span>
+            <input type="email" name="email" placeholder="Ваш e-mail">
+          </label>
+          <button type="submit">Подписаться</button>
+        </form>
+      </div>
+
+      <div class="container footer-bottom">
+        <span>© 2026 НКО «Рука добра». Все права защищены.</span>
+        <a href="privacy.html">Политика конфиденциальности</a>
+        <a href="agreement.html">Пользовательское соглашение</a>
+      </div>
+      <div class="footer-ribbon" aria-hidden="true"></div>
+    </footer>
+
+    <div class="modal video-submit-modal" data-video-modal hidden>
+      <button class="modal-backdrop" type="button" data-video-modal-close aria-label="Закрыть окно"></button>
+      <section class="modal-panel video-submit-panel" role="dialog" aria-modal="true" aria-labelledby="video-modal-title" aria-describedby="video-modal-text" tabindex="-1">
+        <button class="modal-close" type="button" data-video-modal-close aria-label="Закрыть окно">
+          <span aria-hidden="true">×</span>
+        </button>
+        <span class="video-submit-eyebrow">
+          <svg aria-hidden="true"><use href="#camera"></use></svg>
+          Видео от граждан
+        </span>
+        <h2 id="video-modal-title">Прислать видео поддержки</h2>
+        <p id="video-modal-text">Заполните короткую форму и прикрепите ролик. После модерации видео сможет появиться в разделе поддержки.</p>
+
+        <form class="video-submit-form" action="#" method="post" data-video-form>
+          <div class="video-submit-grid">
+            <label>
+              <span>Ваше имя <sup>*</sup></span>
+              <input type="text" name="name" autocomplete="name" placeholder="Например: Иван Петров" required>
+            </label>
+            <label>
+              <span>Город <sup>*</sup></span>
+              <input type="text" name="city" autocomplete="address-level2" placeholder="Москва" required>
+            </label>
+            <label>
+              <span>Телефон <sup>*</sup></span>
+              <input type="tel" name="phone" autocomplete="tel" placeholder="+7 (___) ___-__-__" required>
+            </label>
+            <label>
+              <span>E-mail</span>
+              <input type="email" name="email" autocomplete="email" placeholder="example@mail.ru">
+            </label>
+            <label class="video-submit-wide">
+              <span>Коротко о видео</span>
+              <textarea name="message" rows="3" maxlength="500" placeholder="Кому адресованы слова поддержки, от кого видео, что важно учесть при публикации"></textarea>
+            </label>
+            <label class="video-file-upload">
+              <input class="sr-only" type="file" name="support-video" accept=".mp4,.mov,video/mp4,video/quicktime" data-video-file required>
+              <span class="video-file-icon" aria-hidden="true">
+                <svg><use href="#upload"></use></svg>
+              </span>
+              <span class="video-file-copy">
+                <strong>Прикрепить видео</strong>
+                <small data-video-file-name>MP4 или MOV до 100 МБ</small>
+              </span>
+            </label>
+          </div>
+
+          <label class="video-submit-consent">
+            <input type="checkbox" name="consent" required>
+            <span>Согласен(на) на обработку персональных данных и публикацию видео после модерации.</span>
+          </label>
+
+          <div class="video-submit-actions">
+            <button class="btn btn-red" type="submit">
+              <svg aria-hidden="true"><use href="#check"></use></svg>
+              <span data-video-submit-label>Отправить на модерацию</span>
+            </button>
+            <button class="btn btn-outline" type="button" data-video-modal-close>Отмена</button>
+          </div>
+          <p class="video-submit-status" data-video-status aria-live="polite" hidden></p>
+        </form>
+      </section>
+    </div>
+
+    <div class="modal" data-share-modal hidden>
+      <button class="modal-backdrop" type="button" data-modal-close aria-label="Закрыть окно"></button>
+      <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="share-modal-title" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="Закрыть окно">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h2 id="share-modal-title">Поделиться обращением</h2>
+        <p data-share-modal-text>Ссылка на обращение готова к отправке.</p>
+        <div class="modal-actions">
+          <button class="btn btn-red" type="button" data-copy-link>
+            <svg aria-hidden="true"><use href="#share"></use></svg>
+            <span data-copy-label>Скопировать ссылку</span>
+          </button>
+          <button class="btn btn-outline" type="button" data-modal-close>Закрыть</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

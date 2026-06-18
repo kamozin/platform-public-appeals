@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 360" role="img" aria-labelledby="title desc">
+  <title id="title">Регистрация личного кабинета</title>
+  <desc id="desc">Карточка профиля, щит с галочкой и российская лента.</desc>
+  <defs>
+    <linearGradient id="windowFill" x1="253" y1="40" x2="470" y2="243" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f9fbff"/>
+      <stop offset=".55" stop-color="#d8e7ff"/>
+      <stop offset="1" stop-color="#a9c7f9"/>
+    </linearGradient>
+    <linearGradient id="barFill" x1="268" y1="33" x2="465" y2="78" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8fb7ff"/>
+      <stop offset="1" stop-color="#3e76df"/>
+    </linearGradient>
+    <linearGradient id="shieldFill" x1="149" y1="102" x2="294" y2="268" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f8fbff"/>
+      <stop offset=".48" stop-color="#dce9ff"/>
+      <stop offset="1" stop-color="#8fb4f1"/>
+    </linearGradient>
+    <linearGradient id="blueRound" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#76a8ff"/>
+      <stop offset="1" stop-color="#0e56d5"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#dce9ff"/>
+      <stop offset="1" stop-color="#8fb0ec"/>
+    </linearGradient>
+    <filter id="softShadow" x="-30%" y="-30%" width="160%" height="170%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="16" stdDeviation="16" flood-color="#0d47a1" flood-opacity=".18"/>
+    </filter>
+    <filter id="deepShadow" x="-40%" y="-40%" width="180%" height="180%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#06388f" flood-opacity=".24"/>
+    </filter>
+  </defs>
+
+  <g opacity=".78">
+    <path d="M116 194c-28-17-44-43-48-78 27 14 45 38 48 78Z" fill="url(#leaf)"/>
+    <path d="M128 173c-8-31-1-60 22-87 10 28 3 59-22 87Z" fill="url(#leaf)"/>
+    <path d="M95 241c-35-3-62-18-82-46 31 2 59 19 82 46Z" fill="url(#leaf)"/>
+    <path d="M510 213c22-30 31-62 27-96-24 23-34 56-27 96Z" fill="url(#leaf)"/>
+    <path d="M538 244c30-18 48-43 55-76-31 13-51 39-55 76Z" fill="#b7cff7"/>
+    <path d="M488 249c15-34 15-67 0-101-17 29-17 63 0 101Z" fill="#d6e5ff"/>
+  </g>
+
+  <g filter="url(#softShadow)" transform="translate(0 -58)">
+    <rect x="255" y="52" width="258" height="183" rx="18" fill="url(#windowFill)" stroke="#bcd2f5"/>
+    <path d="M255 70c0-10 8-18 18-18h222c10 0 18 8 18 18v28H255V70Z" fill="url(#barFill)"/>
+    <circle cx="279" cy="75" r="6" fill="#e8f2ff"/>
+    <circle cx="299" cy="75" r="6" fill="#d8e7ff"/>
+    <circle cx="319" cy="75" r="6" fill="#c7dcff"/>
+    <rect x="294" y="117" width="78" height="86" rx="9" fill="#eff6ff" stroke="#c6d9f8"/>
+    <circle cx="333" cy="146" r="19" fill="url(#blueRound)"/>
+    <path d="M298 196c7-25 19-37 35-37s28 12 36 37H298Z" fill="#1260dc"/>
+    <rect x="394" y="126" width="96" height="8" rx="4" fill="#b8cdf2"/>
+    <rect x="394" y="152" width="87" height="8" rx="4" fill="#c6d7f3"/>
+    <rect x="394" y="177" width="61" height="8" rx="4" fill="#b8cdf2"/>
+    <rect x="348" y="225" width="136" height="7" rx="3.5" fill="#b8cdf2"/>
+    <rect x="348" y="248" width="111" height="7" rx="3.5" fill="#c6d7f3"/>
+  </g>
+
+  <g filter="url(#deepShadow)" transform="translate(0 -58)">
+    <path d="M196 104c43 31 70 28 80 41v63c0 43-27 72-80 91-53-19-80-48-80-91v-63c10-13 37-10 80-41Z" fill="url(#shieldFill)" stroke="#b9cff5" stroke-width="2"/>
+    <path d="M196 134c27 19 45 18 51 27v43c0 27-17 46-51 59-34-13-51-32-51-59v-43c6-9 24-8 51-27Z" fill="#e8f2ff" opacity=".78"/>
+    <circle cx="196" cy="176" r="18" fill="url(#blueRound)"/>
+    <path d="M156 237c8-26 22-40 40-40 19 0 32 14 40 40h-80Z" fill="#155fdc"/>
+    <circle cx="241" cy="245" r="37" fill="url(#blueRound)" stroke="#b9d4ff" stroke-width="3"/>
+    <path d="m222 244 16 16 34-39" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="457" cy="196" r="37" fill="url(#blueRound)" stroke="#b9d4ff" stroke-width="3"/>
+    <path d="m438 195 16 16 34-39" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <path d="M20 257c97-16 157-14 237 15 80 29 175 8 343-12v31c-154 20-257 34-350 4-78-25-141-32-230-19v-19Z" fill="#f7fbff"/>
+    <path d="M20 265c105-15 167-7 248 20 78 26 171 6 332-12v28c-151 20-251 31-340 3-80-26-143-35-240-19v-20Z" fill="#0d4fd0"/>
+    <path d="M20 290c96-14 163-4 244 20 84 25 181 10 336-10v25c-151 25-252 34-343 8-82-23-147-33-237-16v-27Z" fill="#ef2f2c"/>
+  </g>
+</svg>

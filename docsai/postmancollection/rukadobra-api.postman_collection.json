@@ -1,0 +1,1116 @@
+{
+  "info": {
+    "_postman_id": "a766cd50-8093-4cc2-b5d6-8b0aeb6a4f01",
+    "name": "Ruka Dobra API",
+    "description": "Local development collection for the Ruka Dobra JSON API.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://rukadobra.localhost/api/v1"
+    },
+    {
+      "key": "request_id",
+      "value": "postman-local-trace"
+    },
+    {
+      "key": "auth_token",
+      "value": ""
+    },
+    {
+      "key": "draft_id",
+      "value": ""
+    },
+    {
+      "key": "guest_draft_token",
+      "value": ""
+    },
+    {
+      "key": "attachment_id",
+      "value": ""
+    },
+    {
+      "key": "challenge_id",
+      "value": ""
+    },
+    {
+      "key": "session_id",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "System",
+      "item": [
+        {
+          "name": "Health",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/health",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "health"
+              ]
+            },
+            "description": "Returns the API health status."
+          },
+          "response": []
+        },
+        {
+          "name": "Missing Route Error Contract",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/missing",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "missing"
+              ]
+            },
+            "description": "Smoke test for the common JSON API error contract."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Public Content",
+      "item": [
+        {
+          "name": "Categories Index",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/categories",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "categories"
+              ]
+            },
+            "description": "Returns grouped public appeal categories with SEO metadata."
+          },
+          "response": []
+        },
+        {
+          "name": "News Index",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/news?page=1&per_page=6",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "news"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "per_page",
+                  "value": "6"
+                }
+              ]
+            },
+            "description": "Returns paginated public news list with SEO metadata."
+          },
+          "response": []
+        },
+        {
+          "name": "News Show",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/news/legal-support-consultations",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "news",
+                "legal-support-consultations"
+              ]
+            },
+            "description": "Returns one public news detail DTO by slug."
+          },
+          "response": []
+        },
+        {
+          "name": "Appeals Index",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/appeals?city=Москва&category=Дороги&sort=popular",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "appeals"
+              ],
+              "query": [
+                {
+                  "key": "city",
+                  "value": "Москва"
+                },
+                {
+                  "key": "category",
+                  "value": "Дороги"
+                },
+                {
+                  "key": "sort",
+                  "value": "popular"
+                }
+              ]
+            },
+            "description": "Returns public appeals feed with search, status, city, category, sort and pagination filters."
+          },
+          "response": []
+        },
+        {
+          "name": "Appeal Show",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/appeals/road-pits-after-repair",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "appeals",
+                "road-pits-after-repair"
+              ]
+            },
+            "description": "Returns one public appeal detail DTO by slug."
+          },
+          "response": []
+        },
+        {
+          "name": "Appeal Comments",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/appeals/road-pits-after-repair/comments",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "appeals",
+                "road-pits-after-repair",
+                "comments"
+              ]
+            },
+            "description": "Returns public comments preview for one public appeal."
+          },
+          "response": []
+        },
+        {
+          "name": "Sitemap URLs",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/seo/sitemap-urls",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "seo",
+                "sitemap-urls"
+              ]
+            },
+            "description": "Returns public frontend URLs for sitemap generation."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Ivan Ivanov\",\n  \"phone\": \"+79001234567\",\n  \"email\": \"ivan@example.com\",\n  \"password\": \"password123\",\n  \"password_confirmation\": \"password123\",\n  \"privacy\": true,\n  \"notifications\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"login\": \"ivan@example.com\",\n  \"password\": \"password123\",\n  \"remember\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/me",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/logout",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Verification and Password Reset",
+      "item": [
+        {
+          "name": "Verification Send",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channel\": \"email\",\n  \"target\": \"ivan@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/verification/send",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "verification",
+                "send"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Verification Verify",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"challenge_id\": \"{{challenge_id}}\",\n  \"code\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/verification/verify",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "verification",
+                "verify"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Password Reset Send",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"ivan@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/password-reset/send",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "password-reset",
+                "send"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Password Reset Complete",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"challenge_id\": \"{{challenge_id}}\",\n  \"code\": \"123456\",\n  \"email\": \"ivan@example.com\",\n  \"password\": \"new-password\",\n  \"password_confirmation\": \"new-password\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/auth/password-reset/complete",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "password-reset",
+                "complete"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Private Appeals",
+      "item": [
+        {
+          "name": "Store Comment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"comment\": \"Проблема подтверждается.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/appeals/road-pits-after-repair/comments",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "appeals",
+                "road-pits-after-repair",
+                "comments"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Save Appeal",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/appeals/road-pits-after-repair/save",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "appeals",
+                "road-pits-after-repair",
+                "save"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Draft",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category\": \"roads\",\n  \"submission_type\": \"complaint\",\n  \"title\": \"Ямы на дороге\",\n  \"description\": \"Описание проблемы\",\n  \"urgency\": \"normal\",\n  \"location\": \"Москва\",\n  \"contact_visibility\": \"hidden\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/appeal-drafts",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "appeal-drafts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Guest Draft",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const body = pm.response.json();",
+                  "pm.collectionVariables.set('draft_id', body.data.id);",
+                  "pm.collectionVariables.set('guest_draft_token', body.data.guestToken);"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"category\": \"roads\",\n  \"submission_type\": \"complaint\",\n  \"title\": \"Гостевая жалоба\",\n  \"description\": \"Описание проблемы от неавторизованного пользователя\",\n  \"urgency\": \"normal\",\n  \"location\": \"Москва\",\n  \"contact_visibility\": \"hidden\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/appeal-drafts",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "appeal-drafts"
+              ]
+            },
+            "description": "Creates an appeal draft without Authorization and returns data.guestToken. The test script stores draft_id and guest_draft_token collection variables."
+          },
+          "response": []
+        },
+        {
+          "name": "Show Draft",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/appeal-drafts/{{draft_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "appeal-drafts",
+                "{{draft_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Show Guest Draft",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Appeal-Draft-Token",
+                "value": "{{guest_draft_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/appeal-drafts/{{draft_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "appeal-drafts",
+                "{{draft_id}}"
+              ]
+            },
+            "description": "Reads a guest draft by X-Appeal-Draft-Token."
+          },
+          "response": []
+        },
+        {
+          "name": "Submit Draft",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"captcha_token\": \"test-captcha\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/appeal-drafts/{{draft_id}}/submit",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "appeal-drafts",
+                "{{draft_id}}",
+                "submit"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Submit Guest Draft",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Appeal-Draft-Token",
+                "value": "{{guest_draft_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"captcha_token\": \"test-captcha\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/appeal-drafts/{{draft_id}}/submit",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "appeal-drafts",
+                "{{draft_id}}",
+                "submit"
+              ]
+            },
+            "description": "Submits a guest draft by X-Appeal-Draft-Token."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Profile and Dashboard",
+      "item": [
+        {
+          "name": "Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/profile",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Dashboard Drafts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/dashboard/drafts",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "dashboard",
+                "drafts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Dashboard Notifications",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/dashboard/notifications",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "dashboard",
+                "notifications"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Dashboard Sessions",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/dashboard/security/sessions",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "dashboard",
+                "security",
+                "sessions"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Dashboard Achievements",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/dashboard/achievements",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "dashboard",
+                "achievements"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Subscriptions and Support Videos",
+      "item": [
+        {
+          "name": "Subscribe News",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"reader@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/subscriptions/news",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "subscriptions",
+                "news"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Unsubscribe News",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"reader@example.com\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/subscriptions/news",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "subscriptions",
+                "news"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Support Video Upload",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "email",
+                  "value": "reader@example.com",
+                  "type": "text"
+                },
+                {
+                  "key": "video",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/support-videos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "support-videos"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

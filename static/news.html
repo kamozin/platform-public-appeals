@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Новости - Рука добра</title>
+    <meta name="description" content="Новости НКО Рука добра: правовая поддержка, общественный контроль, результаты обращений и важные обновления платформы.">
+    <link rel="preload" href="assets/hero-community-meeting.png" as="image">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="auth-page screen-page news-page">
+    <svg class="svg-sprite" aria-hidden="true">
+      <symbol id="arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="pin" viewBox="0 0 24 24">
+        <path d="M12 22s7-6.2 7-12A7 7 0 1 0 5 10c0 5.8 7 12 7 12Z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+    </svg>
+
+    <main class="news-main">
+      <section class="container news-hero" aria-labelledby="news-title">
+        <div class="news-hero-copy">
+          <nav class="news-breadcrumb" aria-label="Хлебные крошки">
+            <a href="index.html">Главная</a>
+            <span>Новости</span>
+          </nav>
+          <p class="news-eyebrow">Новости и результаты</p>
+          <h1 id="news-title">Новости</h1>
+          <p>Публикуем обновления платформы, результаты работы с обращениями, расписание приемов и важные материалы для граждан.</p>
+        </div>
+        <figure>
+          <img src="assets/hero-community-meeting.png" alt="Встреча команды Рука добра с жителями" width="1536" height="864">
+          <figcaption><svg aria-hidden="true"><use href="#pin"></use></svg>Брянск, Москва, Санкт-Петербург</figcaption>
+        </figure>
+      </section>
+
+      <section class="container news-board" aria-labelledby="news-board-title">
+        <div class="news-page-head">
+          <div>
+            <h2 id="news-board-title">Последние публикации</h2>
+            <p>Собрали ключевые обновления по правовой помощи, общественному контролю и публичному реестру обращений.</p>
+          </div>
+          <div class="news-filter-row" aria-label="Темы новостей">
+            <span>Все</span>
+            <span>Результаты</span>
+            <span>Правовая поддержка</span>
+            <span>Общественный контроль</span>
+          </div>
+        </div>
+
+        <div class="news-grid">
+          <article class="news-list-card" id="legal-support">
+            <a class="news-card-media" href="news-detail.html">
+              <img src="assets/hero-legal-consultation.png" alt="Юридическая консультация для граждан" width="1536" height="864">
+            </a>
+            <div class="news-list-card-content">
+              <div class="news-meta">
+                <time datetime="2026-06-17">17 июня 2026</time>
+                <span>Правовая поддержка</span>
+              </div>
+              <h2><a href="news-detail.html">Открыта запись на консультации по обращениям в суд</a></h2>
+              <p>Юристы помогают подготовить документы, уточнить сроки подачи жалобы и разобрать возможный порядок защиты прав.</p>
+            </div>
+          </article>
+
+          <article class="news-list-card" id="public-control">
+            <div class="news-card-media">
+              <img src="assets/hero-community-meeting.png" alt="Встреча с жителями по общественному контролю" width="1536" height="864">
+            </div>
+            <div class="news-list-card-content">
+              <div class="news-meta">
+                <time datetime="2026-06-14">14 июня 2026</time>
+                <span>Общественный контроль</span>
+              </div>
+              <h2>Запущены выездные приемы по проблемам ЖКХ</h2>
+              <p>Команда фиксирует обращения жителей, собирает документы и передает системные проблемы в публичный реестр.</p>
+            </div>
+          </article>
+
+          <article class="news-list-card" id="results-report">
+            <div class="news-card-media">
+              <img src="assets/hero-hands-heart.png" alt="Поддержка граждан и результаты работы" width="1536" height="864">
+            </div>
+            <div class="news-list-card-content">
+              <div class="news-meta">
+                <time datetime="2026-06-10">10 июня 2026</time>
+                <span>Результаты</span>
+              </div>
+              <h2>Опубликован отчет по обращениям за май</h2>
+              <p>В отчете собраны статусы, решенные вопросы и обращения, которые требуют дополнительной проверки.</p>
+            </div>
+          </article>
+
+          <article class="news-list-card" id="book-update">
+            <div class="news-card-media">
+              <img src="assets/complaint-book-cover-clean.png" alt="Народная жалобная книга" width="827" height="1203">
+            </div>
+            <div class="news-list-card-content">
+              <div class="news-meta">
+                <time datetime="2026-06-06">6 июня 2026</time>
+                <span>Реестр</span>
+              </div>
+              <h2>Обновлена Народная жалобная книга</h2>
+              <p>В реестр добавлены новые категории обращений, статусы проверки и отдельные отметки по решенным проблемам.</p>
+            </div>
+          </article>
+
+          <article class="news-list-card" id="regions">
+            <div class="news-card-media">
+              <img src="assets/geo-russia-map.png" alt="География работы Рука добра" width="1448" height="1086">
+            </div>
+            <div class="news-list-card-content">
+              <div class="news-meta">
+                <time datetime="2026-06-03">3 июня 2026</time>
+                <span>Регионы</span>
+              </div>
+              <h2>Расширен прием обращений в городах работы</h2>
+              <p>Жители Брянска, Москвы и Санкт-Петербурга могут направлять материалы по городским проблемам через единый маршрут.</p>
+            </div>
+          </article>
+
+          <article class="news-list-card" id="verification">
+            <div class="news-card-media">
+              <img src="assets/verification-illustration.png" alt="Проверка данных и статусов обращений" width="1536" height="864">
+            </div>
+            <div class="news-list-card-content">
+              <div class="news-meta">
+                <time datetime="2026-05-28">28 мая 2026</time>
+                <span>Платформа</span>
+              </div>
+              <h2>Ускорена проверка статусов обращений</h2>
+              <p>В личном кабинете обновлены уведомления и подсказки, чтобы заявители быстрее видели движение по своей жалобе.</p>
+            </div>
+          </article>
+        </div>
+
+        <nav class="list-pagination news-pagination" data-pagination="news" aria-label="Пагинация новостей" hidden></nav>
+      </section>
+
+      <section class="container news-subscribe-panel" aria-labelledby="news-action-title">
+        <div>
+          <h2 id="news-action-title">Есть проблема, которую нужно поднять публично?</h2>
+          <p>Опишите ситуацию, приложите документы и фото. После проверки обращение попадет в работу команды.</p>
+        </div>
+        <a class="btn btn-red" href="appeal.html">Подать обращение</a>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>

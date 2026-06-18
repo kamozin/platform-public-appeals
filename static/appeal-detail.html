@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Детальная страница обращения - Рука добра</title>
+    <meta name="description" content="Детальная страница обращения на платформе Рука добра: описание, статус, ход рассмотрения, документы и комментарии.">
+    <link rel="preload" href="assets/issue-road.png" as="image">
+    <link rel="preload" href="assets/hero-civic-flag.png" as="image">
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="auth-page screen-page cabinet-page appeal-detail-page">
+    <svg class="svg-sprite" aria-hidden="true">
+      <symbol id="menu" viewBox="0 0 24 24">
+        <path d="M4 7h16M4 12h16M4 17h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="user" viewBox="0 0 24 24">
+        <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M4 21c1.5-4.1 4.2-6 8-6s6.5 1.9 8 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="edit" viewBox="0 0 24 24">
+        <path d="M4 20h4l11-11-4-4L4 16v4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="m14 6 4 4M12 20h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="back" viewBox="0 0 24 24">
+        <path d="M19 12H5M11 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="arrow" viewBox="0 0 24 24">
+        <path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="file" viewBox="0 0 24 24">
+        <path d="M6 3h8l4 4v14H6V3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M14 3v5h5M9 13h6M9 17h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="pin" viewBox="0 0 24 24">
+        <path d="M12 22s7-6.2 7-12A7 7 0 1 0 5 10c0 5.8 7 12 7 12Z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="10" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <symbol id="calendar" viewBox="0 0 24 24">
+        <rect x="4" y="5" width="16" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M8 3v4M16 3v4M4 10h16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="clock" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="check" viewBox="0 0 24 24">
+        <path d="m5 12 4.5 4.5L19 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="eye" viewBox="0 0 24 24">
+        <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+      </symbol>
+      <symbol id="heart" viewBox="0 0 24 24">
+        <path d="M12 21S4 16.2 4 9.8A4.7 4.7 0 0 1 12 6a4.7 4.7 0 0 1 8 3.8C20 16.2 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="comment" viewBox="0 0 24 24">
+        <path d="M4 5h16v11H8l-4 4V5Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="share" viewBox="0 0 24 24">
+        <circle cx="18" cy="5" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="6" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+        <circle cx="18" cy="19" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="m8.7 10.7 6.6-4.4M8.7 13.3l6.6 4.4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="bell" viewBox="0 0 24 24">
+        <path d="M18 10a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9ZM10 21h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="shield" viewBox="0 0 24 24">
+        <path d="M12 3 20 6v6.2c0 4.7-3 7.8-8 9.8-5-2-8-5.1-8-9.8V6l8-3Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="m8.5 12 2.4 2.4 4.8-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="building" viewBox="0 0 24 24">
+        <path d="M4 21V7h5V3h6v7h5v11H4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M8 11h2M8 15h2M14 7h2M14 11h2M14 15h2M10 21v-4h4v4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </symbol>
+      <symbol id="phone" viewBox="0 0 24 24">
+        <path d="M7 4 5 6c-1 1-.6 5.5 4.2 10.3C14 21.1 18.5 21.5 19.5 20.5l2-2-4-4-2 2c-1.3-.5-2.7-1.4-4-2.7s-2.2-2.7-2.7-4l2-2L7 4Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="mail" viewBox="0 0 24 24">
+        <rect x="3" y="5" width="18" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="m4 7 8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="social-vk" viewBox="0 0 24 24">
+        <path d="M4.9 7.5c.1 5.8 3 9.2 8.1 9.2h.3v-3.3c1.8.2 3.1 1.5 3.6 3.3h2.7a7.1 7.1 0 0 0-3.6-4.8 6.9 6.9 0 0 0 3.1-4.4h-2.5c-.5 1.9-2 3.6-3.3 3.8V7.5h-2.5v6.7c-1.4-.3-3.1-2.2-3.2-6.7H4.9Z" fill="currentColor"/>
+      </symbol>
+      <symbol id="social-ok" viewBox="0 0 24 24">
+        <circle cx="12" cy="6.4" r="3.1" fill="currentColor"/>
+        <path d="M16 11.2a1.3 1.3 0 0 0-1.8-.1 3.6 3.6 0 0 1-4.4 0 1.3 1.3 0 0 0-1.8 1.8 6.1 6.1 0 0 0 2.2 1.2l-2 2.1a1.3 1.3 0 1 0 1.9 1.8l1.9-2 1.9 2a1.3 1.3 0 0 0 1.9-1.8l-2-2.1A6.1 6.1 0 0 0 16 13a1.3 1.3 0 0 0 0-1.8Z" fill="currentColor"/>
+      </symbol>
+      <symbol id="social-max" viewBox="0 0 64 64">
+        <defs>
+          <linearGradient id="appeal-detail-max-logo-gradient" x1="5" y1="53" x2="59" y2="11" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#42c7f3"/>
+            <stop offset=".46" stop-color="#3153d6"/>
+            <stop offset="1" stop-color="#9b2ee8"/>
+          </linearGradient>
+        </defs>
+        <rect width="64" height="64" rx="15" fill="url(#appeal-detail-max-logo-gradient)"/>
+        <path d="M31.9 7.6c-12.7 0-23 9.9-23 22.2 0 4.3 1.1 8.5 2.2 12.6.8 3.1 1.7 6.3 1.7 9.5 0 3.6 2.3 4.9 5.5 4.9 3.5 0 7.9-1.9 11.2-5.4 1.5.8 3.5 1.5 6 1.9 11.1 1.8 22.2-6.2 22.2-18.6 0-13.6-11.5-27.1-25.8-27.1Zm-.3 12.1c8.2 0 15 6.5 15 14.2 0 7.2-6.5 12.7-13.4 12.7-4.1 0-6.9-1.2-9.3-3.1-1.4 1.6-3.1 3.5-5.3 3.9.2-4-2.6-10-2.6-14.8 0-7.2 6.8-12.9 15.6-12.9Z" fill="#fff"/>
+      </symbol>
+    </svg>
+
+    <header class="site-header auth-header cabinet-header">
+      <div class="container header-inner auth-header-inner">
+        <a class="brand" href="index.html" aria-label="Рука добра">
+          <img class="brand-logo" src="assets/logo-ruka-dobra.svg" alt="НКО Рука добра" width="292" height="71">
+        </a>
+
+        <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false">
+          <svg aria-hidden="true"><use href="#menu"></use></svg>
+        </button>
+
+        <nav class="main-nav auth-nav" aria-label="Основная навигация">
+          <a href="index.html#about">О нас</a>
+          <a href="feed.html">Обращения и жалобы</a>
+          <a href="index.html#how">Как это работает</a>
+          <a href="news.html">Новости</a>
+          <a href="#contacts">Контакты</a>
+          <div class="mobile-nav-actions">
+            <a class="header-cta auth-submit-link" href="appeal.html">
+              <svg aria-hidden="true"><use href="#edit"></use></svg>
+              Подать обращение / жалобу
+            </a>
+            <a class="header-login auth-account-link auth-account-link-mobile" href="dashboard.html">
+              <svg aria-hidden="true"><use href="#user"></use></svg>
+              Личный кабинет
+            </a>
+          </div>
+        </nav>
+
+        <div class="header-actions auth-header-actions">
+          <a class="header-cta auth-submit-link" href="appeal.html">
+            <svg aria-hidden="true"><use href="#edit"></use></svg>
+            Подать обращение / жалобу
+          </a>
+          <a class="header-login auth-account-link" href="dashboard.html" aria-label="Личный кабинет">
+            <svg aria-hidden="true"><use href="#user"></use></svg>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class="cabinet-main appeal-detail-main">
+      <section class="container appeal-detail-layout" aria-labelledby="appeal-detail-title">
+        <nav class="appeal-detail-breadcrumb" aria-label="Навигация по обращению">
+          <a href="dashboard.html#appeals"><svg aria-hidden="true"><use href="#back"></use></svg>Мои обращения</a>
+          <span>№ RD-2025-00124</span>
+        </nav>
+
+        <section class="appeal-detail-hero">
+          <div class="appeal-detail-hero-copy">
+            <div class="appeal-detail-topline">
+              <strong class="cabinet-pill green">Решено</strong>
+              <span>Дороги</span>
+              <time datetime="2025-05-08T10:15">8 мая 2025, 10:15</time>
+            </div>
+            <h1 id="appeal-detail-title" data-share-title>Ямы на дороге после ремонта</h1>
+            <p>После недавнего ремонта на участке дороги появились глубокие ямы и просадка покрытия. Машины вынуждены выезжать на встречную полосу, рядом находится остановка и пешеходный переход.</p>
+            <div class="appeal-detail-actions">
+              <button class="cabinet-primary-link" type="button" data-share-appeal><svg aria-hidden="true"><use href="#share"></use></svg>Поделиться</button>
+              <a class="cabinet-ghost-button" href="appeal.html"><svg aria-hidden="true"><use href="#edit"></use></svg>Похожая жалоба</a>
+            </div>
+          </div>
+          <figure>
+            <img src="assets/issue-road.png" alt="Ямы на дороге после ремонта" width="640" height="426">
+            <figcaption><svg aria-hidden="true"><use href="#pin"></use></svg>г. Москва, ул. Лесная, 12</figcaption>
+          </figure>
+        </section>
+
+        <div class="appeal-detail-stat-grid" aria-label="Показатели обращения">
+          <article class="cabinet-stat-card">
+            <span><svg aria-hidden="true"><use href="#eye"></use></svg></span>
+            <strong>1 245</strong>
+            <p>просмотров</p>
+          </article>
+          <article class="cabinet-stat-card cabinet-stat-red">
+            <span><svg aria-hidden="true"><use href="#heart"></use></svg></span>
+            <strong>64</strong>
+            <p>поддержки</p>
+          </article>
+          <article class="cabinet-stat-card">
+            <span><svg aria-hidden="true"><use href="#comment"></use></svg></span>
+            <strong data-comments-count>23</strong>
+            <p data-comments-word>комментария</p>
+          </article>
+          <article class="cabinet-stat-card cabinet-stat-green">
+            <span><svg aria-hidden="true"><use href="#check"></use></svg></span>
+            <strong>12</strong>
+            <p>дней до решения</p>
+          </article>
+        </div>
+
+        <div class="appeal-detail-grid">
+          <div class="appeal-detail-main-column">
+            <section class="cabinet-panel appeal-detail-section" aria-labelledby="appeal-summary-title">
+              <div class="cabinet-panel-head">
+                <h2 id="appeal-summary-title">Суть обращения</h2>
+                <span class="appeal-detail-section-id">RD-2025-00124</span>
+              </div>
+              <div class="appeal-detail-text">
+                <p>На участке дороги после ремонта асфальт разрушился за несколько недель. Вода скапливается в выбоинах, покрытие продолжает проседать, а движение транспорта стало опасным для водителей и пешеходов.</p>
+                <p>Жители просят провести повторное обследование работ, устранить дефекты покрытия и проверить качество выполненного ремонта.</p>
+              </div>
+              <div class="appeal-detail-facts">
+                <article><span><svg aria-hidden="true"><use href="#calendar"></use></svg></span><strong>Проблема замечена</strong><p>28 апреля 2025</p></article>
+                <article><span><svg aria-hidden="true"><use href="#pin"></use></svg></span><strong>Адрес</strong><p>г. Москва, ул. Лесная, 12</p></article>
+                <article><span><svg aria-hidden="true"><use href="#building"></use></svg></span><strong>Ответственный орган</strong><p>Департамент транспорта Москвы</p></article>
+              </div>
+            </section>
+
+            <section class="cabinet-panel appeal-detail-section" aria-labelledby="appeal-media-title">
+              <div class="cabinet-panel-head">
+                <h2 id="appeal-media-title">Материалы обращения</h2>
+                <span class="appeal-detail-section-id">6 файлов</span>
+              </div>
+              <div class="appeal-detail-media-grid">
+                <figure>
+                  <img src="assets/issue-road.png" alt="Крупный план ям на дороге" width="360" height="220">
+                  <figcaption>Фото с места, 8 мая</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/issue-entrance-roof.png" alt="Фото участка дороги рядом с домом" width="360" height="220">
+                  <figcaption>Ориентир у дома</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/issue-sport-roof.png" alt="Подтверждающий снимок повреждения покрытия" width="360" height="220">
+                  <figcaption>Дополнительное фото</figcaption>
+                </figure>
+              </div>
+            </section>
+
+            <section class="cabinet-panel appeal-detail-section" aria-labelledby="appeal-progress-title">
+              <div class="cabinet-panel-head">
+                <h2 id="appeal-progress-title">Ход рассмотрения</h2>
+                <button type="button"><svg aria-hidden="true"><use href="#bell"></use></svg>Подписка включена</button>
+              </div>
+              <div class="appeal-detail-timeline">
+                <article class="is-complete">
+                  <time datetime="2025-05-20T10:15">20.05.2025, 10:15</time>
+                  <div>
+                    <h3>Проблема устранена</h3>
+                    <p>Получено подтверждение о выполненных работах и опубликован итоговый ответ.</p>
+                  </div>
+                  <strong class="cabinet-pill green">Решено</strong>
+                </article>
+                <article class="is-complete">
+                  <time datetime="2025-05-15T16:20">15.05.2025, 16:20</time>
+                  <div>
+                    <h3>Назначены ремонтные работы</h3>
+                    <p>Подрядчику направлено предписание устранить дефекты дорожного покрытия.</p>
+                  </div>
+                  <strong class="cabinet-pill orange">В работе</strong>
+                </article>
+                <article class="is-complete">
+                  <time datetime="2025-05-10T11:05">10.05.2025, 11:05</time>
+                  <div>
+                    <h3>Обращение принято ведомством</h3>
+                    <p>Материалы переданы в Департамент транспорта Москвы для проверки.</p>
+                  </div>
+                  <strong class="cabinet-pill blue">Принято</strong>
+                </article>
+                <article>
+                  <time datetime="2025-05-08T10:15">08.05.2025, 10:15</time>
+                  <div>
+                    <h3>Опубликовано на платформе</h3>
+                    <p>Обращение прошло модерацию и стало доступно в публичной ленте.</p>
+                  </div>
+                  <strong class="cabinet-pill gray">Старт</strong>
+                </article>
+              </div>
+            </section>
+
+            <section class="cabinet-panel appeal-detail-section" aria-labelledby="appeal-answer-title">
+              <div class="cabinet-panel-head">
+                <h2 id="appeal-answer-title">Официальный ответ</h2>
+                <span class="appeal-detail-section-id">20 мая 2025</span>
+              </div>
+              <article class="appeal-detail-answer">
+                <span><svg aria-hidden="true"><use href="#building"></use></svg></span>
+                <div>
+                  <h3>Департамент транспорта Москвы</h3>
+                  <p>На участке дороги по адресу ул. Лесная, 12 проведены ремонтные работы. Дефекты покрытия устранены, подрядной организации выдано предупреждение о контроле качества.</p>
+                  <a href="#"><svg aria-hidden="true"><use href="#file"></use></svg>Скачать ответ ведомства</a>
+                </div>
+              </article>
+            </section>
+
+            <section class="cabinet-panel appeal-detail-section appeal-comments-section" aria-labelledby="appeal-comments-title">
+              <div class="cabinet-panel-head appeal-comments-head">
+                <div>
+                  <span class="appeal-detail-section-id"><span data-comments-count>23</span> <span data-comments-word>комментария</span> · 4 официальных обновления</span>
+                  <h2 id="appeal-comments-title">Комментарии</h2>
+                </div>
+                <button type="button" data-comment-focus><svg aria-hidden="true"><use href="#comment"></use></svg>Добавить</button>
+              </div>
+
+              <div class="appeal-comments-summary" aria-label="Сводка комментариев">
+                <article>
+                  <strong>18</strong>
+                  <span>жителей подтвердили результат</span>
+                </article>
+                <article>
+                  <strong>4</strong>
+                  <span>ответа модератора и ведомства</span>
+                </article>
+                <article>
+                  <strong>6</strong>
+                  <span>фото и документов в обсуждении</span>
+                </article>
+              </div>
+
+              <form class="appeal-comment-form" action="#" data-comment-form>
+                <div class="appeal-detail-avatar" aria-hidden="true">ВЫ</div>
+                <div class="appeal-comment-compose">
+                  <label for="appeal-comment-text">Добавить комментарий</label>
+                  <textarea id="appeal-comment-text" name="comment" rows="4" maxlength="1000" placeholder="Опишите, что изменилось на месте, приложите факты или задайте уточняющий вопрос." data-comment-input></textarea>
+                  <div class="appeal-comment-form-footer">
+                    <span><span data-comment-counter>0</span>/1000</span>
+                    <div>
+                      <button class="appeal-comment-attach" type="button"><svg aria-hidden="true"><use href="#file"></use></svg>Файл</button>
+                      <button class="cabinet-primary-link" type="submit"><svg aria-hidden="true"><use href="#comment"></use></svg>Отправить</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <div class="appeal-comment-toolbar" aria-label="Фильтры комментариев">
+                <div class="appeal-comment-tabs" role="list">
+                  <button class="is-active" type="button" role="listitem" data-comment-filter="all">Все</button>
+                  <button type="button" role="listitem" data-comment-filter="official">Официальные</button>
+                  <button type="button" role="listitem" data-comment-filter="media">С фото</button>
+                </div>
+                <span>Сначала важные</span>
+              </div>
+
+              <div class="appeal-detail-comments" data-comment-list>
+                <article class="appeal-comment appeal-comment-official is-pinned" data-comment-type="official" data-comment-media="true">
+                  <div class="appeal-detail-avatar appeal-detail-avatar-moderator" aria-hidden="true">М</div>
+                  <div class="appeal-comment-body">
+                    <div class="appeal-comment-meta">
+                      <div>
+                        <h3>Модератор</h3>
+                        <span class="cabinet-pill green">Закреплено</span>
+                      </div>
+                      <time datetime="2025-05-20T10:20">20 мая 2025, 10:20</time>
+                    </div>
+                    <p>Фото результата добавлены в материалы обращения. Статус изменён на “Решено”, официальный ответ и акт работ доступны в документах.</p>
+                    <div class="appeal-comment-attachments" aria-label="Вложения к комментарию">
+                      <a href="#"><svg aria-hidden="true"><use href="#file"></use></svg>Акт работ.pdf</a>
+                      <a href="#"><svg aria-hidden="true"><use href="#file"></use></svg>Фото после ремонта</a>
+                    </div>
+                    <footer class="appeal-comment-actions">
+                      <button type="button">Ответить</button>
+                      <button type="button">Скопировать ссылку</button>
+                    </footer>
+                  </div>
+                </article>
+
+                <article class="appeal-comment" data-comment-type="public">
+                  <div class="appeal-detail-avatar" aria-hidden="true">АИ</div>
+                  <div class="appeal-comment-body">
+                    <div class="appeal-comment-meta">
+                      <div>
+                        <h3>Алексей Иванов</h3>
+                        <span class="cabinet-pill blue">Заявитель</span>
+                      </div>
+                      <time datetime="2025-05-20T12:05">20 мая 2025, 12:05</time>
+                    </div>
+                    <p>После ремонта стало значительно лучше, опасный участок больше не приходится объезжать. Разметку у перехода тоже обновили, вечером участок заметнее.</p>
+                    <footer class="appeal-comment-actions">
+                      <button type="button">Ответить</button>
+                      <button type="button">Поддержать</button>
+                    </footer>
+                  </div>
+                </article>
+
+                <article class="appeal-comment appeal-comment-official" data-comment-type="official">
+                  <div class="appeal-detail-avatar appeal-detail-avatar-office" aria-hidden="true">ДТ</div>
+                  <div class="appeal-comment-body">
+                    <div class="appeal-comment-meta">
+                      <div>
+                        <h3>Департамент транспорта Москвы</h3>
+                        <span class="cabinet-pill green">Ведомство</span>
+                      </div>
+                      <time datetime="2025-05-20T11:40">20 мая 2025, 11:40</time>
+                    </div>
+                    <p>Работы приняты комиссией. На подрядчика возложен гарантийный контроль покрытия, повторная проверка участка запланирована через 30 дней.</p>
+                    <div class="appeal-comment-note"><svg aria-hidden="true"><use href="#check"></use></svg>Официальный представитель</div>
+                  </div>
+                </article>
+
+                <article class="appeal-comment" data-comment-type="public">
+                  <div class="appeal-detail-avatar" aria-hidden="true">ЕС</div>
+                  <div class="appeal-comment-body">
+                    <div class="appeal-comment-meta">
+                      <div>
+                        <h3>Елена Смирнова</h3>
+                        <span class="cabinet-pill gray">Житель района</span>
+                      </div>
+                      <time datetime="2025-05-19T18:24">19 мая 2025, 18:24</time>
+                    </div>
+                    <p>Подтверждаю, что ямы заделали. Просьба оставить обращение под наблюдением до первого сильного дождя, чтобы проверить просадку покрытия.</p>
+                    <div class="appeal-comment-reply">
+                      <strong>Модератор</strong>
+                      <p>Добавили проверку в контрольный список и запросим повторное фото участка после дождя.</p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+
+              <button class="appeal-comments-more" type="button">Показать ещё 18 комментариев</button>
+            </section>
+          </div>
+
+          <aside class="appeal-detail-side" aria-label="Сводка и действия по обращению">
+            <section class="cabinet-detail-panel">
+              <h2>Краткая сводка</h2>
+              <dl>
+                <div><dt>Номер</dt><dd>RD-2025-00124</dd></div>
+                <div><dt>Категория</dt><dd>Дороги</dd></div>
+                <div><dt>Текущий статус</dt><dd>Решено</dd></div>
+                <div><dt>Срок решения</dt><dd>12 дней</dd></div>
+                <div><dt>Ответственный</dt><dd>Департамент транспорта Москвы</dd></div>
+              </dl>
+            </section>
+
+            <section class="cabinet-panel appeal-detail-next">
+              <span><svg aria-hidden="true"><use href="#check"></use></svg></span>
+              <h2>Решение подтверждено</h2>
+              <p>Обращение закрыто после публикации ответа ведомства и подтверждения выполненных работ.</p>
+            </section>
+
+            <section class="cabinet-panel appeal-detail-docs" aria-labelledby="appeal-docs-title">
+              <h2 id="appeal-docs-title">Документы</h2>
+              <a href="#"><svg aria-hidden="true"><use href="#file"></use></svg><span>Заявление.pdf</span><small>248 КБ</small></a>
+              <a href="#"><svg aria-hidden="true"><use href="#file"></use></svg><span>Ответ ведомства.pdf</span><small>312 КБ</small></a>
+              <a href="#"><svg aria-hidden="true"><use href="#file"></use></svg><span>Акт работ.pdf</span><small>184 КБ</small></a>
+            </section>
+
+            <section class="cabinet-panel appeal-detail-contact">
+              <span><svg aria-hidden="true"><use href="#shield"></use></svg></span>
+              <h2>Персональные данные скрыты</h2>
+              <p>В публичной карточке видны только данные, разрешённые к публикации. Контакты заявителя доступны только модераторам.</p>
+            </section>
+
+            <section class="cabinet-panel appeal-detail-actions-panel">
+              <h2>Действия</h2>
+              <button class="cabinet-primary-link" type="button" data-share-appeal><svg aria-hidden="true"><use href="#share"></use></svg>Поделиться</button>
+              <a class="cabinet-ghost-button" href="dashboard.html#appeals"><svg aria-hidden="true"><use href="#back"></use></svg>К списку</a>
+            </section>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer cabinet-footer" id="contacts">
+      <div class="container footer-grid">
+        <div class="footer-about">
+          <a class="brand footer-brand" href="index.html" aria-label="Рука добра">
+            <img class="brand-logo" src="assets/logo-ruka-dobra.svg" alt="НКО Рука добра" width="238" height="58">
+          </a>
+          <p>Общественная помощь гражданам с обращениями и жалобами. Работаем ради справедливости и реальных изменений в России.</p>
+          <div class="socials">
+            <a class="social-vk" href="#" aria-label="ВКонтакте">
+              <svg aria-hidden="true"><use href="#social-vk"></use></svg>
+            </a>
+            <a class="social-ok" href="#" aria-label="Одноклассники">
+              <svg aria-hidden="true"><use href="#social-ok"></use></svg>
+            </a>
+            <a class="social-max" href="#" aria-label="MAX">
+              <svg aria-hidden="true"><use href="#social-max"></use></svg>
+            </a>
+          </div>
+        </div>
+
+        <nav class="footer-col" aria-label="Навигация">
+          <h3>Навигация</h3>
+          <a href="index.html#about">О нас</a>
+          <a href="feed.html">Обращения и жалобы</a>
+          <a href="index.html#how">Как это работает</a>
+          <a href="news.html">Новости</a>
+          <a href="#contacts">Контакты</a>
+        </nav>
+
+        <nav class="footer-col" aria-label="Категории">
+          <h3>Категории</h3>
+          <a href="appeal.html">ЖКХ</a>
+          <a href="appeal.html">Дороги</a>
+          <a href="appeal.html">Здравоохранение</a>
+          <a href="appeal.html">Образование</a>
+          <a href="categories.html">Все категории</a>
+        </nav>
+
+        <address class="footer-col footer-contacts">
+          <h3>Контакты</h3>
+          <a href="tel:+79102357746"><svg aria-hidden="true"><use href="#phone"></use></svg>8 910 235-77-46</a>
+          <a href="mailto:info@rukadobra.ru"><svg aria-hidden="true"><use href="#mail"></use></svg>info@rukadobra.ru</a>
+          <span><svg aria-hidden="true"><use href="#pin"></use></svg>г. Москва</span>
+          <span><svg aria-hidden="true"><use href="#check"></use></svg>Ежедневно с 9:00 до 20:00</span>
+        </address>
+
+        <form class="subscribe" action="#" method="post">
+          <h3>Подпишитесь на новости</h3>
+          <p>Будьте в курсе важных новостей и результатов нашей работы.</p>
+          <label>
+            <span class="sr-only">Ваш e-mail</span>
+            <input type="email" name="email" placeholder="Ваш e-mail">
+          </label>
+          <button type="submit">Подписаться</button>
+        </form>
+      </div>
+
+      <div class="container footer-bottom">
+        <span>© 2026 НКО «Рука добра». Все права защищены.</span>
+        <a href="privacy.html">Политика конфиденциальности</a>
+        <a href="agreement.html">Пользовательское соглашение</a>
+      </div>
+      <div class="footer-ribbon" aria-hidden="true"></div>
+    </footer>
+
+    <div class="modal" data-share-modal hidden>
+      <button class="modal-backdrop" type="button" data-modal-close aria-label="Закрыть окно"></button>
+      <section class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="share-modal-title" tabindex="-1">
+        <button class="modal-close" type="button" data-modal-close aria-label="Закрыть окно">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h2 id="share-modal-title">Поделиться обращением</h2>
+        <p data-share-modal-text>Ссылка на обращение готова к отправке.</p>
+        <div class="modal-actions">
+          <button class="btn btn-red" type="button" data-copy-link>
+            <svg aria-hidden="true"><use href="#share"></use></svg>
+            <span data-copy-label>Скопировать ссылку</span>
+          </button>
+          <button class="btn btn-outline" type="button" data-modal-close>Закрыть</button>
+        </div>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
