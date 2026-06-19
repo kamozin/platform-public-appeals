@@ -1,4 +1,6 @@
 <script setup lang="ts">
+const isTransparencyVisible = false;
+
 const trustItems = [
   {
     icon: 'shield',
@@ -25,20 +27,21 @@ const trustItems = [
 </script>
 
 <template>
-  <section class="container transparency" aria-labelledby="transparency-title">
-    <div class="transparency-icon">
-      <LayoutAppIcon name="flag" />
-    </div>
-    <div class="transparency-copy">
-      <h2 id="transparency-title">Публичность и прозрачность</h2>
-      <p>Проверенные обращения и жалобы публикуются на платформе. Вы можете отслеживать ход рассмотрения и видеть результаты работы с вашей проблемой.</p>
+  <section v-if="isTransparencyVisible" class="container transparency" aria-labelledby="transparency-title">
+    <div class="transparency-main">
+      <div class="transparency-icon">
+        <LayoutAppIcon name="flag" />
+      </div>
+      <div class="transparency-copy">
+        <h2 id="transparency-title">Публичность и прозрачность</h2>
+        <p>Проверенные обращения и жалобы публикуются на платформе. Вы можете отслеживать ход рассмотрения и видеть результаты работы с вашей проблемой.</p>
+      </div>
     </div>
     <ul class="check-list compact">
       <li>Модерация и проверка обращений и жалоб</li>
       <li>Публичный реестр обращений и жалоб</li>
       <li>Открытые статусы и результаты</li>
     </ul>
-    <div class="hands-art" aria-hidden="true" />
   </section>
 
   <section class="container trust-grid">

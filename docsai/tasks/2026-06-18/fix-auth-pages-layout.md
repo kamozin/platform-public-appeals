@@ -58,12 +58,12 @@ API-контракт не меняется.
 
 ## Acceptance criteria
 
-- `/login` использует `auth-card auth-card-login`, правую иллюстрацию и блоки преимуществ из исходного макета.
-- `/register` использует `auth-card auth-card-register`, правую иллюстрацию, consent-блоки и блоки преимуществ из исходного макета.
-- `/password-reset` использует `screen-card flow-card`, flow-step структуру, правую иллюстрацию и flow-benefits из исходного макета.
-- Текущие API submit handlers сохранены.
-- Не редактируется `static/`.
-- Недостающие assets доступны из `frontend/public/assets`.
+- [x] `/login` использует `auth-card auth-card-login`, правую иллюстрацию и блоки преимуществ из исходного макета.
+- [x] `/register` использует `auth-card auth-card-register`, правую иллюстрацию, consent-блоки и блоки преимуществ из исходного макета.
+- [x] `/password-reset` использует `screen-card flow-card`, flow-step структуру, правую иллюстрацию и flow-benefits из исходного макета.
+- [x] Текущие API submit handlers сохранены.
+- [x] Не редактируется `static/`.
+- [x] Недостающие assets доступны из `frontend/public/assets`.
 
 ## Postman
 

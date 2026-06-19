@@ -10,9 +10,16 @@ const remember = ref(true);
 const pending = ref(false);
 const errorMessage = ref('');
 const passwordVisible = ref(false);
+const twoFactorChallenge = ref<{
+  challengeId: string;
+  maskedTarget: string;
+  expiresAt: string | null;
+} | null>(null);
+const twoFactorCode = ref('');
 
 const passwordInputType = computed(() => passwordVisible.value ? 'text' : 'password');
 const passwordToggleLabel = computed(() => passwordVisible.value ? 'Скрыть пароль' : 'Показать пароль');
+const isTwoFactorStep = computed(() => twoFactorChallenge.value !== null);
 
 useSeoMeta({
   title: 'Вход в личный кабинет',
@@ -29,17 +36,56 @@ const submitLogin = async (): Promise<void> => {
   errorMessage.value = '';
 
   try {
-    await auth.login({
+    const result = await auth.login({
       login: loginValue.value,
       password: password.value,
       remember: remember.value,
     });
-    await navigateTo('/dashboard');
+
+    if ('requiresTwoFactor' in result) {
+      twoFactorChallenge.value = {
+        challengeId: result.challengeId,
+        maskedTarget: result.maskedTarget,
+        expiresAt: result.expiresAt,
+      };
+      twoFactorCode.value = '';
+
+      return;
+    }
+
+    await navigateTo('/dashboard/profile');
   } catch {
     errorMessage.value = 'Проверьте логин и пароль.';
   } finally {
     pending.value = false;
   }
+};
+
+const submitTwoFactor = async (): Promise<void> => {
+  if (!twoFactorChallenge.value) {
+    return;
+  }
+
+  pending.value = true;
+  errorMessage.value = '';
+
+  try {
+    await auth.verifyTwoFactor({
+      challenge_id: twoFactorChallenge.value.challengeId,
+      code: twoFactorCode.value,
+    });
+    await navigateTo('/dashboard/profile');
+  } catch {
+    errorMessage.value = 'Проверьте код из письма.';
+  } finally {
+    pending.value = false;
+  }
+};
+
+const resetTwoFactorStep = (): void => {
+  twoFactorChallenge.value = null;
+  twoFactorCode.value = '';
+  errorMessage.value = '';
 };
 </script>
 
@@ -53,7 +99,7 @@ const submitLogin = async (): Promise<void> => {
             Отслеживайте статус обращений, получайте ответы и будьте в курсе всех изменений.
           </p>
 
-          <form class="auth-form" @submit.prevent="submitLogin">
+          <form v-if="!isTwoFactorStep" class="auth-form" @submit.prevent="submitLogin">
             <label class="auth-field">
               <span>Телефон или email</span>
               <span class="auth-input">
@@ -108,6 +154,41 @@ const submitLogin = async (): Promise<void> => {
 
             <button class="auth-primary" type="submit" :disabled="pending">
               Войти
+            </button>
+          </form>
+
+          <form v-else class="auth-form" @submit.prevent="submitTwoFactor">
+            <p class="auth-lead">
+              Мы отправили код подтверждения на {{ twoFactorChallenge?.maskedTarget }}.
+            </p>
+
+            <label class="auth-field">
+              <span>Код из письма</span>
+              <span class="auth-input">
+                <LayoutAppIcon name="shield" />
+                <input
+                  v-model="twoFactorCode"
+                  type="text"
+                  name="code"
+                  inputmode="numeric"
+                  autocomplete="one-time-code"
+                  maxlength="6"
+                  placeholder="Введите 6 цифр"
+                  required
+                >
+              </span>
+            </label>
+
+            <p v-if="errorMessage" class="form-message form-message--error">
+              {{ errorMessage }}
+            </p>
+
+            <button class="auth-primary" type="submit" :disabled="pending">
+              Подтвердить вход
+            </button>
+
+            <button class="auth-secondary" type="button" :disabled="pending" @click="resetTwoFactorStep">
+              Вернуться к паролю
             </button>
           </form>
 

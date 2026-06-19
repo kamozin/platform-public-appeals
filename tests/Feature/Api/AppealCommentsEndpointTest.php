@@ -4,13 +4,19 @@ declare(strict_types=1);
 
 use App\Application\Auth\AuthService;
 use App\Models\User;
+use Database\Seeders\PublicContentSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 
 use function Pest\Laravel\getJson;
 use function Pest\Laravel\postJson;
+use function Pest\Laravel\seed;
 
 uses(RefreshDatabase::class);
+
+beforeEach(function (): void {
+    seed(PublicContentSeeder::class);
+});
 
 it('requires authentication to store an appeal comment', function (): void {
     postJson('/api/v1/appeals/road-pits-after-repair/comments', [

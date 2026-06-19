@@ -1,5 +1,5 @@
 import type { ApiDataEnvelope } from '~/types/api/common';
-import type { AuthResultDto, AuthUserDto } from '~/types/api/private';
+import type { AuthLoginResultDto, AuthResultDto, AuthTwoFactorChallengeDto, AuthUserDto } from '~/types/api/private';
 
 type LoginPayload = {
   login: string;
@@ -15,6 +15,15 @@ type RegisterPayload = {
   password_confirmation: string;
   privacy: boolean;
   notifications: boolean;
+};
+
+type TwoFactorVerifyPayload = {
+  challenge_id: string;
+  code: string;
+};
+
+const isTwoFactorChallenge = (payload: AuthLoginResultDto): payload is AuthTwoFactorChallengeDto => {
+  return 'requiresTwoFactor' in payload && payload.requiresTwoFactor === true;
 };
 
 export const useAuth = () => {
@@ -40,8 +49,22 @@ export const useAuth = () => {
     user.value = payload.user;
   };
 
-  const login = async (payload: LoginPayload): Promise<AuthUserDto> => {
-    const response = await api.request<ApiDataEnvelope<AuthResultDto>>('/auth/login', 'POST', {
+  const login = async (payload: LoginPayload): Promise<AuthUserDto | AuthTwoFactorChallengeDto> => {
+    const response = await api.request<ApiDataEnvelope<AuthLoginResultDto>>('/auth/login', 'POST', {
+      body: payload,
+    });
+
+    if (isTwoFactorChallenge(response.data)) {
+      return response.data;
+    }
+
+    applyAuth(response.data);
+
+    return response.data.user;
+  };
+
+  const verifyTwoFactor = async (payload: TwoFactorVerifyPayload): Promise<AuthUserDto> => {
+    const response = await api.request<ApiDataEnvelope<AuthResultDto>>('/auth/2fa/verify', 'POST', {
       body: payload,
     });
     applyAuth(response.data);
@@ -100,5 +123,6 @@ export const useAuth = () => {
     register,
     token,
     user,
+    verifyTwoFactor,
   };
 };

@@ -2,6 +2,12 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Api\Admin\AdminAdvertisementController;
+use App\Http\Controllers\Api\Admin\AdminAppealController;
+use App\Http\Controllers\Api\Admin\AdminAppealModerationController;
+use App\Http\Controllers\Api\Admin\AdminCategoryController;
+use App\Http\Controllers\Api\Admin\AdminHomepageSlideController;
+use App\Http\Controllers\Api\Admin\AdminNewsController;
 use App\Http\Controllers\Api\Appeals\AppealCommentController;
 use App\Http\Controllers\Api\Appeals\AppealController;
 use App\Http\Controllers\Api\Appeals\AppealDraftAttachmentController;
@@ -13,9 +19,11 @@ use App\Http\Controllers\Api\Auth\VerificationController;
 use App\Http\Controllers\Api\Categories\CategoryController;
 use App\Http\Controllers\Api\Dashboard\DashboardController;
 use App\Http\Controllers\Api\HealthController;
+use App\Http\Controllers\Api\Home\HomeContentController;
 use App\Http\Controllers\Api\News\NewsController;
 use App\Http\Controllers\Api\Profile\ProfileAvatarController;
 use App\Http\Controllers\Api\Profile\ProfileController;
+use App\Http\Controllers\Api\Profile\ProfileSecurityController;
 use App\Http\Controllers\Api\Seo\SitemapUrlsController;
 use App\Http\Controllers\Api\Subscriptions\NewsSubscriptionController;
 use App\Http\Controllers\Api\Subscriptions\SupportVideoController;
@@ -26,6 +34,9 @@ Route::prefix('v1')
     ->group(function (): void {
         Route::get('/health', HealthController::class)->name('health');
 
+        Route::get('/home', HomeContentController::class)
+            ->name('home.show');
+
         Route::get('/categories', CategoryController::class)
             ->name('categories.index');
 
@@ -34,6 +45,8 @@ Route::prefix('v1')
                 ->name('register');
             Route::post('/login', [AuthController::class, 'login'])
                 ->name('login');
+            Route::post('/2fa/verify', [AuthController::class, 'verifyTwoFactor'])
+                ->name('2fa.verify');
             Route::get('/me', [AuthController::class, 'me'])
                 ->name('me');
             Route::post('/logout', [AuthController::class, 'logout'])
@@ -110,6 +123,14 @@ Route::prefix('v1')
                 ->name('show');
             Route::patch('/', [ProfileController::class, 'update'])
                 ->name('update');
+            Route::patch('/password', [ProfileSecurityController::class, 'updatePassword'])
+                ->name('password.update');
+            Route::post('/security/email-2fa/send', [ProfileSecurityController::class, 'sendEmailTwoFactor'])
+                ->name('security.email-2fa.send');
+            Route::post('/security/email-2fa/enable', [ProfileSecurityController::class, 'enableEmailTwoFactor'])
+                ->name('security.email-2fa.enable');
+            Route::delete('/security/email-2fa', [ProfileSecurityController::class, 'disableEmailTwoFactor'])
+                ->name('security.email-2fa.disable');
             Route::post('/avatar', [ProfileAvatarController::class, 'store'])
                 ->name('avatar.store');
             Route::delete('/avatar', [ProfileAvatarController::class, 'destroy'])
@@ -152,4 +173,88 @@ Route::prefix('v1')
 
         Route::get('/seo/sitemap-urls', SitemapUrlsController::class)
             ->name('seo.sitemap-urls');
+
+        Route::prefix('admin')->name('admin.')->group(function (): void {
+            Route::prefix('categories')->name('categories.')->group(function (): void {
+                Route::get('/', [AdminCategoryController::class, 'index'])
+                    ->name('index');
+                Route::post('/', [AdminCategoryController::class, 'store'])
+                    ->name('store');
+                Route::patch('/{id}', [AdminCategoryController::class, 'update'])
+                    ->whereUuid('id')
+                    ->name('update');
+                Route::delete('/{id}', [AdminCategoryController::class, 'destroy'])
+                    ->whereUuid('id')
+                    ->name('destroy');
+            });
+
+            Route::prefix('news')->name('news.')->group(function (): void {
+                Route::get('/', [AdminNewsController::class, 'index'])
+                    ->name('index');
+                Route::post('/', [AdminNewsController::class, 'store'])
+                    ->name('store');
+                Route::patch('/{id}', [AdminNewsController::class, 'update'])
+                    ->whereUuid('id')
+                    ->name('update');
+                Route::delete('/{id}', [AdminNewsController::class, 'destroy'])
+                    ->whereUuid('id')
+                    ->name('destroy');
+            });
+
+            Route::prefix('appeals')->name('appeals.')->group(function (): void {
+                Route::get('/', [AdminAppealController::class, 'index'])
+                    ->name('index');
+                Route::post('/', [AdminAppealController::class, 'store'])
+                    ->name('store');
+                Route::patch('/{id}', [AdminAppealController::class, 'update'])
+                    ->whereUuid('id')
+                    ->name('update');
+                Route::delete('/{id}', [AdminAppealController::class, 'destroy'])
+                    ->whereUuid('id')
+                    ->name('destroy');
+            });
+
+            Route::prefix('appeal-moderation')->name('appeal-moderation.')->group(function (): void {
+                Route::get('/', [AdminAppealModerationController::class, 'index'])
+                    ->name('index');
+                Route::get('/{id}', [AdminAppealModerationController::class, 'show'])
+                    ->whereUuid('id')
+                    ->name('show');
+                Route::post('/{id}/request-changes', [AdminAppealModerationController::class, 'requestChanges'])
+                    ->whereUuid('id')
+                    ->name('request-changes');
+                Route::post('/{id}/reject', [AdminAppealModerationController::class, 'reject'])
+                    ->whereUuid('id')
+                    ->name('reject');
+                Route::post('/{id}/approve', [AdminAppealModerationController::class, 'approve'])
+                    ->whereUuid('id')
+                    ->name('approve');
+            });
+
+            Route::prefix('homepage-slides')->name('homepage-slides.')->group(function (): void {
+                Route::get('/', [AdminHomepageSlideController::class, 'index'])
+                    ->name('index');
+                Route::post('/', [AdminHomepageSlideController::class, 'store'])
+                    ->name('store');
+                Route::patch('/{id}', [AdminHomepageSlideController::class, 'update'])
+                    ->whereUuid('id')
+                    ->name('update');
+                Route::delete('/{id}', [AdminHomepageSlideController::class, 'destroy'])
+                    ->whereUuid('id')
+                    ->name('destroy');
+            });
+
+            Route::prefix('advertisements')->name('advertisements.')->group(function (): void {
+                Route::get('/', [AdminAdvertisementController::class, 'index'])
+                    ->name('index');
+                Route::post('/', [AdminAdvertisementController::class, 'store'])
+                    ->name('store');
+                Route::patch('/{id}', [AdminAdvertisementController::class, 'update'])
+                    ->whereUuid('id')
+                    ->name('update');
+                Route::delete('/{id}', [AdminAdvertisementController::class, 'destroy'])
+                    ->whereUuid('id')
+                    ->name('destroy');
+            });
+        });
     });

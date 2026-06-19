@@ -4,6 +4,7 @@ import type { NewsIndexDto } from '~/types/api/public-content';
 import { formatRuDate } from '~/utils/formatters';
 
 const api = useApi();
+const { handleImageError, resolveImageUrl } = useImageFallback('/assets/hero-legal-consultation.png');
 
 const { data: response, error } = await useAsyncData('news-index-page', () => {
   return api.get<ApiDataEnvelope<NewsIndexDto>>('/news');
@@ -65,7 +66,15 @@ usePageSeo({
             class="news-card public-news-card"
           >
             <NuxtLink class="news-card-media" :to="`/news/${item.slug}`">
-              <img :src="item.imageUrl" :alt="item.title" width="1536" height="864" loading="lazy" decoding="async">
+              <img
+                :src="resolveImageUrl(item.imageUrl)"
+                :alt="item.title"
+                width="1536"
+                height="864"
+                loading="lazy"
+                decoding="async"
+                @error="handleImageError"
+              >
             </NuxtLink>
             <div class="news-card-body">
               <div class="news-meta">

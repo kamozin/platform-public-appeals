@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const route = useRoute();
+const auth = useAuth();
 const headerRef = ref<HTMLElement | null>(null);
 const menuOpen = ref(false);
 
@@ -12,6 +13,17 @@ const navLinks = [
 ] as const;
 
 let stopBodyClassWatch: (() => void) | null = null;
+
+const isAuthenticated = computed(() => Boolean(auth.token.value));
+const accountPath = computed(() => auth.user.value?.isAdmin ? '/admin/categories' : '/dashboard/profile');
+const accountLabel = computed(() => auth.user.value?.isAdmin ? 'Админка' : 'Кабинет');
+const accountTitle = computed(() => {
+  if (!auth.user.value?.name) {
+    return accountLabel.value;
+  }
+
+  return `${accountLabel.value}: ${auth.user.value.name}`;
+});
 
 const closeMenu = (): void => {
   menuOpen.value = false;
@@ -48,9 +60,14 @@ const handleNavClick = (event: MouseEvent): void => {
     return;
   }
 
-  if (event.target.closest('a')) {
+  if (event.target.closest('a,button')) {
     closeMenu();
   }
+};
+
+const logout = async (): Promise<void> => {
+  closeMenu();
+  await auth.logout();
 };
 
 watch(() => route.fullPath, closeMenu);
@@ -66,6 +83,10 @@ onMounted(() => {
 
   document.addEventListener('click', handleDocumentClick);
   window.addEventListener('keydown', handleKeydown);
+
+  if (auth.token.value && !auth.user.value) {
+    void auth.fetchMe();
+  }
 });
 
 onBeforeUnmount(() => {
@@ -77,7 +98,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <header ref="headerRef" class="site-header shell-header">
+  <header ref="headerRef" class="site-header auth-header shell-header">
     <div class="container header-inner auth-header-inner">
       <LayoutAppLogo />
 
@@ -106,7 +127,16 @@ onBeforeUnmount(() => {
           {{ link.label }}
         </NuxtLink>
         <div class="mobile-nav-actions">
-          <NuxtLink class="header-login auth-account-link auth-account-link-mobile" to="/login">
+          <NuxtLink
+            v-if="isAuthenticated"
+            class="header-login auth-login-link auth-user-link"
+            :to="accountPath"
+            :title="accountTitle"
+          >
+            <LayoutAppIcon name="user" />
+            {{ accountLabel }}
+          </NuxtLink>
+          <NuxtLink v-else class="header-login auth-login-link" to="/login">
             <LayoutAppIcon name="user" />
             Войти
           </NuxtLink>
@@ -114,11 +144,24 @@ onBeforeUnmount(() => {
             <LayoutAppIcon name="file" />
             Подать обращение
           </NuxtLink>
+          <button v-if="isAuthenticated" class="header-login auth-login-link auth-logout-link" type="button" @click="logout">
+            <LayoutAppIcon name="back" />
+            Выйти
+          </button>
         </div>
       </nav>
 
-      <div class="header-actions auth-header-actions">
-        <NuxtLink class="header-login auth-account-link" to="/login">
+      <div class="header-actions auth-header-actions" :class="{ 'is-authenticated': isAuthenticated }">
+        <NuxtLink
+          v-if="isAuthenticated"
+          class="header-login auth-login-link auth-user-link"
+          :to="accountPath"
+          :title="accountTitle"
+        >
+          <LayoutAppIcon name="user" />
+          {{ accountLabel }}
+        </NuxtLink>
+        <NuxtLink v-else class="header-login auth-login-link" to="/login">
           <LayoutAppIcon name="user" />
           Войти
         </NuxtLink>
@@ -126,6 +169,10 @@ onBeforeUnmount(() => {
           <LayoutAppIcon name="file" />
           Подать обращение
         </NuxtLink>
+        <button v-if="isAuthenticated" class="header-login auth-login-link auth-logout-link" type="button" @click="logout">
+          <LayoutAppIcon name="back" />
+          Выйти
+        </button>
       </div>
     </div>
   </header>

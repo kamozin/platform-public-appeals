@@ -1,49 +1,41 @@
 <script setup lang="ts">
-type AdBanner = {
-  src: string;
-  alt: string;
-};
+import type { HomeAdvertisementDto } from '~/types/api/public-content';
 
-const adTargetUrl = 'https://contract.gosuslugi.ru/';
-
-const adBanners: [AdBanner, ...AdBanner[]] = [
-  {
-    src: '/assets/114a584a-17bb-4ecb-95fd-c338df16704e.png',
-    alt: 'Поступай на контрактную службу в Вооруженные силы России',
-  },
-  {
-    src: '/assets/6c216b42-b479-4748-a9d2-e67cfe37976d.png',
-    alt: 'Время служить Родине, контрактная служба в Вооруженных силах Российской Федерации',
-  },
-  {
-    src: '/assets/ec8b05b4-0bb3-4ce5-bdaf-6a964aeb2438.png',
-    alt: 'Служи России, защищай Родину',
-  },
-];
+const props = defineProps<{
+  advertisements: HomeAdvertisementDto[];
+}>();
 
 const currentAdBannerIndex = ref(0);
 const isChanging = ref(false);
 let rotationTimer: number | null = null;
 let animationTimer: number | null = null;
 
-const currentAdBanner = computed<AdBanner>(() => adBanners[currentAdBannerIndex.value] ?? adBanners[0]);
+const currentAdBanner = computed<HomeAdvertisementDto | null>(() => {
+  return props.advertisements[currentAdBannerIndex.value] ?? props.advertisements[0] ?? null;
+});
 
 function getRandomAdBannerIndex(): number {
-  if (adBanners.length <= 1) {
+  if (props.advertisements.length <= 1) {
     return 0;
   }
 
   let nextIndex = currentAdBannerIndex.value;
 
   while (nextIndex === currentAdBannerIndex.value) {
-    nextIndex = Math.floor(Math.random() * adBanners.length);
+    nextIndex = Math.floor(Math.random() * props.advertisements.length);
   }
 
   return nextIndex;
 }
 
 function setAdBanner(index: number): void {
-  currentAdBannerIndex.value = (index + adBanners.length) % adBanners.length;
+  if (props.advertisements.length === 0) {
+    currentAdBannerIndex.value = 0;
+
+    return;
+  }
+
+  currentAdBannerIndex.value = (index + props.advertisements.length) % props.advertisements.length;
   isChanging.value = false;
 
   window.requestAnimationFrame(() => {
@@ -68,17 +60,24 @@ function handleAdClick(event: MouseEvent): void {
 }
 
 onMounted(() => {
-  adBanners.forEach((banner) => {
+  props.advertisements.forEach((banner) => {
     const image = new Image();
-    image.src = banner.src;
+    image.src = banner.imageUrl;
   });
 
-  setAdBanner(Math.floor(Math.random() * adBanners.length));
+  setAdBanner(Math.floor(Math.random() * props.advertisements.length));
 
   rotationTimer = window.setInterval(() => {
     setAdBanner(getRandomAdBannerIndex());
   }, 15000);
 });
+
+watch(
+  () => props.advertisements.length,
+  () => {
+    setAdBanner(0);
+  },
+);
 
 onBeforeUnmount(() => {
   if (rotationTimer !== null) {
@@ -92,14 +91,14 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <section class="container promo-section" aria-labelledby="promo-section-title">
+  <section v-if="currentAdBanner" class="container promo-section" aria-labelledby="promo-section-title">
     <div class="promo-section-head">
-      <h2 id="promo-section-title">Реклама</h2>
-      <span>Партнерский блок</span>
+      <h2 id="promo-section-title">{{ currentAdBanner.title }}</h2>
+      <span>{{ currentAdBanner.label || 'Реклама' }}</span>
     </div>
     <a
       :class="['promo-banner', { 'is-changing': isChanging }]"
-      :href="adTargetUrl"
+      :href="currentAdBanner.targetUrl"
       :aria-label="`${currentAdBanner.alt}. Откроется в новом окне`"
       target="_blank"
       rel="noopener noreferrer"
@@ -107,7 +106,7 @@ onBeforeUnmount(() => {
       @click="handleAdClick"
     >
       <img
-        :src="currentAdBanner.src"
+        :src="currentAdBanner.imageUrl"
         :alt="currentAdBanner.alt"
         width="2172"
         height="724"

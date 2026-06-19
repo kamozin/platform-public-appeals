@@ -85,23 +85,51 @@ final class DashboardService
     /**
      * @return array<string, mixed>
      */
-    public function notifications(): array
+    public function notifications(User $user): array
     {
+        $readIds = DB::table('user_notification_reads')
+            ->where('user_id', $user->id)
+            ->pluck('notification_id')
+            ->map(fn (mixed $id): string => (string) $id)
+            ->all();
+
         return [
-            'items' => [
-                ['id' => 'welcome', 'title' => 'Добро пожаловать', 'text' => 'Личный кабинет готов к работе.', 'read' => false],
-                ['id' => 'drafts', 'title' => 'Черновики', 'text' => 'Сохраняйте обращения перед отправкой.', 'read' => false],
-            ],
+            'items' => array_map(
+                fn (array $notification): array => [
+                    ...$notification,
+                    'read' => in_array($notification['id'], $readIds, true),
+                ],
+                $this->systemNotifications(),
+            ),
         ];
     }
 
     /**
      * @return array<string, mixed>
      */
-    public function markAllNotificationsRead(): array
+    public function markAllNotificationsRead(User $user): array
     {
+        $now = now();
+        $rows = array_map(
+            fn (array $notification): array => [
+                'user_id' => $user->id,
+                'notification_id' => $notification['id'],
+                'read_at' => $now,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            $this->systemNotifications(),
+        );
+
+        DB::table('user_notification_reads')->upsert(
+            $rows,
+            ['user_id', 'notification_id'],
+            ['read_at', 'updated_at'],
+        );
+
         return [
             'marked' => true,
+            'count' => count($rows),
         ];
     }
 
@@ -180,6 +208,17 @@ final class DashboardService
                 ['id' => 'first-draft', 'title' => 'Первый черновик', 'description' => 'Создайте первое обращение.', 'earned' => false],
                 ['id' => 'public-support', 'title' => 'Общественная поддержка', 'description' => 'Поддержите публичное обращение.', 'earned' => false],
             ],
+        ];
+    }
+
+    /**
+     * @return list<array{id: string, title: string, text: string}>
+     */
+    private function systemNotifications(): array
+    {
+        return [
+            ['id' => 'welcome', 'title' => 'Добро пожаловать', 'text' => 'Личный кабинет готов к работе.'],
+            ['id' => 'drafts', 'title' => 'Черновики', 'text' => 'Сохраняйте обращения перед отправкой.'],
         ];
     }
 

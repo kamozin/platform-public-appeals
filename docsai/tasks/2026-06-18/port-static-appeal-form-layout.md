@@ -53,11 +53,11 @@ Backend не меняется.
 
 ## Acceptance criteria
 
-- [ ] `/appeal/new` визуально соответствует static-мастеру: 7 шагов, progress, side card, review/result screen.
-- [ ] Гость может заполнить и отправить форму.
-- [ ] Авторизованный пользователь может заполнить и отправить форму.
-- [ ] `static/` не изменён.
-- [ ] Typecheck/lint проходят.
+- [x] `/appeal/new` визуально соответствует static-мастеру: 7 шагов, progress, side card, review/result screen.
+- [x] Гость может заполнить и отправить форму.
+- [x] Авторизованный пользователь может заполнить и отправить форму.
+- [x] `static/` не изменён.
+- [x] Typecheck/lint проходят.
 
 ## Postman
 

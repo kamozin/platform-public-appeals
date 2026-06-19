@@ -32,6 +32,10 @@ const videos: SupportVideo[] = [
 const api = useApi();
 const email = ref('');
 const file = ref<File | null>(null);
+const fileInputRef = ref<HTMLInputElement | null>(null);
+const modalPanelRef = ref<HTMLElement | null>(null);
+const isModalOpen = ref(false);
+const isSubmitting = ref(false);
 const status = ref('');
 const error = ref('');
 
@@ -45,7 +49,27 @@ const handleFileChange = (event: Event): void => {
   file.value = input.files?.[0] ?? null;
 };
 
+const openVideoModal = (): void => {
+  isModalOpen.value = true;
+  status.value = '';
+  error.value = '';
+};
+
+const closeVideoModal = (): void => {
+  isModalOpen.value = false;
+};
+
+const handleKeydown = (event: KeyboardEvent): void => {
+  if (event.key === 'Escape' && isModalOpen.value) {
+    closeVideoModal();
+  }
+};
+
 const submitVideo = async (): Promise<void> => {
+  if (isSubmitting.value) {
+    return;
+  }
+
   status.value = '';
   error.value = '';
 
@@ -54,6 +78,8 @@ const submitVideo = async (): Promise<void> => {
 
     return;
   }
+
+  isSubmitting.value = true;
 
   const body = new FormData();
   body.append('video', file.value);
@@ -66,11 +92,43 @@ const submitVideo = async (): Promise<void> => {
     await api.request('/support-videos', 'POST', { body });
     file.value = null;
     email.value = '';
+    if (fileInputRef.value) {
+      fileInputRef.value.value = '';
+    }
+    isSubmitting.value = false;
     status.value = 'Видео отправлено на модерацию.';
   } catch {
+    isSubmitting.value = false;
     error.value = 'Не удалось отправить видео. Проверьте тип и размер файла.';
   }
 };
+
+watch(
+  isModalOpen,
+  async (open) => {
+    if (!import.meta.client) {
+      return;
+    }
+
+    document.body.classList.toggle('modal-open', open);
+
+    if (!open) {
+      return;
+    }
+
+    await nextTick();
+    modalPanelRef.value?.focus();
+  },
+);
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeydown);
+});
+
+onBeforeUnmount(() => {
+  document.body.classList.remove('modal-open');
+  window.removeEventListener('keydown', handleKeydown);
+});
 </script>
 
 <template>
@@ -84,22 +142,12 @@ const submitVideo = async (): Promise<void> => {
         <h2 id="support-video-title">В поддержку бойцов СВО и ветеранов</h2>
         <p>Собираем короткие видеообращения со словами благодарности, поддержки и уважения от жителей разных городов.</p>
       </div>
-      <form class="support-video-form" @submit.prevent="submitVideo">
-        <label>
-          <span class="sr-only">Email для связи</span>
-          <input v-model="email" type="email" placeholder="Email для связи">
-        </label>
-        <label class="support-video-file">
+      <div class="support-video-actions">
+        <button class="btn btn-outline support-video-submit" type="button" @click="openVideoModal">
           <LayoutAppIcon name="upload" />
-          <span>{{ file?.name || 'Выбрать видео' }}</span>
-          <input type="file" accept="video/mp4,video/quicktime" @change="handleFileChange">
-        </label>
-        <button class="btn btn-outline support-video-submit" type="submit">
           Прислать видео
         </button>
-        <p v-if="status" class="form-message form-message--success">{{ status }}</p>
-        <p v-if="error" class="form-message form-message--error">{{ error }}</p>
-      </form>
+      </div>
     </div>
 
     <div class="support-video-grid">
@@ -122,5 +170,84 @@ const submitVideo = async (): Promise<void> => {
         </div>
       </article>
     </div>
+
+    <Teleport to="body">
+      <div v-if="isModalOpen" class="modal video-submit-modal">
+        <button
+          class="modal-backdrop"
+          type="button"
+          aria-label="Закрыть окно"
+          @click="closeVideoModal"
+        />
+
+        <section
+          ref="modalPanelRef"
+          class="modal-panel video-submit-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="video-modal-title"
+          aria-describedby="video-modal-text"
+          tabindex="-1"
+        >
+          <button
+            class="modal-close"
+            type="button"
+            aria-label="Закрыть окно"
+            @click="closeVideoModal"
+          >
+            <span aria-hidden="true">×</span>
+          </button>
+
+          <span class="video-submit-eyebrow">
+            <LayoutAppIcon name="camera" />
+            Видео от граждан
+          </span>
+          <h2 id="video-modal-title">Прислать видео поддержки</h2>
+          <p id="video-modal-text">
+            Прикрепите MP4 или MOV файл до 100 МБ. После модерации видео сможет появиться в разделе поддержки.
+          </p>
+
+          <form class="video-submit-form" @submit.prevent="submitVideo">
+            <div class="video-submit-grid">
+              <label class="video-submit-wide">
+                <span>Email для связи</span>
+                <input v-model="email" type="email" autocomplete="email" placeholder="example@mail.ru">
+              </label>
+
+              <label class="video-file-upload">
+                <input
+                  ref="fileInputRef"
+                  class="sr-only"
+                  type="file"
+                  accept=".mp4,.mov,video/mp4,video/quicktime"
+                  required
+                  @change="handleFileChange"
+                >
+                <span class="video-file-icon" aria-hidden="true">
+                  <LayoutAppIcon name="upload" />
+                </span>
+                <span class="video-file-copy">
+                  <strong>Прикрепить видео</strong>
+                  <small>{{ file?.name || 'MP4 или MOV до 100 МБ' }}</small>
+                </span>
+              </label>
+            </div>
+
+            <div class="video-submit-actions">
+              <button class="btn btn-red" type="submit" :disabled="isSubmitting">
+                <LayoutAppIcon name="check" />
+                {{ isSubmitting ? 'Отправляем...' : 'Отправить на модерацию' }}
+              </button>
+              <button class="btn btn-outline" type="button" @click="closeVideoModal">
+                Отмена
+              </button>
+            </div>
+
+            <p v-if="status" class="video-submit-status" aria-live="polite">{{ status }}</p>
+            <p v-if="error" class="video-submit-status video-submit-status--error" aria-live="polite">{{ error }}</p>
+          </form>
+        </section>
+      </div>
+    </Teleport>
   </section>
 </template>

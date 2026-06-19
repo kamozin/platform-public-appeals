@@ -1,18 +1,26 @@
 <script setup lang="ts">
-import type { ApiDataEnvelope } from '~/types/api/common';
 import type { CategoriesPageDto } from '~/types/api/public-content';
 import type { AppIconName } from '~/components/layout/AppIcon.vue';
 
 const allowedIcons = new Set<AppIconName>([
   'book',
+  'building',
+  'education',
   'file',
   'flag',
   'heart',
   'home',
+  'medical',
+  'more',
+  'phone',
+  'road',
   'scale',
   'shield',
+  'shop',
   'trend',
+  'tree',
   'users',
+  'wallet',
 ]);
 
 const resolveIcon = (icon: string): AppIconName => {
@@ -25,37 +33,31 @@ const resolveIcon = (icon: string): AppIconName => {
   return 'file';
 };
 
-const api = useApi();
+const categoriesApi = useCategoriesContent();
 
-const { data: response, error } = await useAsyncData('categories-page', () => {
-  return api.get<ApiDataEnvelope<CategoriesPageDto>>('/categories');
+const { data: categoriesPage, error: categoriesError } = await useAsyncData('categories-page', () => {
+  return categoriesApi.fetchCategories();
 });
 
-if (error.value) {
+if (categoriesError.value || !categoriesPage.value) {
   throw createError({
     statusCode: 500,
     statusMessage: 'Categories page is unavailable',
   });
 }
 
-const payload = response.value;
-
-if (!payload) {
-  throw createError({
-    statusCode: 500,
-    statusMessage: 'Categories page is unavailable',
-  });
-}
-
-const page = payload.data;
-const totalCategories = page.groups.reduce((count, group) => count + group.categories.length, 0);
+const page = computed<CategoriesPageDto>(() => categoriesPage.value as CategoriesPageDto);
+const groups = computed(() => page.value.groups);
+const totalCategories = computed(() => {
+  return groups.value.reduce((count, group) => count + group.categories.length, 0);
+});
 
 usePageSeo({
-  title: page.seo.title,
-  description: page.seo.description,
+  title: page.value.seo.title,
+  description: page.value.seo.description,
   path: '/categories',
-  robots: page.seo.robots,
-  ogImageUrl: page.seo.ogImageUrl ?? undefined,
+  robots: page.value.seo.robots,
+  ogImageUrl: page.value.seo.ogImageUrl ?? undefined,
 });
 </script>
 
@@ -78,7 +80,19 @@ usePageSeo({
       </section>
 
       <section
-        v-for="group in page.groups"
+        v-if="groups.length === 0"
+        class="public-empty"
+        aria-labelledby="categories-empty-title"
+      >
+        <span>
+          <LayoutAppIcon name="grid" />
+        </span>
+        <h2 id="categories-empty-title">Категории пока не опубликованы</h2>
+        <p>Администратор может добавить активные категории в разделе управления контентом.</p>
+      </section>
+
+      <section
+        v-for="group in groups"
         :key="group.slug"
         class="public-section"
         :aria-labelledby="`category-group-${group.slug}`"

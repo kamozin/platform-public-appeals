@@ -51,13 +51,12 @@
 
 ## Acceptance criteria
 
-- [ ] Пользователь видит только свои обращения.
-- [ ] Пользователь видит только свои черновики.
-- [ ] Saved appeals работают.
-- [ ] Comments section показывает комментарии пользователя.
-- [ ] Postman обновлен.
+- [x] Пользователь видит только свои обращения.
+- [x] Пользователь видит только свои черновики.
+- [x] Saved appeals работают.
+- [x] Comments section показывает комментарии пользователя.
+- [x] Postman обновлен.
 
 ## Postman
 
-- [ ] Добавить dashboard activity endpoints.
-
+- [x] Добавить dashboard activity endpoints.

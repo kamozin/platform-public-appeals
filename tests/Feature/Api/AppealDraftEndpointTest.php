@@ -56,7 +56,14 @@ it('creates updates reads submits and deletes own draft', function (): void {
         ->assertJsonPath('data.status', 'pending_moderation');
 
     patchJson("/api/v1/appeal-drafts/$draftId", [
-        'title' => 'Нельзя менять',
+        'title' => 'Можно уточнить до модерации',
+    ], $headers)
+        ->assertOk()
+        ->assertJsonPath('data.status', 'pending_moderation')
+        ->assertJsonPath('data.title', 'Можно уточнить до модерации');
+
+    postJson("/api/v1/appeal-drafts/$draftId/submit", [
+        'captcha_token' => 'test-captcha',
     ], $headers)
         ->assertConflict()
         ->assertJsonPath('error.code', 'CONFLICT');

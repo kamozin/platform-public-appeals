@@ -43,7 +43,7 @@ const submitRegister = async (): Promise<void> => {
 
   try {
     await auth.register(form);
-    await navigateTo('/dashboard');
+    await navigateTo('/dashboard/profile');
   } catch {
     errorMessage.value = 'Не удалось создать аккаунт. Проверьте поля формы.';
   } finally {

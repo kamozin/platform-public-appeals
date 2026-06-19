@@ -45,13 +45,12 @@
 
 ## Acceptance criteria
 
-- [ ] `/privacy` существует.
-- [ ] `/agreement` существует.
-- [ ] `/book` существует.
-- [ ] Все ссылки из layout ведут на существующие Nuxt routes.
-- [ ] `static/` не изменен.
+- [x] `/privacy` существует.
+- [x] `/agreement` существует.
+- [x] `/book` существует.
+- [x] Все ссылки из layout ведут на существующие Nuxt routes.
+- [x] `static/` не изменен.
 
 ## Postman
 
 Не требуется.
-

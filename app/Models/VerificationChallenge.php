@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 final class VerificationChallenge extends Model
 {
@@ -15,11 +16,21 @@ final class VerificationChallenge extends Model
         'purpose',
         'channel',
         'target',
+        'user_id',
         'code_hash',
         'attempts',
         'expires_at',
         'verified_at',
+        'consumed_at',
     ];
+
+    /**
+     * @return BelongsTo<User, $this>
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * @return array<string, string>
@@ -30,6 +41,7 @@ final class VerificationChallenge extends Model
             'attempts' => 'integer',
             'expires_at' => 'datetime',
             'verified_at' => 'datetime',
+            'consumed_at' => 'datetime',
         ];
     }
 }

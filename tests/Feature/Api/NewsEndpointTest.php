@@ -2,7 +2,17 @@
 
 declare(strict_types=1);
 
+use Database\Seeders\PublicContentSeeder;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
 use function Pest\Laravel\getJson;
+use function Pest\Laravel\seed;
+
+uses(RefreshDatabase::class);
+
+beforeEach(function (): void {
+    seed(PublicContentSeeder::class);
+});
 
 it('returns paginated news ordered by publication date', function (): void {
     getJson('/api/v1/news?per_page=2')

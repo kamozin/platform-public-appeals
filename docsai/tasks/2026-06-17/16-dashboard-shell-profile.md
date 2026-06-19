@@ -53,13 +53,12 @@
 
 ## Acceptance criteria
 
-- [ ] Dashboard доступен только авторизованным.
-- [ ] Profile данные читаются и обновляются.
-- [ ] Avatar upload работает через API.
-- [ ] Avatar не хранится в `localStorage`.
-- [ ] Postman обновлен.
+- [x] Dashboard доступен только авторизованным.
+- [x] Profile данные читаются и обновляются.
+- [x] Avatar upload работает через API.
+- [x] Avatar не хранится в `localStorage`.
+- [x] Postman обновлен.
 
 ## Postman
 
-- [ ] Добавить profile/avatar endpoints.
-
+- [x] Добавить profile/avatar endpoints.

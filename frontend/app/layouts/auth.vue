@@ -2,11 +2,15 @@
 const route = useRoute();
 
 const isPasswordReset = computed(() => route.path === '/password-reset');
+const isVerification = computed(() => route.path === '/verification');
+const isScreenFlow = computed(() => isPasswordReset.value || isVerification.value);
 const shellClasses = computed(() => [
   'app-shell',
   'auth-page',
   route.path === '/register' ? 'auth-page-register' : '',
-  isPasswordReset.value ? 'screen-page flow-screen password-reset-screen' : '',
+  isScreenFlow.value ? 'screen-page flow-screen' : '',
+  isPasswordReset.value ? 'password-reset-screen' : '',
+  isVerification.value ? 'verification-screen' : '',
 ]);
 </script>
 
@@ -16,9 +20,9 @@ const shellClasses = computed(() => [
     <NuxtLink class="skip-link" to="#main-content">
       Перейти к содержимому
     </NuxtLink>
-    <LayoutAuthHeader />
+    <LayoutAppHeader />
     <slot />
-    <LayoutAuthFooter :screen="isPasswordReset" />
+    <LayoutAppFooter />
     <UiScrollTopButton />
   </div>
 </template>

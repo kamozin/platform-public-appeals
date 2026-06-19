@@ -78,14 +78,13 @@ Success DTO:
 
 ## Acceptance criteria
 
-- [ ] News index работает с пагинацией.
-- [ ] News detail работает по slug.
-- [ ] Missing slug возвращает API `NOT_FOUND` и Nuxt 404.
-- [ ] Postman обновлен.
+- [x] News index работает с пагинацией.
+- [x] News detail работает по slug.
+- [x] Missing slug возвращает API `NOT_FOUND` и Nuxt 404.
+- [x] Postman обновлен.
 
 ## Postman
 
-- [ ] Добавить `GET /api/v1/news`.
-- [ ] Добавить `GET /api/v1/news/{slug}`.
-- [ ] Добавить пример 404.
-
+- [x] Добавить `GET /api/v1/news`.
+- [x] Добавить `GET /api/v1/news/{slug}`.
+- [x] Добавить пример 404.

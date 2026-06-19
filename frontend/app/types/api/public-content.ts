@@ -35,6 +35,39 @@ export type CategoriesPageDto = {
   seo: SeoDto;
 };
 
+export type HomeSlideDto = {
+  id: string;
+  slug: string;
+  label: string;
+  title: string;
+  lead: string;
+  note: string | null;
+  imageUrl: string;
+  primaryCtaLabel: string | null;
+  primaryCtaUrl: string | null;
+  secondaryCtaLabel: string | null;
+  secondaryCtaUrl: string | null;
+};
+
+export type HomeAdvertisementDto = {
+  id: string;
+  slug: string;
+  placement: string;
+  title: string;
+  label: string | null;
+  description: string | null;
+  imageUrl: string;
+  alt: string;
+  targetUrl: string;
+};
+
+export type HomeContentDto = {
+  slides: HomeSlideDto[];
+  advertisements: HomeAdvertisementDto[];
+  categoryGroups: CategoryGroupDto[];
+  seo: SeoDto;
+};
+
 export type NewsItemDto = {
   id: string;
   slug: string;

@@ -37,6 +37,34 @@
     {
       "key": "session_id",
       "value": ""
+    },
+    {
+      "key": "admin_category_id",
+      "value": ""
+    },
+    {
+      "key": "admin_news_id",
+      "value": ""
+    },
+    {
+      "key": "admin_appeal_id",
+      "value": ""
+    },
+    {
+      "key": "moderation_draft_id",
+      "value": ""
+    },
+    {
+      "key": "moderated_public_appeal_id",
+      "value": ""
+    },
+    {
+      "key": "admin_homepage_slide_id",
+      "value": ""
+    },
+    {
+      "key": "admin_advertisement_id",
+      "value": ""
     }
   ],
   "item": [
@@ -95,7 +123,44 @@
             },
             "description": "Smoke test for the common JSON API error contract."
           },
-          "response": []
+          "response": [
+            {
+              "name": "404 NOT_FOUND",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Request-Id",
+                    "value": "{{request_id}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/missing",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "missing"
+                  ]
+                },
+                "description": "Smoke test for the common JSON API error contract."
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"NOT_FOUND\",\n    \"message\": \"Resource not found.\",\n    \"details\": {},\n    \"trace_id\": \"postman-local-trace\"\n  }\n}"
+            }
+          ]
         }
       ]
     },
@@ -125,9 +190,46 @@
                 "categories"
               ]
             },
-            "description": "Returns grouped public appeal categories with SEO metadata."
+            "description": "Returns grouped public appeal categories with SEO metadata. The response contains the canonical 15-category appeal dictionary."
           },
-          "response": []
+          "response": [
+            {
+              "name": "200 Categories Dictionary",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Request-Id",
+                    "value": "{{request_id}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/categories",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "categories"
+                  ]
+                },
+                "description": "Returns grouped public appeal categories with SEO metadata. The response contains the canonical 15-category appeal dictionary."
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"groups\": [\n      {\n        \"slug\": \"city\",\n        \"title\": \"Дом и город\",\n        \"categories\": [\n          {\n            \"id\": \"00000000-0000-4000-8000-000000000101\",\n            \"slug\": \"zhkh\",\n            \"title\": \"ЖКХ\",\n            \"description\": \"Управляющие компании, подъезды, отопление, вода, лифты\",\n            \"icon\": \"home\"\n          },\n          {\n            \"id\": \"00000000-0000-4000-8000-000000000102\",\n            \"slug\": \"roads\",\n            \"title\": \"Дороги\",\n            \"description\": \"Ямы, тротуары, освещение, дорожная безопасность\",\n            \"icon\": \"road\"\n          },\n          {\n            \"id\": \"00000000-0000-4000-8000-000000000103\",\n            \"slug\": \"transport\",\n            \"title\": \"Транспорт\",\n            \"description\": \"Общественный транспорт, остановки, маршруты, доступность поездок\",\n            \"icon\": \"road\"\n          },\n          {\n            \"id\": \"00000000-0000-4000-8000-000000000104\",\n            \"slug\": \"improvement\",\n            \"title\": \"Благоустройство\",\n            \"description\": \"Дворы, парки, мусор, детские и спортивные площадки\",\n            \"icon\": \"tree\"\n          }\n        ]\n      },\n      {\n        \"slug\": \"social\",\n        \"title\": \"Социальная сфера\",\n        \"categories\": [\n          {\n            \"id\": \"00000000-0000-4000-8000-000000000201\",\n            \"slug\": \"healthcare\",\n            \"title\": \"Здравоохранение\",\n            \"description\": \"Поликлиники, больницы, лекарства, доступность помощи\",\n            \"icon\": \"medical\"\n          },\n          {\n            \"id\": \"00000000-0000-4000-8000-000000000202\",\n            \"slug\": \"education\",\n            \"title\": \"Образование\",\n            \"description\": \"Школы, детские сады, колледжи, кружки и безопасность\",\n            \"icon\": \"book\"\n          },\n          {\n            \"id\": \"00000000-0000-4000-8000-000000000203\",\n            \"slug\": \"social-support\",\n            \"title\": \"Социальная защита\",\n            \"description\": \"Льготы, выплаты, пособия, поддержка семей и пожилых людей\",\n            \"icon\": \"wallet\"\n          },\n          {\n            \"id\": \"00000000-0000-4000-8000-000000000204\",\n            \"slug\": \"ecology\",\n            \"title\": \"Экология\",\n            \"description\": \"Загрязнение, вырубка, отходы, состояние воздуха и воды\",\n            \"icon\": \"tree\"\n          }\n        ]\n      },\n      {\n        \"slug\": \"rights\",\n        \"title\": \"Права и безопасность\",\n        \"categories\": [\n          {\n            \"id\": \"00000000-0000-4000-8000-000000000301\",\n            \"slug\": \"safety\",\n            \"title\": \"Безопасность\",\n            \"description\": \"Угрозы, опасные места, нарушения общественного порядка\",\n            \"icon\": \"shield\"\n          },\n          {\n            \"id\": \"00000000-0000-4000-8000-000000000302\",\n            \"slug\": \"public-services\",\n            \"title\": \"Госуслуги и документы\",\n            \"description\": \"Справки, заявления, задержки, отказы и ошибки в документах\",\n            \"icon\": \"file\"\n          },\n          {\n            \"id\": \"00000000-0000-4000-8000-000000000303\",\n            \"slug\": \"land-real-estate\",\n            \"title\": \"Земля и недвижимость\",\n            \"description\": \"Земельные вопросы, жильё, кадастр, собственность и аренда\",\n            \"icon\": \"building\"\n          },\n          {\n            \"id\": \"00000000-0000-4000-8000-000000000304\",\n            \"slug\": \"authorities\",\n            \"title\": \"Работа органов власти\",\n            \"description\": \"Бездействие, сроки ответа, качество работы ведомств и чиновников\",\n            \"icon\": \"scale\"\n          }\n        ]\n      },\n      {\n        \"slug\": \"services\",\n        \"title\": \"Услуги и инфраструктура\",\n        \"categories\": [\n          {\n            \"id\": \"00000000-0000-4000-8000-000000000401\",\n            \"slug\": \"telecom\",\n            \"title\": \"Связь и интернет\",\n            \"description\": \"Мобильная связь, интернет, перебои, качество цифровых сервисов\",\n            \"icon\": \"phone\"\n          },\n          {\n            \"id\": \"00000000-0000-4000-8000-000000000402\",\n            \"slug\": \"commerce-services\",\n            \"title\": \"Торговля и услуги\",\n            \"description\": \"Магазины, бытовые услуги, нарушения прав потребителей\",\n            \"icon\": \"shop\"\n          },\n          {\n            \"id\": \"00000000-0000-4000-8000-000000000403\",\n            \"slug\": \"other\",\n            \"title\": \"Другое\",\n            \"description\": \"Иные обращения, которые требуют общественного внимания\",\n            \"icon\": \"more\"\n          }\n        ]\n      }\n    ],\n    \"seo\": {\n      \"title\": \"Все категории обращений\",\n      \"description\": \"Полный список категорий обращений и жалоб.\",\n      \"canonicalUrl\": \"https://rukadobra.localhost/categories\",\n      \"robots\": \"index,follow\",\n      \"ogImageUrl\": null,\n      \"lastModifiedAt\": null\n    }\n  }\n}"
+            }
+          ]
         },
         {
           "name": "News Index",
@@ -192,7 +294,45 @@
             },
             "description": "Returns one public news detail DTO by slug."
           },
-          "response": []
+          "response": [
+            {
+              "name": "404 NOT_FOUND",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Request-Id",
+                    "value": "{{request_id}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/news/legal-support-consultations",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "news",
+                    "legal-support-consultations"
+                  ]
+                },
+                "description": "Returns one public news detail DTO by slug."
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"NOT_FOUND\",\n    \"message\": \"Resource not found.\",\n    \"details\": {},\n    \"trace_id\": \"postman-local-trace\"\n  }\n}"
+            }
+          ]
         },
         {
           "name": "Appeals Index",
@@ -261,7 +401,45 @@
             },
             "description": "Returns one public appeal detail DTO by slug."
           },
-          "response": []
+          "response": [
+            {
+              "name": "404 NOT_FOUND",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Request-Id",
+                    "value": "{{request_id}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/appeals/road-pits-after-repair",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "appeals",
+                    "road-pits-after-repair"
+                  ]
+                },
+                "description": "Returns one public appeal detail DTO by slug."
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"NOT_FOUND\",\n    \"message\": \"Resource not found.\",\n    \"details\": {},\n    \"trace_id\": \"postman-local-trace\"\n  }\n}"
+            }
+          ]
         },
         {
           "name": "Appeal Comments",
@@ -317,6 +495,33 @@
               ]
             },
             "description": "Returns public frontend URLs for sitemap generation."
+          },
+          "response": []
+        },
+        {
+          "name": "Home Content",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/home",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "home"
+              ]
+            },
+            "description": "Returns database-backed homepage content: hero slides, active advertisements, category groups and SEO metadata."
           },
           "response": []
         }
@@ -391,6 +596,123 @@
               ]
             }
           },
+          "response": [
+            {
+              "name": "401 INVALID_CREDENTIALS",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"ivan@example.com\",\n  \"password\": \"password123\",\n  \"remember\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/auth/login",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_CREDENTIALS\",\n    \"message\": \"Invalid credentials.\",\n    \"details\": {},\n    \"trace_id\": \"postman-local-trace\"\n  }\n}"
+            },
+            {
+              "name": "200 Requires Email 2FA",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"login\": \"ivan@example.com\",\n  \"password\": \"password123\",\n  \"remember\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/auth/login",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"requiresTwoFactor\": true,\n    \"challengeId\": \"{{challenge_id}}\",\n    \"expiresAt\": \"2026-06-19T12:00:00+00:00\",\n    \"maskedTarget\": \"i***@example.com\"\n  }\n}"
+            }
+          ]
+        },
+        {
+          "name": "Verify 2FA",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/2fa/verify",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "2fa",
+                "verify"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"challenge_id\": \"{{challenge_id}}\",\n  \"code\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "description": "Completes email two-factor login and returns a bearer token."
+          },
           "response": []
         },
         {
@@ -418,7 +740,44 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "401 UNAUTHORIZED",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auth_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/auth/me",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "me"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNAUTHORIZED\",\n    \"message\": \"Unauthenticated.\",\n    \"details\": {},\n    \"trace_id\": \"postman-local-trace\"\n  }\n}"
+            }
+          ]
         },
         {
           "name": "Logout",
@@ -516,7 +875,92 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "422 INVALID_VERIFICATION_CODE",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"challenge_id\": \"{{challenge_id}}\",\n  \"code\": \"123456\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/auth/verification/verify",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "verification",
+                    "verify"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"INVALID_VERIFICATION_CODE\",\n    \"message\": \"Invalid verification code.\",\n    \"details\": {},\n    \"trace_id\": \"postman-local-trace\"\n  }\n}"
+            },
+            {
+              "name": "409 CHALLENGE_EXPIRED",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"challenge_id\": \"{{challenge_id}}\",\n  \"code\": \"123456\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/auth/verification/verify",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "verification",
+                    "verify"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"CHALLENGE_EXPIRED\",\n    \"message\": \"Verification challenge expired.\",\n    \"details\": {},\n    \"trace_id\": \"postman-local-trace\"\n  }\n}"
+            }
+          ]
         },
         {
           "name": "Password Reset Send",
@@ -582,7 +1026,92 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "404 CHALLENGE_NOT_FOUND",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"challenge_id\": \"{{challenge_id}}\",\n  \"code\": \"123456\",\n  \"email\": \"ivan@example.com\",\n  \"password\": \"new-password\",\n  \"password_confirmation\": \"new-password\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/auth/password-reset/complete",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "password-reset",
+                    "complete"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"CHALLENGE_NOT_FOUND\",\n    \"message\": \"Verification challenge not found.\",\n    \"details\": {},\n    \"trace_id\": \"postman-local-trace\"\n  }\n}"
+            },
+            {
+              "name": "409 CHALLENGE_EXPIRED",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"challenge_id\": \"{{challenge_id}}\",\n  \"code\": \"123456\",\n  \"email\": \"ivan@example.com\",\n  \"password\": \"new-password\",\n  \"password_confirmation\": \"new-password\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/auth/password-reset/complete",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "password-reset",
+                    "complete"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"CHALLENGE_EXPIRED\",\n    \"message\": \"Verification challenge expired.\",\n    \"details\": {},\n    \"trace_id\": \"postman-local-trace\"\n  }\n}"
+            }
+          ]
         }
       ]
     },
@@ -624,7 +1153,100 @@
               ]
             }
           },
-          "response": []
+          "response": [
+            {
+              "name": "401 UNAUTHORIZED",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auth_token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"Проблема подтверждается.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/appeals/road-pits-after-repair/comments",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "appeals",
+                    "road-pits-after-repair",
+                    "comments"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"UNAUTHORIZED\",\n    \"message\": \"Unauthenticated.\",\n    \"details\": {},\n    \"trace_id\": \"postman-local-trace\"\n  }\n}"
+            },
+            {
+              "name": "422 VALIDATION_FAILED",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auth_token}}"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment\": \"Проблема подтверждается.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/appeals/road-pits-after-repair/comments",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "appeals",
+                    "road-pits-after-repair",
+                    "comments"
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity",
+              "code": 422,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"VALIDATION_FAILED\",\n    \"message\": \"Validation failed.\",\n    \"details\": {\n      \"fields\": {\n        \"comment\": [\n          \"The comment field is required.\"\n        ]\n      }\n    },\n    \"trace_id\": \"postman-local-trace\"\n  }\n}"
+            }
+          ]
         },
         {
           "name": "Save Appeal",
@@ -896,6 +1518,254 @@
           "response": []
         },
         {
+          "name": "Profile Update",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Иван Иванов\",\n  \"phone\": \"+79102357746\",\n  \"notifications\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/profile",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "profile"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/profile/password",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "profile",
+                "password"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"current_password\": \"password123\",\n  \"password\": \"new-password\",\n  \"password_confirmation\": \"new-password\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Send Email 2FA Enable Code",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/profile/security/email-2fa/send",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "profile",
+                "security",
+                "email-2fa",
+                "send"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"current_password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Enable Email 2FA",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/profile/security/email-2fa/enable",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "profile",
+                "security",
+                "email-2fa",
+                "enable"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"challenge_id\": \"{{challenge_id}}\",\n  \"code\": \"123456\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Disable Email 2FA",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/profile/security/email-2fa",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "profile",
+                "security",
+                "email-2fa"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"current_password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Profile Avatar Upload",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "avatar",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/profile/avatar",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "profile",
+                "avatar"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Profile Avatar Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/profile/avatar",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "profile",
+                "avatar"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Dashboard Drafts",
           "request": {
             "method": "GET",
@@ -1107,6 +1977,1117 @@
                 "support-videos"
               ]
             }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Admin Content",
+      "item": [
+        {
+          "name": "Admin Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Logs in seeded admin@example.com user and stores auth_token.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"login\": \"admin@example.com\",\n  \"password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const body = pm.response.json();",
+                  "if (body.data && body.data.token) pm.collectionVariables.set(\"auth_token\", body.data.token);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Admin Categories Index",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/categories",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "categories"
+              ]
+            },
+            "description": "Returns all category groups and categories for admin management."
+          },
+          "response": []
+        },
+        {
+          "name": "Admin Category Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/categories",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "categories"
+              ]
+            },
+            "description": "Creates a category and stores admin_category_id.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"group_slug\": \"test-group\",\n  \"group_title\": \"Тестовая группа\",\n  \"slug\": \"test-category\",\n  \"title\": \"Тестовая категория\",\n  \"description\": \"Описание тестовой категории\",\n  \"icon\": \"file\",\n  \"is_active\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const body = pm.response.json();",
+                  "if (body.data && body.data.id) pm.collectionVariables.set('admin_category_id', body.data.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Admin Category Update",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/categories/{{admin_category_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "categories",
+                "{{admin_category_id}}"
+              ]
+            },
+            "description": "Updates a category by id.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Обновленная категория\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Admin Category Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/categories/{{admin_category_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "categories",
+                "{{admin_category_id}}"
+              ]
+            },
+            "description": "Deletes a category by id."
+          },
+          "response": []
+        },
+        {
+          "name": "Admin News Index",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/news",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "news"
+              ]
+            },
+            "description": "Returns all news posts including drafts and archived posts."
+          },
+          "response": []
+        },
+        {
+          "name": "Admin News Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/news",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "news"
+              ]
+            },
+            "description": "Creates a news post and stores admin_news_id.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"slug\": \"admin-published-news\",\n  \"title\": \"Новость из админки\",\n  \"excerpt\": \"Короткое описание новости.\",\n  \"content\": \"Полный текст новости из админки.\",\n  \"category\": \"Админка\",\n  \"image_url\": \"/assets/hero-hands-heart.png\",\n  \"status\": \"published\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const body = pm.response.json();",
+                  "if (body.data && body.data.id) pm.collectionVariables.set('admin_news_id', body.data.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Admin News Update",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/news/{{admin_news_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "news",
+                "{{admin_news_id}}"
+              ]
+            },
+            "description": "Updates a news post by id.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"archived\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Admin News Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/news/{{admin_news_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "news",
+                "{{admin_news_id}}"
+              ]
+            },
+            "description": "Deletes a news post by id."
+          },
+          "response": []
+        },
+        {
+          "name": "Admin Appeals Index",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/appeals",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "appeals"
+              ]
+            },
+            "description": "Returns all public appeal records including non-public drafts."
+          },
+          "response": []
+        },
+        {
+          "name": "Admin Appeal Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/appeals",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "appeals"
+              ]
+            },
+            "description": "Creates a public appeal and stores admin_appeal_id.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"slug\": \"admin-public-appeal\",\n  \"title\": \"Публичное обращение из админки\",\n  \"excerpt\": \"Короткое описание обращения.\",\n  \"description\": \"Подробное описание обращения.\",\n  \"status\": \"checking\",\n  \"status_label\": \"На проверке\",\n  \"city\": \"Казань\",\n  \"district\": \"Центральный район\",\n  \"category\": \"Дороги\",\n  \"location\": \"Казань\",\n  \"support_count\": 5,\n  \"views_count\": 10,\n  \"comments_count\": 0,\n  \"image_url\": \"/assets/issue-road.png\",\n  \"is_public\": true,\n  \"attachments\": [\n    {\n      \"type\": \"image\",\n      \"url\": \"/assets/issue-road.png\",\n      \"title\": \"Фото проблемы\"\n    }\n  ],\n  \"timeline\": [\n    {\n      \"status\": \"published\",\n      \"title\": \"Опубликовано\",\n      \"happened_at\": \"2026-06-19T10:00:00+03:00\",\n      \"text\": \"Обращение опубликовано.\"\n    }\n  ],\n  \"documents\": [\n    {\n      \"title\": \"Документ\",\n      \"url\": \"#\"\n    }\n  ],\n  \"official_response\": {\n    \"title\": \"Ответ ожидается\",\n    \"text\": \"Запрос направлен.\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "const body = pm.response.json();",
+                  "if (body.data && body.data.id) pm.collectionVariables.set('admin_appeal_id', body.data.id);"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Admin Appeal Update",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/appeals/{{admin_appeal_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "appeals",
+                "{{admin_appeal_id}}"
+              ]
+            },
+            "description": "Updates a public appeal by id.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"is_public\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Admin Appeal Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/appeals/{{admin_appeal_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "appeals",
+                "{{admin_appeal_id}}"
+              ]
+            },
+            "description": "Deletes a public appeal by id."
+          },
+          "response": []
+        },
+        {
+          "name": "Admin Appeal Moderation",
+          "item": [
+            {
+              "name": "Moderation Queue",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Request-Id",
+                    "value": "{{request_id}}"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auth_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/admin/appeal-moderation?status=pending_moderation",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "appeal-moderation"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "pending_moderation"
+                    }
+                  ]
+                },
+                "description": "Returns submitted appeal drafts waiting for moderation."
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "const body = pm.response.json();",
+                      "if (body.data && body.data.items && body.data.items[0]) pm.collectionVariables.set('moderation_draft_id', body.data.items[0].id);"
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Moderation Draft Show",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Request-Id",
+                    "value": "{{request_id}}"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auth_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/admin/appeal-moderation/{{moderation_draft_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "appeal-moderation",
+                    "{{moderation_draft_id}}"
+                  ]
+                },
+                "description": "Returns one submitted draft with contact fields, attachment metadata and moderation events."
+              },
+              "response": []
+            },
+            {
+              "name": "Moderation Request Changes",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Request-Id",
+                    "value": "{{request_id}}"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auth_token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/admin/appeal-moderation/{{moderation_draft_id}}/request-changes",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "appeal-moderation",
+                    "{{moderation_draft_id}}",
+                    "request-changes"
+                  ]
+                },
+                "description": "Requests changes from the appeal author and moves the draft to needs_changes.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"message\": \"Уточните адрес и приложите фото.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Moderation Reject",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Request-Id",
+                    "value": "{{request_id}}"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auth_token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/admin/appeal-moderation/{{moderation_draft_id}}/reject",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "appeal-moderation",
+                    "{{moderation_draft_id}}",
+                    "reject"
+                  ]
+                },
+                "description": "Rejects a submitted draft and stores the rejection reason.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"Недостаточно сведений для проверки.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Moderation Approve",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "X-Request-Id",
+                    "value": "{{request_id}}"
+                  },
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{auth_token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/admin/appeal-moderation/{{moderation_draft_id}}/approve",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "appeal-moderation",
+                    "{{moderation_draft_id}}",
+                    "approve"
+                  ]
+                },
+                "description": "Approves a submitted draft, creates a public appeal and stores moderated_public_appeal_id.",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"slug\": \"moderated-public-appeal\",\n  \"title\": \"Публичное обращение после модерации\",\n  \"excerpt\": \"Короткое описание обращения после проверки.\",\n  \"description\": \"Публичное описание обращения без персональных контактов.\",\n  \"status\": \"checking\",\n  \"status_label\": \"На проверке\",\n  \"city\": \"Москва\",\n  \"district\": \"Центральный район\",\n  \"category\": \"Дороги\",\n  \"location\": \"Москва\",\n  \"support_count\": 0,\n  \"views_count\": 0,\n  \"comments_count\": 0,\n  \"image_url\": \"/assets/issue-road.png\",\n  \"is_public\": true,\n  \"attachments\": [\n    {\n      \"type\": \"image\",\n      \"url\": \"/assets/issue-road.png\",\n      \"title\": \"Фото проблемы\"\n    }\n  ],\n  \"timeline\": [\n    {\n      \"status\": \"published\",\n      \"title\": \"Опубликовано\",\n      \"happened_at\": \"2026-06-19T10:00:00+03:00\",\n      \"text\": \"Обращение опубликовано после модерации.\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "response": [],
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "type": "text/javascript",
+                    "exec": [
+                      "const body = pm.response.json();",
+                      "if (body.data && body.data.publicAppealId) pm.collectionVariables.set('moderated_public_appeal_id', body.data.publicAppealId);"
+                    ]
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Admin Homepage Slides Index",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/homepage-slides",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "homepage-slides"
+              ]
+            },
+            "description": "Returns all homepage slides for admin management."
+          },
+          "response": []
+        },
+        {
+          "name": "Admin Homepage Slide Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/homepage-slides",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "homepage-slides"
+              ]
+            },
+            "description": "Creates a homepage slide and stores admin_homepage_slide_id.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"slug\": \"admin-home-slide\",\n  \"label\": \"????? ?? ???????\",\n  \"title\": \"????????? ??????\",\n  \"lead\": \"???????? ?????? ??? ??????? ????????.\",\n  \"note\": \"?????????????? ???????.\",\n  \"image_url\": \"/assets/hero-civic-flag.png\",\n  \"primary_cta_label\": \"?????? ?????????\",\n  \"primary_cta_url\": \"/appeal/new\",\n  \"secondary_cta_label\": \"???????? ?????????\",\n  \"secondary_cta_url\": \"/appeals\",\n  \"is_active\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const body = pm.response.json();",
+                  "if (body.data && body.data.id) pm.collectionVariables.set('admin_homepage_slide_id', body.data.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Admin Homepage Slide Update",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/homepage-slides/{{admin_homepage_slide_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "homepage-slides",
+                "{{admin_homepage_slide_id}}"
+              ]
+            },
+            "description": "Updates a homepage slide by id.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"??????????? ????????? ??????\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Admin Homepage Slide Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/homepage-slides/{{admin_homepage_slide_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "homepage-slides",
+                "{{admin_homepage_slide_id}}"
+              ]
+            },
+            "description": "Deletes a homepage slide by id."
+          },
+          "response": []
+        },
+        {
+          "name": "Admin Advertisements Index",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/advertisements",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "advertisements"
+              ]
+            },
+            "description": "Returns all advertisements for admin management."
+          },
+          "response": []
+        },
+        {
+          "name": "Admin Advertisement Create",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/advertisements",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "advertisements"
+              ]
+            },
+            "description": "Creates an advertisement and stores admin_advertisement_id.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"slug\": \"admin-home-ad\",\n  \"placement\": \"home_promo\",\n  \"title\": \"??????? ?? ???????\",\n  \"label\": \"??????????? ????\",\n  \"description\": \"???????? ?????????? ???????.\",\n  \"image_url\": \"/assets/114a584a-17bb-4ecb-95fd-c338df16704e.png\",\n  \"alt\": \"????????? ??????\",\n  \"target_url\": \"https://example.com/\",\n  \"is_active\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const body = pm.response.json();",
+                  "if (body.data && body.data.id) pm.collectionVariables.set('admin_advertisement_id', body.data.id);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ]
+        },
+        {
+          "name": "Admin Advertisement Update",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/advertisements/{{admin_advertisement_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "advertisements",
+                "{{admin_advertisement_id}}"
+              ]
+            },
+            "description": "Updates an advertisement by id.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"??????????? ???????\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Admin Advertisement Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "X-Request-Id",
+                "value": "{{request_id}}"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{auth_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/admin/advertisements/{{admin_advertisement_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "admin",
+                "advertisements",
+                "{{admin_advertisement_id}}"
+              ]
+            },
+            "description": "Deletes an advertisement by id."
           },
           "response": []
         }

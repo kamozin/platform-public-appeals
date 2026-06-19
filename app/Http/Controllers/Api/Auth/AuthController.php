@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Api\Auth;
 use App\Application\Auth\AuthService;
 use App\Http\Requests\Api\Auth\LoginRequest;
 use App\Http\Requests\Api\Auth\RegisterRequest;
+use App\Http\Requests\Api\Auth\TwoFactorVerifyRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
@@ -37,6 +38,18 @@ final readonly class AuthController
     {
         return response()->json([
             'data' => $this->auth->userPayload($this->auth->requireUser($request)),
+        ]);
+    }
+
+    public function verifyTwoFactor(TwoFactorVerifyRequest $request): JsonResponse
+    {
+        $payload = $request->validated();
+
+        return response()->json([
+            'data' => $this->auth->verifyTwoFactor(
+                challengeId: (string) $payload['challenge_id'],
+                code: (string) $payload['code'],
+            ),
         ]);
     }
 

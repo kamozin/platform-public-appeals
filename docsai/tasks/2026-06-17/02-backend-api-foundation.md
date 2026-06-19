@@ -67,15 +67,14 @@ Error format for future API:
 
 ## Acceptance criteria
 
-- [ ] Laravel отвечает только JSON.
-- [ ] В `routes/api.php` нет ручного `prefix('api')`.
-- [ ] Health route именован.
-- [ ] `trace_id` возвращается в ошибках.
-- [ ] `composer test` проходит.
-- [ ] `composer lint` или доступный аналог проходит.
+- [x] Laravel отвечает только JSON.
+- [x] В `routes/api.php` нет ручного `prefix('api')`.
+- [x] Health route именован.
+- [x] `trace_id` возвращается в ошибках.
+- [x] `composer test` проходит.
+- [x] `composer lint` или доступный аналог проходит.
 
 ## Postman
 
-- [ ] Создать коллекцию, если ее еще нет.
-- [ ] Добавить `GET /api/v1/health`.
-
+- [x] Создать коллекцию, если ее еще нет.
+- [x] Добавить `GET /api/v1/health`.

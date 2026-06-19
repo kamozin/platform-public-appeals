@@ -15,10 +15,16 @@ const categoryLinks = [
   { label: 'Все категории', to: '/categories', external: false },
 ] as const;
 
-const socialButtons = [
+type FooterSocialButton = {
+  label: string;
+  icon: 'social-vk' | 'social-ok' | 'social-max';
+  image?: string;
+};
+
+const socialButtons: readonly FooterSocialButton[] = [
   { label: 'ВКонтакте', icon: 'social-vk' },
   { label: 'Одноклассники', icon: 'social-ok' },
-  { label: 'MAX', icon: 'social-max' },
+  { label: 'MAX', icon: 'social-max', image: '/assets/MAX.svg' },
 ] as const;
 
 const api = useApi();
@@ -58,7 +64,14 @@ const submitSubscription = async (): Promise<void> => {
             type="button"
             :aria-label="social.label"
           >
-            <LayoutAppIcon :name="social.icon" />
+            <img
+              v-if="social.image"
+              :src="social.image"
+              alt=""
+              aria-hidden="true"
+              class="social-icon-image"
+            >
+            <LayoutAppIcon v-else :name="social.icon" />
           </button>
         </div>
       </div>

@@ -1,23 +1,35 @@
 <script setup lang="ts">
-const config = useRuntimeConfig();
-const siteUrl = config.public.siteUrl.replace(/\/+$/, '');
+import type { HomeContentDto } from '~/types/api/public-content';
+
+const homeApi = useHomeContent();
+const { data: homeContent, error: homeError } = await useAsyncData('home-content', () => homeApi.fetchHome());
+
+if (homeError.value || !homeContent.value) {
+  throw createError({
+    statusCode: 500,
+    statusMessage: 'Home content is unavailable',
+  });
+}
+
+const resolvedHomeContent = computed<HomeContentDto>(() => homeContent.value as HomeContentDto);
 
 usePageSeo({
-  title: 'Рука добра - платформа обращений и жалоб граждан',
-  description: 'Общественная платформа для обращений и жалоб граждан. Помощь, поддержка, общественный контроль и прозрачные результаты.',
+  title: resolvedHomeContent.value.seo.title,
+  description: resolvedHomeContent.value.seo.description,
   path: '/',
-  ogImageUrl: `${siteUrl}/assets/hero-civic-flag.png`,
+  ogImageUrl: resolvedHomeContent.value.seo.ogImageUrl ?? undefined,
+  robots: resolvedHomeContent.value.seo.robots,
 });
 </script>
 
 <template>
   <div class="home-page">
-    <HomeHero />
+    <HomeHero :slides="resolvedHomeContent.slides" />
     <HomeSupportVideo />
     <HomeTopPanels />
-    <HomeAdBanner />
+    <HomeAdBanner :advertisements="resolvedHomeContent.advertisements" />
     <HomeStatsStrip />
-    <HomeCategoriesPreview />
+    <HomeCategoriesPreview :category-groups="resolvedHomeContent.categoryGroups" />
     <HomeHowItWorks />
     <HomeAppealsPreview />
     <HomeLatestNews />

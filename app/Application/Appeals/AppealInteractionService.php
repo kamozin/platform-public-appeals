@@ -9,7 +9,6 @@ use App\Models\AppealComment;
 use App\Models\User;
 use App\Support\Api\ApiProblemException;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 final class AppealInteractionService
 {
@@ -20,25 +19,11 @@ final class AppealInteractionService
      */
     public function comments(string $slug, ?string $filter = null): array
     {
-        $staticComments = $this->content->appealComments($slug);
+        $items = $this->content->appealComments($slug);
 
-        if ($staticComments === null) {
+        if ($items === null) {
             throw new ApiProblemException('NOT_FOUND', 404);
         }
-
-        $storedComments = [];
-
-        if (Schema::hasTable('appeal_comments')) {
-            $storedComments = AppealComment::query()
-                ->with('user')
-                ->where('appeal_slug', $slug)
-                ->latest()
-                ->get()
-                ->map(fn (AppealComment $comment): array => $this->commentPayload($comment))
-                ->all();
-        }
-
-        $items = [...$storedComments, ...$staticComments];
 
         if ($filter === 'official') {
             $items = array_values(array_filter($items, fn (array $item): bool => $item['type'] === 'official'));

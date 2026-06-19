@@ -49,13 +49,12 @@
 
 ## Acceptance criteria
 
-- [ ] `static/` не изменен.
-- [ ] Header/footer вынесены в компоненты.
-- [ ] Общие классы и визуальное поведение сохранены.
-- [ ] Навигация использует Nuxt routes, а не `.html`.
-- [ ] Нет browser-only API без `onMounted`/client guard.
+- [x] `static/` не изменен.
+- [x] Header/footer вынесены в компоненты.
+- [x] Общие классы и визуальное поведение сохранены.
+- [x] Навигация использует Nuxt routes, а не `.html`.
+- [x] Нет browser-only API без `onMounted`/client guard.
 
 ## Postman
 
 Не требуется.
-

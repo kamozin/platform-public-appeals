@@ -23,6 +23,10 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions): void {
+        $exceptions->dontReport([
+            ApiProblemException::class,
+        ]);
+
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request): bool => $request->is('api/*') || $request->expectsJson(),
         );
@@ -72,6 +76,15 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->render(function (Throwable $exception, Request $request) {
             if (! $request->is('api/*') && ! $request->expectsJson()) {
                 return null;
+            }
+
+            if ($exception instanceof ApiProblemException) {
+                return app(ApiErrorResponseFactory::class)->make(
+                    request: $request,
+                    code: $exception->errorCode,
+                    status: $exception->statusCode,
+                    details: $exception->details,
+                );
             }
 
             return app(ApiErrorResponseFactory::class)->make(

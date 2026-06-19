@@ -6,6 +6,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 final class AppealDraft extends Model
@@ -27,6 +28,11 @@ final class AppealDraft extends Model
         'contact_email',
         'contact_phone',
         'submitted_at',
+        'moderated_by_user_id',
+        'moderated_at',
+        'moderation_note',
+        'rejection_reason',
+        'public_appeal_id',
     ];
 
     /**
@@ -38,12 +44,37 @@ final class AppealDraft extends Model
     }
 
     /**
+     * @return HasMany<AppealModerationEvent, $this>
+     */
+    public function moderationEvents(): HasMany
+    {
+        return $this->hasMany(AppealModerationEvent::class)->orderBy('created_at');
+    }
+
+    /**
+     * @return BelongsTo<User, $this>
+     */
+    public function moderator(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'moderated_by_user_id');
+    }
+
+    /**
+     * @return BelongsTo<PublicAppeal, $this>
+     */
+    public function publicAppeal(): BelongsTo
+    {
+        return $this->belongsTo(PublicAppeal::class);
+    }
+
+    /**
      * @return array<string, string>
      */
     protected function casts(): array
     {
         return [
             'submitted_at' => 'datetime',
+            'moderated_at' => 'datetime',
         ];
     }
 }

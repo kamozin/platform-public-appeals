@@ -7,6 +7,7 @@ type QueryValue = string | number | null | undefined;
 
 const route = useRoute();
 const api = useApi();
+const { handleImageError, resolveImageUrl } = useImageFallback('/assets/issue-road.png');
 
 const asString = (value: unknown): string => {
   if (Array.isArray(value)) {
@@ -248,7 +249,15 @@ usePageSeo({
             >
               <span class="status" :class="statusClass(appeal)">{{ appeal.statusLabel }}</span>
               <NuxtLink :to="`/appeals/${appeal.slug}`" class="appeal-list-media">
-                <img :src="appeal.imageUrl" :alt="appeal.title" width="960" height="640" loading="lazy" decoding="async">
+                <img
+                  :src="resolveImageUrl(appeal.imageUrl)"
+                  :alt="appeal.title"
+                  width="960"
+                  height="640"
+                  loading="lazy"
+                  decoding="async"
+                  @error="handleImageError"
+                >
               </NuxtLink>
               <div class="appeal-copy">
                 <span>{{ appeal.category }}</span>

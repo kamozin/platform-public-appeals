@@ -77,15 +77,14 @@ Errors:
 
 ## Acceptance criteria
 
-- [ ] Регистрация создает пользователя.
-- [ ] Login возвращает auth result.
-- [ ] `me` работает только для авторизованного пользователя.
-- [ ] Logout завершает сессию/token.
-- [ ] Auth pages noindex.
-- [ ] Postman обновлен.
+- [x] Регистрация создает пользователя.
+- [x] Login возвращает auth result.
+- [x] `me` работает только для авторизованного пользователя.
+- [x] Logout завершает сессию/token.
+- [x] Auth pages noindex.
+- [x] Postman обновлен.
 
 ## Postman
 
-- [ ] Добавить register/login/me/logout.
-- [ ] Добавить примеры ошибок.
-
+- [x] Добавить register/login/me/logout.
+- [x] Добавить примеры ошибок.

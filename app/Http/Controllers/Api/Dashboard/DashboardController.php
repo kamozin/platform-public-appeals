@@ -39,16 +39,12 @@ final readonly class DashboardController
 
     public function notifications(Request $request): JsonResponse
     {
-        $this->auth->requireUser($request);
-
-        return response()->json(['data' => $this->dashboard->notifications()]);
+        return response()->json(['data' => $this->dashboard->notifications($this->auth->requireUser($request))]);
     }
 
     public function markAllNotificationsRead(Request $request): JsonResponse
     {
-        $this->auth->requireUser($request);
-
-        return response()->json(['data' => $this->dashboard->markAllNotificationsRead()]);
+        return response()->json(['data' => $this->dashboard->markAllNotificationsRead($this->auth->requireUser($request))]);
     }
 
     public function updateNotificationSettings(NotificationSettingsRequest $request): JsonResponse

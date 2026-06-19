@@ -46,21 +46,20 @@
 
 ## Acceptance criteria
 
-- [ ] Есть `docker-compose.yml`.
-- [ ] Есть `nginx` reverse proxy.
-- [ ] `http://rukadobra.localhost` редиректит на `https://rukadobra.localhost`.
-- [ ] `https://rukadobra.localhost/api/*` проксируется в Laravel.
-- [ ] `https://rukadobra.localhost/*` проксируется в Nuxt SSR.
-- [ ] `https://mail.rukadobra.localhost` открывает Mailpit UI.
-- [ ] Есть MySQL service.
-- [ ] Есть Redis service.
-- [ ] Есть Mailpit service.
-- [ ] Есть Gotenberg service.
-- [ ] TLS-сертификаты генерируются локально через `mkcert`.
-- [ ] Сертификаты не попадают в git.
-- [ ] В документации описан запуск окружения и hosts-записи.
+- [x] Есть `docker-compose.yml`.
+- [x] Есть `nginx` reverse proxy.
+- [x] `http://rukadobra.localhost` редиректит на `https://rukadobra.localhost`.
+- [x] `https://rukadobra.localhost/api/*` проксируется в Laravel.
+- [x] `https://rukadobra.localhost/*` проксируется в Nuxt SSR.
+- [x] `https://mail.rukadobra.localhost` открывает Mailpit UI.
+- [x] Есть MySQL service.
+- [x] Есть Redis service.
+- [x] Есть Mailpit service.
+- [x] Есть Gotenberg service.
+- [x] TLS-сертификаты генерируются локально через `mkcert`.
+- [x] Сертификаты не попадают в git.
+- [x] В документации описан запуск окружения и hosts-записи.
 
 ## Postman
 
 Не требуется.
-

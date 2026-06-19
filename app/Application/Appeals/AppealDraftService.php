@@ -38,7 +38,7 @@ final class AppealDraftService
     public function update(AppealDraftAccess $access, string $id, array $payload): array
     {
         $draft = $this->ownedDraft($access, $id);
-        $this->ensureEditable($draft);
+        $this->ensureContentEditable($draft);
         $draft->forceFill($this->draftAttributes($payload, includeOwner: false))->save();
 
         return $this->draftPayload($draft->refresh());
@@ -55,7 +55,7 @@ final class AppealDraftService
     public function delete(AppealDraftAccess $access, string $id): void
     {
         $draft = $this->ownedDraft($access, $id);
-        $this->ensureEditable($draft);
+        $this->ensureDeletable($draft);
         $draft->delete();
     }
 
@@ -65,7 +65,7 @@ final class AppealDraftService
     public function addAttachment(AppealDraftAccess $access, string $draftId, UploadedFile $file): array
     {
         $draft = $this->ownedDraft($access, $draftId);
-        $this->ensureEditable($draft);
+        $this->ensureContentEditable($draft);
 
         if ($draft->attachments()->count() >= 10) {
             throw new ApiProblemException('ATTACHMENT_LIMIT_EXCEEDED', 409);
@@ -95,7 +95,7 @@ final class AppealDraftService
     public function deleteAttachment(AppealDraftAccess $access, string $draftId, string $attachmentId): void
     {
         $draft = $this->ownedDraft($access, $draftId);
-        $this->ensureEditable($draft);
+        $this->ensureContentEditable($draft);
 
         $attachment = $draft->attachments()->whereKey($attachmentId)->first();
 
@@ -112,7 +112,7 @@ final class AppealDraftService
     public function submit(AppealDraftAccess $access, string $draftId, string $captchaToken): array
     {
         $draft = $this->ownedDraft($access, $draftId);
-        $this->ensureEditable($draft);
+        $this->ensureSubmittable($draft);
 
         if (! in_array($captchaToken, ['test-captcha', 'dev-captcha'], true)) {
             throw new ApiProblemException('CAPTCHA_FAILED', 422);
@@ -121,6 +121,10 @@ final class AppealDraftService
         $draft->forceFill([
             'status' => 'pending_moderation',
             'submitted_at' => now(),
+            'moderated_by_user_id' => null,
+            'moderated_at' => null,
+            'moderation_note' => null,
+            'rejection_reason' => null,
         ])->save();
 
         return $this->draftPayload($draft->refresh());
@@ -176,11 +180,31 @@ final class AppealDraftService
         return $draft;
     }
 
-    private function ensureEditable(AppealDraft $draft): void
+    private function ensureContentEditable(AppealDraft $draft): void
     {
-        if ($draft->status !== 'draft') {
-            throw new ApiProblemException('CONFLICT', 409);
+        if (in_array($draft->status, ['draft', 'pending_moderation', 'needs_changes'], true)) {
+            return;
         }
+
+        throw new ApiProblemException('CONFLICT', 409);
+    }
+
+    private function ensureSubmittable(AppealDraft $draft): void
+    {
+        if (in_array($draft->status, ['draft', 'needs_changes'], true)) {
+            return;
+        }
+
+        throw new ApiProblemException('CONFLICT', 409);
+    }
+
+    private function ensureDeletable(AppealDraft $draft): void
+    {
+        if (in_array($draft->status, ['draft', 'needs_changes'], true)) {
+            return;
+        }
+
+        throw new ApiProblemException('CONFLICT', 409);
     }
 
     /**
@@ -272,6 +296,10 @@ final class AppealDraftService
             'contactEmail' => $draft->contact_email,
             'contactPhone' => $draft->contact_phone,
             'submittedAt' => $this->dateString($draft->submitted_at),
+            'moderatedAt' => $this->dateString($draft->moderated_at),
+            'moderationNote' => $draft->moderation_note,
+            'rejectionReason' => $draft->rejection_reason,
+            'publicAppealId' => $draft->public_appeal_id,
             'attachments' => $draft->attachments()
                 ->latest()
                 ->get()

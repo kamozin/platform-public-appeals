@@ -45,6 +45,14 @@ usePageSeo({
           </p>
           <h1>Народная жалобная книга</h1>
           <p>Открытый реестр системных проблем и жалоб граждан. Ваш голос важен. Ваше обращение может изменить ситуацию.</p>
+          <div class="book-hero-actions" aria-label="Действия с жалобной книгой">
+            <NuxtLink class="btn btn-red" to="/appeals">
+              Смотреть обращения
+            </NuxtLink>
+            <NuxtLink class="btn btn-outline" to="/appeal/new">
+              Подать обращение
+            </NuxtLink>
+          </div>
         </div>
         <img src="/assets/complaint-book-cover-clean.png" alt="Обложка народной жалобной книги" width="827" height="1203">
       </header>

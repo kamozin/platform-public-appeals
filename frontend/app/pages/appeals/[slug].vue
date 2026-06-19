@@ -15,6 +15,7 @@ if (!slug) {
 }
 
 const api = useApi();
+const { handleImageError, resolveImageUrl } = useImageFallback('/assets/issue-entrance-roof.png');
 
 const { data: response, error } = await useAsyncData(`appeal-detail-${slug}`, () => {
   return api.get<ApiDataEnvelope<AppealDetailDto>>(`/appeals/${slug}`);
@@ -127,7 +128,14 @@ const submitComment = async (): Promise<void> => {
 
         <div class="appeal-detail-grid">
           <div class="appeal-detail-main">
-            <img class="article-cover" :src="page.imageUrl" :alt="page.title" width="960" height="640">
+            <img
+              class="article-cover"
+              :src="resolveImageUrl(page.imageUrl)"
+              :alt="page.title"
+              width="960"
+              height="640"
+              @error="handleImageError"
+            >
 
             <section class="content-card article-body" aria-labelledby="appeal-timeline-title">
               <section>

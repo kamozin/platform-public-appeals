@@ -8,6 +8,8 @@ use App\Application\Auth\AuthService;
 use App\Models\User;
 use App\Support\Api\ApiProblemException;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Throwable;
 
 final class ProfileService
 {
@@ -51,14 +53,45 @@ final class ProfileService
             throw new ApiProblemException('AVATAR_TOO_LARGE', 422);
         }
 
-        $path = $file->store('avatars');
-        $user->forceFill(['avatar_path' => $path])->save();
+        $disk = Storage::disk('public');
+        $oldPath = $this->avatarPathOrNull($user->avatar_path);
+        $path = $file->store('avatars', 'public');
+
+        if (! is_string($path) || $path === '') {
+            throw new ApiProblemException('AVATAR_UPLOAD_FAILED', 500);
+        }
+
+        try {
+            $user->forceFill(['avatar_path' => $path])->save();
+        } catch (Throwable $exception) {
+            $disk->delete($path);
+
+            throw $exception;
+        }
+
+        if ($oldPath !== null && $oldPath !== $path) {
+            $disk->delete($oldPath);
+        }
 
         return $this->profile($user->refresh());
     }
 
     public function deleteAvatar(User $user): void
     {
+        $oldPath = $this->avatarPathOrNull($user->avatar_path);
         $user->forceFill(['avatar_path' => null])->save();
+
+        if ($oldPath !== null) {
+            Storage::disk('public')->delete($oldPath);
+        }
+    }
+
+    private function avatarPathOrNull(?string $path): ?string
+    {
+        if ($path === null || $path === '' || $path === '0') {
+            return null;
+        }
+
+        return $path;
     }
 }

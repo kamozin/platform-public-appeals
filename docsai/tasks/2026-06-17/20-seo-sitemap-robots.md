@@ -72,13 +72,12 @@ Success:
 
 ## Acceptance criteria
 
-- [ ] Sitemap генерируется Nuxt.
-- [ ] Laravel отдает динамические URL.
-- [ ] `/api`, `/dashboard`, auth routes не индексируются.
-- [ ] Публичные detail pages есть в sitemap.
-- [ ] Postman обновлен.
+- [x] Sitemap генерируется Nuxt.
+- [x] Laravel отдает динамические URL.
+- [x] `/api`, `/dashboard`, auth routes не индексируются.
+- [x] Публичные detail pages есть в sitemap.
+- [x] Postman обновлен.
 
 ## Postman
 
-- [ ] Добавить `GET /api/v1/seo/sitemap-urls`.
-
+- [x] Добавить `GET /api/v1/seo/sitemap-urls`.

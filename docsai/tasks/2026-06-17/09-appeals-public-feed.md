@@ -101,13 +101,12 @@ Success `200`:
 
 ## Acceptance criteria
 
-- [ ] Фильтрация работает серверно.
-- [ ] Пагинация работает серверно.
-- [ ] Query params не ломают SSR.
-- [ ] Empty state отображается.
-- [ ] Postman обновлен.
+- [x] Фильтрация работает серверно.
+- [x] Пагинация работает серверно.
+- [x] Query params не ломают SSR.
+- [x] Empty state отображается.
+- [x] Postman обновлен.
 
 ## Postman
 
-- [ ] Добавить `GET /api/v1/appeals` с примерами query params.
-
+- [x] Добавить `GET /api/v1/appeals` с примерами query params.

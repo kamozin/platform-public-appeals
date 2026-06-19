@@ -2,13 +2,24 @@
 
 declare(strict_types=1);
 
+use Database\Seeders\PublicContentSeeder;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
 use function Pest\Laravel\getJson;
+use function Pest\Laravel\seed;
+
+uses(RefreshDatabase::class);
+
+beforeEach(function (): void {
+    seed(PublicContentSeeder::class);
+});
 
 it('returns public appeals feed with summary and seo', function (): void {
     getJson('/api/v1/appeals')
         ->assertOk()
         ->assertJsonPath('data.items.0.slug', 'road-pits-after-repair')
-        ->assertJsonPath('data.summary.publishedCount', 1284)
+        ->assertJsonPath('data.summary.publishedCount', 3)
+        ->assertJsonPath('data.summary.supportCount', 223)
         ->assertJsonPath('data.seo.robots', 'index,follow')
         ->assertJsonCount(3, 'data.items');
 });
@@ -52,7 +63,7 @@ it('does not expose private appeal detail pages', function (): void {
 it('returns public appeal comments preview list', function (): void {
     getJson('/api/v1/appeals/road-pits-after-repair/comments')
         ->assertOk()
-        ->assertJsonPath('data.items.0.type', 'public')
+        ->assertJsonFragment(['type' => 'public'])
         ->assertJsonCount(2, 'data.items');
 });
 
